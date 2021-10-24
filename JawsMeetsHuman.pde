@@ -4,6 +4,9 @@ int onPressMovingSpeed = 6;
 int objectSize = 50;
 String[] directions = { "isMovingLeft", "isMovingRight", "isMovingUp", "isMovingDown" };
 String[] movingModes = { "constant", "onKeyPress" };
+boolean inMenu = true;
+boolean inGame = false;
+boolean inPause = false; // Only false after initial startup to show rules etc.
 
 void setup() {
   fullScreen();
@@ -12,6 +15,23 @@ void setup() {
 }
 
 void draw() {
+  if (inMenu) {
+    background(100);
+    textAlign(CENTER);
+    fill(255);
+    textSize(80);
+    text("JAWS meets human", width/2, height/2.5);
+    textSize(20);
+    if (!inPause) { // Startup-specific content that is onyl displayed once
+      text("Press 'p' to play (or to pause later on)", width/2, height/2);
+      text("The rules go like this: …", width/2, height/1.5);
+    }
+    else {
+      text("Press 'p' to play (or to pause later on)", width/2, height/2); // TODO: Hier könnte noch etwas ausgeklügelteres hin
+    }
+  }
+
+  if (inGame) {
   background(200);
 
   moveObject(shark);
@@ -19,6 +39,7 @@ void draw() {
 
   drawHuman();
   drawShark();
+  }
 }
 
 void keyReleased() {
@@ -64,6 +85,11 @@ void keyPressed() {
       break;
     case 's':
       setDirection(human, 3);
+      break;
+    case 'p': // Press p to play or pause
+      inGame = !inGame;
+      inMenu = !inMenu;
+      inPause = true; // As soon as the player got into the game, there is no need for startup specific options like rules anymore.
       break;
     default:
       break;
