@@ -21,6 +21,6 @@ void displayMenu() {
     textSize(80);
     text("PAUSE", width/2, height/2.5);
     textSize(20);
-    text("Press 'p' to keep on playing", width/2, height/2); // TODO: Hier könnte noch etwas ausgeklügelteres hin
+    text("Press 'p' to keep on playing", width/2, height/2);
   }
 }

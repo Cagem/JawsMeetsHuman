@@ -9,11 +9,11 @@ boolean inGame = false;
 boolean inPause = false; // Only false after initial startup to show rules etc.
 
 void setup() {
-  // fullScreen();
-  size(1920, 1080); // ATTENTION: just for the moment since backround image requires it
+  fullScreen();
   initShark();
   initHuman();
   bgImage = loadImage("shark.jpg");
+  bgImage.resize(width, height); // the background image has to be the same size as the program
 }
 
 void draw() {
