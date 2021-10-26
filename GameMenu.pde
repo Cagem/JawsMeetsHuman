@@ -23,4 +23,8 @@ void displayMenu() {
     textSize(20);
     text("Press 'p' to keep on playing", width/2, height/2);
   }
+  fill(255);
+    textAlign(CENTER);
+    textSize(15);
+    text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width/2, height/1.8);
 }

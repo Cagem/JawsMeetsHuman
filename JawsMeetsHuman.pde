@@ -1,6 +1,7 @@
 JSONObject shark, human;
-int constantMovingSpeed = 3; // The global speed if an object moves constantly
-int onPressMovingSpeed = 6; // The global speed if an object moves only on press
+int difficulty = 1;
+int constantMovingSpeed = 3 * difficulty; // The global speed if an object moves constantly
+int onPressMovingSpeed = 6 * difficulty; // The global speed if an object moves only on press
 int objectSize = 50; // The default size of any drawn object
 String[] directions = { "isMovingLeft", "isMovingRight", "isMovingUp", "isMovingDown" }; // Possible moving directions
 String[] movingModes = { "constant", "onKeyPress" }; // Modes in which objects can move
@@ -87,6 +88,15 @@ void keyPressed() {
 			inGame = !inGame;
 			inMenu = !inMenu;
 			inPause = true; // As soon as the player got into the game, there is no need for startup specific options like rules anymore.
+			break;
+		case '1':
+			difficulty = 1;
+			break;
+		case '2':
+			difficulty = 2;
+			break;
+		case '3':
+			difficulty = 3;
 			break;
 		default:
 			break;
