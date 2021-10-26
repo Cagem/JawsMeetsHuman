@@ -243,3 +243,5 @@ JSONObject initMovableObject(int movingMode) {
 
 	return o;
 }
+
+//
