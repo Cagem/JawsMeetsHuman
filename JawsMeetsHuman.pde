@@ -9,6 +9,7 @@ boolean inMenu = true;
 boolean inGame = false;
 boolean inPause = false; // Only false after initial startup to show rules etc.
 
+
 // Function to initialize screen
 void setup() {
 	fullScreen(); // Initializes the screen as fullscreen
