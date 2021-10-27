@@ -28,3 +28,15 @@ void displayMenu() {
     textSize(15);
     text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width/2, height/1.8);
 }
+
+void displayDifficulty() {
+  float xPosition = width*0.9;
+  float yPosition = height*0.05;
+  rectMode(CENTER);
+  fill(80);
+  rect(xPosition, yPosition, width*0.15, height*0.05, 10);
+  fill(255);
+  textSize(20);
+  text("Difficulty level: " + difficulty, xPosition, height*0.057); // TODO: Make font size relative!
+  rectMode(CORNER);
+}

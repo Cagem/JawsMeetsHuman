@@ -3,11 +3,13 @@ int difficulty = 1;
 int constantMovingSpeed = 3 * difficulty; // The global speed if an object moves constantly
 int onPressMovingSpeed = 6 * difficulty; // The global speed if an object moves only on press
 int objectSize = 50; // The default size of any drawn object
+int countFrames = 0;
 String[] directions = { "isMovingLeft", "isMovingRight", "isMovingUp", "isMovingDown" }; // Possible moving directions
 String[] movingModes = { "constant", "onKeyPress" }; // Modes in which objects can move
 boolean inMenu = true;
 boolean inGame = false;
 boolean inPause = false; // Only false after initial startup to show rules etc.
+boolean displayDifficulty = false;
 
 
 // Function to initialize screen
@@ -15,17 +17,28 @@ void setup() {
 	fullScreen(); // Initializes the screen as fullscreen
 	initShark(); // Initializes the shark json object
 	initHuman(); // Initializes the human json object
+	frameRate(60);
 	bgImage = loadImage("shark.jpg");
-	bgImage.resize(width, height); // the background image has to be the same size as the program
+	bgImage.resize(width, height); // The background image has to be the same size as the program
 }
 
 // Function to draw on screen in loop
 void draw() {
 	if (inMenu) {
 		displayMenu();
+		if (displayDifficulty) {
+			displayDifficulty();
+			countFrames++;
+		}
+		if (countFrames == 120) {
+			displayDifficulty = false;
+			countFrames = 0;
+		} // TODO: Doesnt work for pause right now
 	}
 	if (inGame) {
 		background(200);
+
+		displayDifficulty = false;
 
 		moveObject(shark); // Updates the shark coordinates
 		moveObject(human); // Updates the human coordinates
@@ -90,14 +103,23 @@ void keyPressed() {
 			inMenu = !inMenu;
 			inPause = true; // As soon as the player got into the game, there is no need for startup specific options like rules anymore.
 			break;
-		case '1':
+		default:
+			break;
+		}
+	}
+	if (inMenu) {
+		switch(key) {
+		case '1': // TODO: DRY!
 			difficulty = 1;
+			displayDifficulty = true;
 			break;
 		case '2':
 			difficulty = 2;
+			displayDifficulty = true;
 			break;
 		case '3':
 			difficulty = 3;
+			displayDifficulty = true;
 			break;
 		default:
 			break;
