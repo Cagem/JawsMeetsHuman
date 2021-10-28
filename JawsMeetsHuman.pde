@@ -39,7 +39,7 @@ void draw() {
 		if (countFrames == 120) {
 			displayDifficulty = false;
 			countFrames = 0;
-		} // TODO: Doesnt work for pause right now
+		} // TODO: does not disappear when inPause
 	}
 	if (inGame) {
 		background(200);
@@ -107,7 +107,7 @@ void keyPressed() {
 		case 'p': // Press p to play or pause
 			inGame = !inGame;
 			inMenu = !inMenu;
-			inPause = true; // As soon as the player got into the game, there is no need for startup specific options like rules anymore.
+			inPause = true; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
 			break;
 		default:
 			break;
