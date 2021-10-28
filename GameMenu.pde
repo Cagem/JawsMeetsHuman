@@ -9,23 +9,23 @@ void displayMenu() {
     rect(width*0.2, height*0.25, width*0.6, height*0.73, 10);
     textAlign(CENTER);
     fill(255);
-    textSize(80);
+    textSize(titleSize);
     text("JAWS meets human", width/2, height/2.5);
-    textSize(20);
+    textSize(paragraphSize);
     text("Press 'p' to play (or to pause later on)", width/2, height/2);
     textAlign(LEFT);
-    text(ruleset, width*0.25, height/1.5, width*0.5, height*0.4); // this textbox is limited by x2 and y2
+    text(ruleset, width*0.25, height/1.5, width*0.5, height*0.4); // This textbox is limited by x2 and y2
   } else {
     fill(255);
     textAlign(CENTER);
-    textSize(80);
+    textSize(titleSize);
     text("PAUSE", width/2, height/2.5);
-    textSize(20);
+    textSize(paragraphSize);
     text("Press 'p' to keep on playing", width/2, height/2);
   }
   fill(255);
     textAlign(CENTER);
-    textSize(15);
+    textSize(descriptionSize);
     text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width/2, height/1.8);
 }
 
@@ -36,7 +36,7 @@ void displayDifficulty() {
   fill(80);
   rect(xPosition, yPosition, width*0.15, height*0.05, 10);
   fill(255);
-  textSize(20);
-  text("Difficulty level: " + difficulty, xPosition, height*0.057); // TODO: Make font size relative!
+  textSize(paragraphSize);
+  text("Difficulty level: " + difficulty, xPosition, height*0.057);
   rectMode(CORNER);
 }

@@ -4,6 +4,9 @@ int constantMovingSpeed = 3 * difficulty; // The global speed if an object moves
 int onPressMovingSpeed = 6 * difficulty; // The global speed if an object moves only on press
 int objectSize = 50; // The default size of any drawn object
 int countFrames = 0;
+int titleSize; // Global relative text size for titles
+int paragraphSize; // Global relative text size for normal text
+int descriptionSize; // Global relative text size for less important text
 String[] directions = { "isMovingLeft", "isMovingRight", "isMovingUp", "isMovingDown" }; // Possible moving directions
 String[] movingModes = { "constant", "onKeyPress" }; // Modes in which objects can move
 boolean inMenu = true;
@@ -20,6 +23,9 @@ void setup() {
 	frameRate(60);
 	bgImage = loadImage("shark.jpg");
 	bgImage.resize(width, height); // The background image has to be the same size as the program
+	titleSize = width/20;
+	paragraphSize = width/80;
+	descriptionSize = width/90;
 }
 
 // Function to draw on screen in loop
