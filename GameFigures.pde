@@ -1,45 +1,37 @@
-int objectSize = 50; // The default size of any drawn object
+PVector sharkPosition, sharkVelocity; // Hai-Position & Hai-Richtung
+PVector humanPosition, humanVelocity; // Mensch-Position & Mensch-Richtung
+float objectSize = 25; // The default size of any drawn object
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
 	rectMode(CENTER);
 	fill(100);
-	rect(shark.getInt("xPosition"), shark.getInt("yPosition"), objectSize, objectSize);
+	rect(sharkPosition.x, sharkPosition.y, objectSize*2, objectSize*2);
 }
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
 	rectMode(CENTER);
 	fill(229, 198, 163);
-	rect(human.getInt("xPosition"), human.getInt("yPosition"), objectSize, objectSize);
-	fill(208, 184, 172);
-	rect(human.getInt("xPosition"), human.getInt("yPosition"), objectSize-25, objectSize-25);
+	rect(humanPosition.x, humanPosition.y, objectSize*2, objectSize*2);
 }
 
 // Initializes the shark json object
 void initShark() {
-  	shark = initMovableObject(0);
+    sharkPosition = initRandomPositionVector();
+    sharkVelocity = PVector.random2D();
+    sharkVelocity.mult(3);
 }
 
 // Initializes the human json object
 void initHuman() {
-  	human = initMovableObject(1);
+    humanPosition = initRandomPositionVector();
+    humanVelocity = PVector.random2D();
+    humanVelocity.mult(3);
 }
 
 // Function to initialize a json object with properties 
 // that will safe the coordinates, moving direction & moving mode
-JSONObject initMovableObject(int movingMode) {
-	JSONObject o = new JSONObject();
-	int xPosition = int(random(width));
-	int yPosition = int(random(height));
-	int direction = int(random(directions.length));
-
-	o.setInt("xPosition", xPosition);
-	o.setInt("yPosition", yPosition);
-	o.setInt("movingMode", movingMode);
-
-	if (movingMode == 0) o.setInt("direction", direction);
-	if (movingMode == 1) o.setInt("direction", -1);
-
-	return o;
+PVector initRandomPositionVector() {
+    return new PVector(random(width), random(height));
 }

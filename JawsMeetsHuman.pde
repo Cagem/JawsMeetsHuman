@@ -1,4 +1,3 @@
-JSONObject shark, human;
 int countFrames = 0;
 
 // Function to initialize screen
@@ -18,10 +17,13 @@ void draw() {
         if (shouldDisplayDifficulty) shouldDisplayDifficulty = false;
         background(200);
 
-		moveObject(shark); // Updates the shark coordinates
-		moveObject(human); // Updates the human coordinates
+        if (shouldSharkMove) moveVectorObject(sharkPosition, sharkVelocity);
+        if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
 
 		drawHuman(); // Draws the human
 		drawShark(); // Draws the shark
+
+        checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
+        checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
     }  
 }

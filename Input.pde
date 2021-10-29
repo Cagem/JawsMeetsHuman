@@ -11,43 +11,82 @@ void keyPressed() {
 }
 
 void handleArrowKeysPressed() {
+    boolean eingabe = false;
+	float x = 0;
+	float y = 0;
+
     switch(keyCode) {
     case LEFT:
-        setDirection(shark, 0);
+        x--;
+		eingabe = true;
         break;
     case RIGHT:
-        setDirection(shark, 1);
+        x++;
+		eingabe = true;
         break;
     case UP:
-        setDirection(shark, 2);
+        y--;
+		eingabe = true;
         break;
     case DOWN:
-        setDirection(shark, 3);
+        y++;
+		eingabe = true;
         break;
     default:
         break;
     }
+
+    if (eingabe) {
+        sharkVelocity.x = x;
+	    sharkVelocity.y = y;
+
+        if (currentSharkSpeed < maxConstantMovingSpeed) {
+            currentSharkSpeed += acceleration;
+        }
+        
+        sharkPosition.add(sharkVelocity.mult(currentSharkSpeed));
+    }
 }
 
 void handleLetterKeysPressed() {
+    boolean eingabe = false;
+	float x = 0;
+	float y = 0;
+
     switch(key) {
     case 'a':
-        setDirection(human, 0);
+        x--;
+		eingabe = true;
         break;
     case 'd':
-        setDirection(human, 1);
+        x++;
+		eingabe = true;
         break;
     case 'w':
-        setDirection(human, 2);
+        y--;
+		eingabe = true;
         break;
     case 's':
-        setDirection(human, 3);
+        y++;
+		eingabe = true;
         break;
     case 'p': // Press p to play or pause
         setPlayOrPause();
         break;
     default:
         break;
+    }
+
+    if (eingabe) {
+        humanVelocity.x = x;
+	    humanVelocity.y = y;
+
+        if (currentHumanSpeed < maxOnPressMovingSpeed) {
+            currentHumanSpeed += acceleration;
+        }
+        
+        humanPosition.add(humanVelocity.mult(currentHumanSpeed));
+        shouldHumanMove = true;
     }
 }
 
@@ -72,14 +111,12 @@ void keyReleased() {
 	if (key == CODED && keyCode == LEFT || keyCode == RIGHT || keyCode == UP || keyCode == DOWN) {
 		// When the shark should only move on press, the direction value is here set to -1 so that at the next move-call 
 		// the shark will not be moved
-		if (shouldMoveOnPress(shark)) {
-			setDirection(shark, -1);
+		if (!shouldSharkMove) {
+            currentSharkSpeed = 0;
 		}
 	} else if (key == 'a' || key == 'd' || key == 'w' || key == 's') {
 		// When the human should only move on press, the direction value is set to -1 so that at the next move-call 
 		// the human will not be moved
-		if (shouldMoveOnPress(human)) {
-			setDirection(human, -1);
-		}
+        shouldHumanMove = false;
 	}
 }
