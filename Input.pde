@@ -108,15 +108,7 @@ void handleDifficultyKeysPressed() {
 
 // Event that is called when a key is released
 void keyReleased() {
-	if (key == CODED && keyCode == LEFT || keyCode == RIGHT || keyCode == UP || keyCode == DOWN) {
-		// When the shark should only move on press, the direction value is here set to -1 so that at the next move-call 
-		// the shark will not be moved
-		if (!shouldSharkMove) {
-            currentSharkSpeed = 0;
-		}
-	} else if (key == 'a' || key == 'd' || key == 'w' || key == 's') {
-		// When the human should only move on press, the direction value is set to -1 so that at the next move-call 
-		// the human will not be moved
+	if (key == 'a' || key == 'd' || key == 'w' || key == 's') {
         shouldHumanMove = false;
 	}
 }

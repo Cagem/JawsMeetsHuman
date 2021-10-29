@@ -5,10 +5,13 @@ float currentSharkSpeed = 0;
 float currentHumanSpeed = 0;
 boolean shouldHumanMove = false, shouldSharkMove = true;
 
+// Moves the position-vector in  the directon of the velocity-vector
 void moveVectorObject(PVector position, PVector velocity) {
     position.add(velocity);
 }
 
+// Checks if the position-vector is colliding with the boundary
+// If it collides, the velocity will be inverted
 void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
     if (position.x > width-radius) {
         position.x = width-radius;

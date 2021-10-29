@@ -16,22 +16,21 @@ void drawHuman() {
 	rect(humanPosition.x, humanPosition.y, objectSize*2, objectSize*2);
 }
 
-// Initializes the shark json object
+// Initializes the shark vectors
 void initShark() {
     sharkPosition = initRandomPositionVector();
     sharkVelocity = PVector.random2D();
     sharkVelocity.mult(3);
 }
 
-// Initializes the human json object
+// Initializes the human vectors
 void initHuman() {
     humanPosition = initRandomPositionVector();
     humanVelocity = PVector.random2D();
     humanVelocity.mult(3);
 }
 
-// Function to initialize a json object with properties 
-// that will safe the coordinates, moving direction & moving mode
+// Initializes a Vector with random x & y coordinates
 PVector initRandomPositionVector() {
     return new PVector(random(width), random(height));
 }
