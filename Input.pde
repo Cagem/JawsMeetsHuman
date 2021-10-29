@@ -1,61 +1,70 @@
 // Event that is called when a key is pressed
 void keyPressed() {
 	if (key == CODED) {
-		switch(keyCode) {
-		case LEFT:
-			setDirection(shark, 0);
-			break;
-		case RIGHT:
-			setDirection(shark, 1);
-			break;
-		case UP:
-			setDirection(shark, 2);
-			break;
-		case DOWN:
-			setDirection(shark, 3);
-			break;
-		default:
-			break;
-		}
+		handleArrowKeysPressed();
 	} else {
-		switch(key) {
-		case 'a':
-			setDirection(human, 0);
-			break;
-		case 'd':
-			setDirection(human, 1);
-			break;
-		case 'w':
-			setDirection(human, 2);
-			break;
-		case 's':
-			setDirection(human, 3);
-			break;
-		case 'p': // Press p to play or pause
-			setPlayOrPause();
-			break;
-		default:
-			break;
-		}
+		handleLetterKeysPressed();
 	}
 	if (shouldDisplayMenu) {
-		switch(key) {
-		case '1': // TODO: DRY!
-			difficulty = 1;
-			shouldDisplayDifficulty = true;
-			break;
-		case '2':
-			difficulty = 2;
-			shouldDisplayDifficulty = true;
-			break;
-		case '3':
-			difficulty = 3;
-			shouldDisplayDifficulty = true;
-			break;
-		default:
-			break;
-		}
+		handleDifficultyKeysPressed();
 	}
+}
+
+void handleArrowKeysPressed() {
+    switch(keyCode) {
+    case LEFT:
+        setDirection(shark, 0);
+        break;
+    case RIGHT:
+        setDirection(shark, 1);
+        break;
+    case UP:
+        setDirection(shark, 2);
+        break;
+    case DOWN:
+        setDirection(shark, 3);
+        break;
+    default:
+        break;
+    }
+}
+
+void handleLetterKeysPressed() {
+    switch(key) {
+    case 'a':
+        setDirection(human, 0);
+        break;
+    case 'd':
+        setDirection(human, 1);
+        break;
+    case 'w':
+        setDirection(human, 2);
+        break;
+    case 's':
+        setDirection(human, 3);
+        break;
+    case 'p': // Press p to play or pause
+        setPlayOrPause();
+        break;
+    default:
+        break;
+    }
+}
+
+void handleDifficultyKeysPressed() {
+    switch(key) {
+    case '1': // TODO: DRY!
+        setDifficulty(1);
+        break;
+    case '2':
+        setDifficulty(2);
+        break;
+    case '3':
+        setDifficulty(3);
+        break;
+    default:
+        break;
+    }
 }
 
 // Event that is called when a key is released

@@ -41,6 +41,11 @@ void setPlayOrPause() {
     if (!isShowingPause) isShowingPause = true; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
 } 
 
+void setDifficulty(int d) {
+    difficulty = d;
+	shouldDisplayDifficulty = true;
+} 
+
 void displayCurrentDifficulty() {
   float xPosition = width*0.9;
   float yPosition = height*0.05;
