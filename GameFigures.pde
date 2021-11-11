@@ -1,6 +1,6 @@
 PVector sharkPosition, sharkVelocity; // Hai-Position & Hai-Richtung
 PVector humanPosition, humanVelocity; // Mensch-Position & Mensch-Richtung
-float objectSize = 25; // The default size of any drawn object
+float objectSize = 15; // The default size of any drawn object
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
@@ -25,7 +25,7 @@ void initShark() {
 
 // Initializes the human vectors
 void initHuman() {
-    humanPosition = initRandomPositionVector();
+    humanPosition = new PVector(paths.get(0).x, paths.get(0).y);
     humanVelocity = PVector.random2D();
     humanVelocity.mult(3);
 }
