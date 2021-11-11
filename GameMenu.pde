@@ -74,6 +74,7 @@ void drawInitialMenuScreen() {
 }
 
 void drawPauseScreen() {
+	// TODO: draw dark transparent background
     fill(255);
 	textAlign(CENTER);
 	textSize(titleSize);
