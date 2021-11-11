@@ -1,5 +1,5 @@
 float maxConstantMovingSpeed = 3 * difficulty; // The global speed if an object moves constantly
-float maxOnPressMovingSpeed = 10 * difficulty; // The global speed if an object moves only on press
+float maxOnPressMovingSpeed = 4 * difficulty; // The global speed if an object moves only on press
 float acceleration = 1;
 float currentSharkSpeed = 0;
 float currentHumanSpeed = 0;
