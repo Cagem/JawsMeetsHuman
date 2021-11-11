@@ -28,6 +28,7 @@ void draw() {
         drawPaths();
 		drawHuman(); // Draws the human
 		drawShark(); // Draws the shark
+        drawLifes(); 
         
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
