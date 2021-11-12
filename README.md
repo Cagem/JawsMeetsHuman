@@ -27,7 +27,7 @@ An installation of processing is required.
 | Name                  | GitHub                                  |
 | --------------------- | --------------------------------------- |
 | Jona König            | [devdev42](https://github.com/devdev42) |
-| Luca Virnich          |                                         |
+| Luca Virnich          | [luca-virninch](https://github.com/luca-virninch) |
 | Peer Voss             |                                         |
 | Nigina Isamukhamedova |                                         |
 | Kyra Muhl             | [Cagem](https://github.com/Cagem)       |
