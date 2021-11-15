@@ -5,7 +5,7 @@ void keyPressed() {
 	} else {
 		handleLetterKeysPressed();
 	}
-	if (shouldDisplayMenu) {
+	if (displayMenu) {
 		handleDifficultyKeysPressed();
 	}
 }

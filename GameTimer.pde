@@ -11,11 +11,11 @@ int timerHours = 0;
 void drawTimer(){
 
     fill(0);
-    textSize(paragraphSize*3);
+    textSize(RelativeSize("M"));
     textAlign(LEFT);
     timerSecondsINT = Math.round (timerSeconds);      //Runden der sekunden 
     
-    if (!shouldDisplayMenu == true) {                  // game start
+    if (!displayMenu == true) {                  // game start
 
     text(timerHours+" : "+timerMinutes+" : "+timerSecondsINT, width*0.02, height-height*0.02);        //Position vom Timer
     timerSeconds = timerSeconds + 1/frameRate;                                  //seconds
