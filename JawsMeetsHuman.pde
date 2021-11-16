@@ -7,7 +7,7 @@ void setup() {
 	initHuman(); // Initializes the human json object
     initMenuScreen();
 
-    startThemeSong();
+    initThemeSound();
     
 	frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
 }
@@ -31,7 +31,8 @@ void draw() {
         
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
-    }  
+    }
+    showThemeSongPopup();
 }
 
 float RelativeSize(String size) {
