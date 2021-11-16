@@ -4,6 +4,7 @@ float acceleration = 1;
 float currentSharkSpeed = 0;
 float currentHumanSpeed = 0;
 boolean shouldHumanMove = false, shouldSharkMove = true;
+boolean hasHumanOverstepped = false;
 
 // Moves the position-vector in  the directon of the velocity-vector
 void moveVectorObject(PVector position, PVector velocity) {
@@ -54,8 +55,11 @@ void checkIfHumanLeftPath() {
 
     if (leftHumanBorder < leftPathBorder) {
         println("OVERSTEPPED_LEFT");
-    }
-    if (rightHumanBorder > rightPathBorder) {
+        hasHumanOverstepped = true;
+    } else if (rightHumanBorder > rightPathBorder) {
         println("OVERSTEPPED_RIGHT");
+        hasHumanOverstepped = true;
+    } else {
+        hasHumanOverstepped = false;
     }
 }
