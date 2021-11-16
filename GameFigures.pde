@@ -12,9 +12,9 @@ void drawShark() {
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
-	rectMode(CENTER);
-	fill(229, 198, 163);
-	rect(humanPosition.x, humanPosition.y, objectSize*2, objectSize*2);
+	img = loadImage("2.png");
+  imageMode(CENTER);
+	image(img, humanPosition.x, humanPosition.y, objectSize*2, objectSize*3);
 }
 
 // Initializes the shark vectors
