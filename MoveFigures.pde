@@ -27,3 +27,35 @@ void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
         velocity.y *= -1;
     }
 }
+
+PVector getPathHumanStandsOn() {
+    int index = 0;
+    float closestDistance = humanPosition.dist(paths.get(0));
+
+    for (int i = index; i < paths.size(); i++) {
+        PVector path = paths.get(i);
+        float distance = humanPosition.dist(path);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            index = i;
+        }
+    }
+
+    return paths.get(index);
+}
+
+void checkIfHumanLeftPath() {
+    PVector path = getPathHumanStandsOn();
+    float leftHumanBorder = humanPosition.x - objectSize;
+    float rightHumanBorder = humanPosition.x + objectSize;
+
+    float leftPathBorder = path.x - objectSize*2.5;
+    float rightPathBorder = path.x + objectSize*2.5;
+
+    if (leftHumanBorder < leftPathBorder) {
+        println("OVERSTEPPED_LEFT");
+    }
+    if (rightHumanBorder > rightPathBorder) {
+        println("OVERSTEPPED_RIGHT");
+    }
+}

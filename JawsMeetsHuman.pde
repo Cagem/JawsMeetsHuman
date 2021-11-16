@@ -31,6 +31,7 @@ void draw() {
         
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
+        checkIfHumanLeftPath();
     }
     showThemeSongPopup();
 }
