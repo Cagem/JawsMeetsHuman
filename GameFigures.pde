@@ -7,7 +7,7 @@ PImage img;
 void drawShark() {
 	img = loadImage("1.png");
   imageMode(CENTER);
-	image(img, sharkPosition.x, sharkPosition.y, objectSize*2, objectSize*2);
+	image(img, sharkPosition.x, sharkPosition.y, objectSize*8, objectSize*4);
 }
 
 // Function to draw the human object at given coordinates
