@@ -1,17 +1,28 @@
 ArrayList<PVector> paths = new ArrayList<PVector>();
 
+float getNextPathY(float y) {
+    float yLow = y;
+    float yHigh = y+objectSize*3;
+
+    return random(yLow, yHigh);
+}
+
+float getNextPathX(float x, float xLowest, float xHighest) {
+    float xLow = (x-(objectSize*2.5) > xLowest) ? x-(objectSize*2.5) : xLowest;
+    float xHigh = (x+(objectSize*2.5) < xHighest) ? x+(objectSize*2.5) : xHighest;
+
+    return random(xLow, xHigh);
+}
+
 void initPaths() {
-    float yRange = height-(objectSize*2);
+    float yRange = height-(objectSize*3);
     float xLowest = width / 4;
     float xHighest = width-xLowest;
-    float xLast = random(xLowest, xHighest);
+    float x = random(xLowest, xHighest);
 
-    for (float i = 0; i <= yRange+(objectSize*4); i+=objectSize*4) {
-        float xLow = (xLast-(objectSize*2.5) > xLowest) ? xLast-(objectSize*2.5) : xLowest;
-        float xHigh = (xLast+(objectSize*2.5) < xHighest) ? xLast+(objectSize*2.5) : xHighest;
-
-        xLast = random(xLow, xHigh);
-        PVector path = new PVector(xLast, i);
+    for (float y = 0; y <= yRange+(objectSize*3); y=getNextPathY(y)) {
+        x = getNextPathX(x, xLowest, xHighest);
+        PVector path = new PVector(x, y);
         paths.add(path);
     }
 }
