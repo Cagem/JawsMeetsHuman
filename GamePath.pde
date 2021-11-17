@@ -39,3 +39,19 @@ void drawPaths() {
         drawPath(paths.get(i));
     }
 }
+
+PVector getClosestPath(PVector figure) {
+    int index = 0;
+    float closestDistance = figure.dist(paths.get(0));
+
+    for (int i = index; i < paths.size(); i++) {
+        PVector path = paths.get(i);
+        float distance = figure.dist(path);
+        if (distance < closestDistance) {
+            closestDistance = distance;
+            index = i;
+        }
+    }
+
+    return paths.get(index);
+}

@@ -5,9 +5,11 @@ void setup() {
     initPaths();
 	initShark(); // Initializes the shark json object
 	initHuman(); // Initializes the human json object
+    
     initMenuScreen();
-
     initThemeSound();
+
+    isSharkLeftOrRightFromPath();
     
 	frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
 }
@@ -17,6 +19,7 @@ void draw() {
 	if (displayMenu) {
 		displayMenu();
 	} else {
+        if (isSharkJumping) setJumpingTimer();
         if (displayDifficulty) displayDifficulty = false;
         background(176,196,222);
 
@@ -32,6 +35,7 @@ void draw() {
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
         checkIfHumanLeftPath();
+        checkSharkPathCollision();
     }
     showThemeSongPopup();
 }

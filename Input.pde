@@ -54,6 +54,9 @@ void handleKeysPressed() {
   float y = 0;
 
   switch(key) {
+  case ENTER:
+    isSharkJumping = true;
+    break;
   case 'a':
     x--;
     eingabe = true;
