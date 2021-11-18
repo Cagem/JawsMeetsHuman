@@ -30,7 +30,7 @@ void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
 }
 
 void checkIfHumanLeftPath() {
-    PVector path = getClosestPath(humanPosition);
+    PVector path = getClosestPath(humanPosition, humanVelocity);
 
     float leftHumanBorder = humanPosition.x - objectSize;
     float rightHumanBorder = humanPosition.x + objectSize;
@@ -43,16 +43,12 @@ void checkIfHumanLeftPath() {
     float bottomPathBorder = path.y + objectSize*2.5;
 
     if (leftHumanBorder < leftPathBorder) {
-        println("OVERSTEPPED_LEFT");
         hasHumanOverstepped = true;
     } else if (rightHumanBorder > rightPathBorder) {
-        println("OVERSTEPPED_RIGHT");
         hasHumanOverstepped = true;
     }if (upperHumanBorder < upperPathBorder) {
-        println("OVERSTEPPED_TOP");
         hasHumanOverstepped = true;
     } else if (bottomHumanBorder > bottomPathBorder) {
-        println("OVERSTEPPED_BOTTOM");
         hasHumanOverstepped = true;
     } else {
         hasHumanOverstepped = false;
@@ -61,22 +57,54 @@ void checkIfHumanLeftPath() {
 
 void checkSharkPathCollision() {
     if (!isSharkJumping) {
-        PVector path = getClosestPath(sharkPosition);
+        PVector path = getClosestPath(sharkPosition, sharkVelocity);
 
         float leftSharkBorder = sharkPosition.x - objectSize;
         float rightSharkBorder = sharkPosition.x + objectSize;
+        float topSharkBorder = sharkPosition.y - objectSize;
+        float bottomSharkBorder = sharkPosition.y + objectSize;
 
         float leftPathBorder = path.x - objectSize*2.5;
         float rightPathBorder = path.x + objectSize*2.5;
+        float topPathBorder = path.y - objectSize*2.5;
+        float bottomPathBorder = path.y + objectSize*2.5;
 
         if (isSharkLeftFromPath) {
-            if (rightSharkBorder > leftPathBorder) {
+            if (sharkVelocity.x > 0 && rightSharkBorder > leftPathBorder) {
                 sharkVelocity.x *= -1;
+            }
+            if (sharkVelocity.y < 0 && topSharkBorder < bottomPathBorder) {
+                sharkVelocity.y *= -1;
+            }
+            if (sharkVelocity.y > 0 && bottomSharkBorder > topPathBorder) {
+                sharkVelocity.y *= -1;
             }
         } else if (isSharkRightFromPath) {
             if (leftSharkBorder < rightPathBorder) {
                 sharkVelocity.x *= -1;
+            } 
+            if (topSharkBorder < bottomPathBorder) {
+                sharkVelocity.y *= -1;
+            }
+            if (bottomSharkBorder > topPathBorder) {
+                sharkVelocity.y *= -1;
             }
         }
     } 
+}
+
+void checkSharkHumanCollision() {
+    float distance = sharkPosition.dist(humanPosition);
+
+    float[] xSharkBorders = {sharkPosition.x - objectSize, sharkPosition.x + objectSize};
+    float[] ySharkBorders = {sharkPosition.y - objectSize, sharkPosition.y + objectSize};
+
+    float[] xHumanBorders = {humanPosition.x - objectSize, humanPosition.x + objectSize};
+    float[] yHumanBorders = {humanPosition.y - objectSize, humanPosition.y + objectSize};
+
+    if (distance < objectSize*2) {
+        lifes--;
+        sharkVelocity.x *= -1;
+        sharkVelocity.y *= -1;
+    }
 }

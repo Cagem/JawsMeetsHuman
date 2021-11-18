@@ -40,18 +40,71 @@ void drawPaths() {
     }
 }
 
-PVector getClosestPath(PVector figure) {
-    int index = 0;
+PVector getClosestPath(PVector figure, PVector velocity) {
+    int index = -1;
     float closestDistance = figure.dist(paths.get(0));
 
-    for (int i = index; i < paths.size(); i++) {
+    boolean isLookingUp = velocity.y < 0;
+    boolean isLookingDown = velocity.y > 0;
+    boolean isLookingLeft = velocity.x < 0;
+    boolean isLookingRight = velocity.x > 0;
+
+    float[] xFigureBorders = {figure.x - objectSize, figure.x + objectSize};
+    float[] yFigureBorders = {figure.y - objectSize, figure.y + objectSize};
+
+    for (int i = 0; i < paths.size(); i++) {
         PVector path = paths.get(i);
-        float distance = figure.dist(path);
-        if (distance < closestDistance) {
-            closestDistance = distance;
-            index = i;
+
+        float[] xPathBorders = {path.x - objectSize*2.5, path.x + objectSize*2.5};
+        float[] yPathBorders = {path.y - objectSize*2.5, path.y + objectSize*2.5};
+
+        if (isLookingUp) {
+            if (xFigureBorders[0] < xPathBorders[1] || xFigureBorders[1] > xPathBorders[0]) {
+                if (yPathBorders[1] < yFigureBorders[0]) {
+                    float distance = figure.dist(path);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        index = i;
+                    }
+                } 
+            }
+        }
+        if (isLookingDown) {
+            if (xFigureBorders[0] < xPathBorders[1] || xFigureBorders[1] > xPathBorders[0]) {
+                if (yPathBorders[0] > yFigureBorders[1]) {
+                    float distance = figure.dist(path);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        index = i;
+                    }
+                } 
+            }
+        }
+        if (isLookingLeft) {
+            if (yFigureBorders[0] > yPathBorders[1] || yFigureBorders[1] < yPathBorders[0]) {
+                if (xPathBorders[1] < xFigureBorders[0]) {
+                    float distance = figure.dist(path);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        index = i;
+                    }
+                } 
+            }
+        }
+        if (isLookingRight) {
+            if (yFigureBorders[0] > yPathBorders[1] || yFigureBorders[1] < yPathBorders[0]) {
+                if (xPathBorders[0] > xFigureBorders[1]) {
+                    float distance = figure.dist(path);
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        index = i;
+                    }
+                } 
+            }
         }
     }
 
-    return paths.get(index);
+    println(index);
+
+    return index;
 }

@@ -26,9 +26,10 @@ void draw() {
         if (shouldSharkMove) moveVectorObject(sharkPosition, sharkVelocity);
         if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
 
-        drawPaths();
+        drawPaths(); // Draws the path
 		drawHuman(); // Draws the human
-		drawShark(); // Draws the shark
+        if (isSharkJumping) drawSharkShadow();
+		drawShark(); // Draws the shark      
         drawLifes(); // Draws the Hearts/Lifes
         drawTimer(); // Draws the timer
         
@@ -36,6 +37,7 @@ void draw() {
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
         checkIfHumanLeftPath();
         checkSharkPathCollision();
+        checkSharkHumanCollision();
     }
     showThemeSongPopup();
 }

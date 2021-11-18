@@ -14,11 +14,17 @@ void drawShark() {
 	rect(sharkPosition.x, sharkPosition.y, objectSize*2, objectSize*2);
 }
 
+void drawSharkShadow() {
+	rectMode(CENTER);
+	fill(0, 50);
+	rect(sharkPosition.x+7, sharkPosition.y+7, objectSize*2, objectSize*2);
+}
+
 void setJumpingTimer() {
     if (isSharkJumping == true) {
 		jumpingTimer++;
 
-        if (jumpingTimer == 120) {
+        if (jumpingTimer == 80) {
             isSharkLeftOrRightFromPath();
             isSharkJumping = false;
             jumpingTimer = 0;
@@ -31,15 +37,18 @@ void drawHuman() {
 	rectMode(CENTER);
 	fill(229, 198, 163);
     if (hasHumanOverstepped) {
-        strokeWeight(40);
+        strokeWeight(10);
         stroke(204, 0, 0);
-        strokeWeight(4);
     }
 	rect(humanPosition.x, humanPosition.y, objectSize*2, objectSize*2);
+    if (hasHumanOverstepped) {
+        strokeWeight(4);
+        noStroke();
+    }
 }
 
 void isSharkLeftOrRightFromPath() {
-    PVector path = getClosestPath(sharkPosition);
+    PVector path = getClosestPath(sharkPosition, sharkVelocity);
 
     float leftSharkBorder = sharkPosition.x - objectSize;
     float rightSharkBorder = sharkPosition.x + objectSize;
@@ -49,9 +58,6 @@ void isSharkLeftOrRightFromPath() {
 
     isSharkLeftFromPath = rightSharkBorder < leftPathBorder;
     isSharkRightFromPath = leftSharkBorder > rightPathBorder;
-
-    println("isLeft: " + isSharkLeftFromPath);
-    println("isRight: " + isSharkRightFromPath);
 }
 
 // Initializes the shark vectors
