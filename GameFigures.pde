@@ -9,53 +9,45 @@ int jumpingTimer = 0;
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
-	rectMode(CENTER);
-	fill(100);
-	rect(sharkPosition.x, sharkPosition.y, objectSize*2, objectSize*2);
+    PImage img = loadImage("shark.png");
+    imageMode(CENTER);
+    image(img, sharkPosition.x, sharkPosition.y, objectSize * 8, objectSize * 4);
 }
 
 void drawSharkShadow() {
-	rectMode(CENTER);
-	fill(0, 50);
-	rect(sharkPosition.x+7, sharkPosition.y+7, objectSize*2, objectSize*2);
+    rectMode(CENTER);
+    fill(0, 50);
+    rect(sharkPosition.x + 7, sharkPosition.y + 7, objectSize * 2, objectSize * 2);
 }
 
 void setJumpingTimer() {
     if (isSharkJumping == true) {
-		jumpingTimer++;
-
+        	jumpingTimer++;
+        
         if (jumpingTimer == 80) {
             isSharkLeftOrRightFromPath();
             isSharkJumping = false;
             jumpingTimer = 0;
         }
-	}
+        }
 }
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
-	rectMode(CENTER);
-	fill(229, 198, 163);
-    if (hasHumanOverstepped) {
-        strokeWeight(10);
-        stroke(204, 0, 0);
-    }
-	rect(humanPosition.x, humanPosition.y, objectSize*2, objectSize*2);
-    if (hasHumanOverstepped) {
-        strokeWeight(4);
-        noStroke();
-    }
+    PImage img = loadImage("human.png");
+    imageMode(CENTER);
+    image(img, humanPosition.x, humanPosition.y, objectSize * 2, objectSize * 3);
 }
 
 void isSharkLeftOrRightFromPath() {
     PVector path = getClosestPath(sharkPosition, sharkVelocity);
-
+    
     float leftSharkBorder = sharkPosition.x - objectSize;
     float rightSharkBorder = sharkPosition.x + objectSize;
-
-    float leftPathBorder = path.x - objectSize*2.5;
-    float rightPathBorder = path.x + objectSize*2.5;
-
+    
+    float leftPathBorder = path.x - objectSize * 2.5;
+    float rightPathBorder = path.x + objectSize * 2.5;
+    
     isSharkLeftFromPath = rightSharkBorder < leftPathBorder;
     isSharkRightFromPath = leftSharkBorder > rightPathBorder;
 }
@@ -70,7 +62,7 @@ void initShark() {
 // Initializes the human vectors
 void initHuman() {
     humanPosition = new PVector(paths.get(0).x, paths.get(0).y);
-    humanVelocity = PVector.random2D();
+    humanVelocity = new PVector(0, 0);
     humanVelocity.mult(3);
 }
 

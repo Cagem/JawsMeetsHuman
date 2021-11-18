@@ -1,126 +1,132 @@
-// Event that is called when a key is pressed
+// Event that is called when any key is pressed
 void keyPressed() {
-  if (key == CODED) {
-    handleArrowKeysPressed();
-  } else {
-    handleKeysPressed();
-  }
-  if (displayMenu) {
-    handleDifficultyKeysPressed();
-  }
+    if (key == CODED) { // Handles specifically arrow keys
+        handleArrowKeysPressed();
+    } else { // Handles any other key
+        handleKeysPressed();
+    }
+    if (displayMenu) {
+        handleDifficultyKeysPressed();
+    }
 }
 
 void handleArrowKeysPressed() {
-    boolean eingabe = false;
-	float x = 0;
-	float y = 0;
-
+    boolean hasPressedArrowKey = false;
+    
     switch(keyCode) {
-    case LEFT:
-        x--;
-		eingabe = true;
-        break;
-    case RIGHT:
-        x++;
-		eingabe = true;
-        break;
-    case UP:
-        y--;
-		eingabe = true;
-        break;
-    case DOWN:
-        y++;
-		eingabe = true;
-        break;
-    default:
+        case LEFT:
+            sharkVelocity.x = -1;
+            sharkVelocity.y = 0;
+            hasPressedArrowKey = true;
+            break;
+        case RIGHT:
+            sharkVelocity.x = 1;
+            sharkVelocity.y = 0;
+            hasPressedArrowKey = true;
+            break;
+        case UP:
+            sharkVelocity.x = 0;
+            sharkVelocity.y = -1;
+            hasPressedArrowKey = true;
+            break;
+        case DOWN:
+            sharkVelocity.x = 0;
+            sharkVelocity.y = 1;
+            hasPressedArrowKey = true;
+            break;
+        default:
         break;
     }
-
-    if (eingabe) {
-        sharkVelocity.x = x;
-	    sharkVelocity.y = y;
-
-        if (currentSharkSpeed < maxConstantMovingSpeed) {
-            currentSharkSpeed += acceleration;
-        }
-        
-        sharkPosition.add(sharkVelocity.mult(currentSharkSpeed));
+    
+    if (hasPressedArrowKey) {        
+        increaseSharkSpeed();
+        moveVectorObject(sharkPosition, sharkVelocity.mult(currentSharkSpeed));
     }
 }
 
 void handleKeysPressed() {
-  boolean eingabe = false;
-  float x = 0;
-  float y = 0;
-
-  switch(key) {
-  case ENTER:
-    isSharkJumping = true;
-    break;
-  case 'a':
-    x--;
-    eingabe = true;
-    break;
-  case 'd':
-    x++;
-    eingabe = true;
-    break;
-  case 'w':
-    y--;
-    eingabe = true;
-    break;
-  case 's':
-    y++;
-    eingabe = true;
-    break;
-  case 'm':
-    playOrPauseThemeSong();
-    break;
-  case 'p': // Press p to play or pause
-    setPlayOrPause();
-    break;
- case '4':
-    decreaseThemeVolume();
-    break;
-  case '5':
-    increaseThemeVolume();
-    break;
-  default:
-    break;
-  }
-
-    if (eingabe) {
-        humanVelocity.x = x;
-	    humanVelocity.y = y;
-
-        if (currentHumanSpeed < maxOnPressMovingSpeed) {
-            currentHumanSpeed += acceleration;
-        }
-        
-        humanPosition.add(humanVelocity.mult(currentHumanSpeed));
+    boolean hasPressedWASDKey = false;
+    
+    switch(key) {
+        case 'a':
+            humanVelocity.x = -0.5;
+            humanVelocity.y = 0;
+            hasPressedWASDKey = true;
+            break;
+        case 'd':
+            humanVelocity.x = 0.5;
+            humanVelocity.y = 0;
+            hasPressedWASDKey = true;
+            break;
+        case 'w':
+            humanVelocity.x = 0;
+            humanVelocity.y = -0.5;
+            hasPressedWASDKey = true;
+            break;
+        case 's':
+            humanVelocity.x = 0;
+            humanVelocity.y = 0.5;
+            hasPressedWASDKey = true;
+            break;
+        case 'm':
+            playOrPauseThemeSong();
+            break;
+        case 'p' : // Press p to play or pause
+            setPlayOrPause();
+            break;
+        case '4':
+            decreaseThemeVolume();
+            break;
+        case '5':
+            increaseThemeVolume();
+            break;
+        default:
+        break;
+    }
+    
+    if (hasPressedWASDKey) {
+        increaseHumanSpeed();
+        moveVectorObject(humanPosition, humanVelocity.mult(currentHumanSpeed));
         shouldHumanMove = true;
     }
 }
 
 void handleDifficultyKeysPressed() {
     switch(key) {
-    case '1': // TODO: DRY!
+        case'1' : // TODO: DRY!
         setDifficulty(1);
         break;
-    case '2':
+        case'2':
         setDifficulty(2);
         break;
-    case '3':
+        case'3':
         setDifficulty(3);
         break;
-    default:
+        default:
         break;
     }
 }
 
 // Event that is called when a key is released
 void keyReleased() {
-	if (key == 'a' || key == 'd' || key == 'w' || key == 's') {
+    if (keyPressed == false || key == 'a' || key == 'd' || key == 'w' || key ==  's') {
         shouldHumanMove = false;
-	}
+    }
+    
+    switch(key) {
+        case 'a':
+            humanVelocity.x = 0;
+            break;
+        case 'd':
+            humanVelocity.x = 0;
+            break;
+        case 'w':
+            humanVelocity.y = 0;
+            break;
+        case 's':
+            humanVelocity.y = 0;
+            break;
+        default:
+        break;
+    }
 }
