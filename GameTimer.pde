@@ -3,11 +3,6 @@ int timerSecondsINT = 0;
 int timerMinutes = 0;
 int timerHours = 0;
 
-
-
-
-
-
 void drawTimer(){
 
     fill(0);
