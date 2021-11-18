@@ -6,7 +6,7 @@ boolean displayDifficulty = false;
 String ruleset = "The rules go like this: \nNon exercitation pariatur aute qui ea. Pariatur labore commodo ipsum anim excepteur fugiat nulla ea excepteur aute aliquip. Voluptate minim ut mollit Lorem excepteur in irure voluptate elit aliqua. Ea veniam nisi fugiat ea. Nisi est sunt ipsum commodo. Sint consectetur anim enim nulla sunt tempor voluptate nulla aliquip ullamco reprehenderit enim sint tempor. Id sunt non dolor quis labore tempor fugiat minim id excepteur consequat culpa elit voluptate. Deserunt id deserunt officia in incididunt et ullamco adipisicing. Non irure eu eu aliqua in aliqua cillum magna aute adipisicing.";
 PImage bgImage;
 
-void initMenuScreen() {
+void initBackgroundImage() {
 	bgImage = loadImage("shark.jpg");
 	bgImage.resize(width, height); // The background image has to be the same size as the program
 }

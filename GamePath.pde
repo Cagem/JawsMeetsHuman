@@ -1,5 +1,6 @@
-ArrayList<PVector> paths = new ArrayList<PVector>();
+ArrayList<PVector> paths = new ArrayList<PVector>(); // Vector positions of the path tiles
 
+// Initializes the path vectors
 void initPaths() {
   float yRange = height-(objectSize*2);
   float xLowest = width / 4;
@@ -16,12 +17,14 @@ void initPaths() {
   }
 }
 
+// Function to draw the path at given coordinates
 void drawPath(PVector path) {
-  img = loadImage("3.png");
+  PImage img = loadImage("3.png");
   imageMode(CENTER);
   image(img, path.x, path.y, objectSize*5, objectSize*5);
 }
 
+// Function to draw all path tiles
 void drawPaths() {
   for (int i = 0; i < paths.size(); i++) {
     drawPath(paths.get(i));

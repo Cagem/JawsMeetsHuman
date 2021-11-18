@@ -2,12 +2,12 @@
 void setup() {
 	fullScreen(); // Initializes the screen as fullscreen
 
-    initPaths();
-	initShark(); // Initializes the shark json object
-	initHuman(); // Initializes the human json object
-    initMenuScreen();
+    initPaths(); // Initializes the path vectors
+	initShark(); // Initializes the shark vectors
+	initHuman(); // Initializes the human vectors
+    initBackgroundImage(); // Initializes the menu screen
 
-    initThemeSound();
+    initThemeSound(); // Initializes the background music
     
 	frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
 }
@@ -23,16 +23,16 @@ void draw() {
         if (shouldSharkMove) moveVectorObject(sharkPosition, sharkVelocity);
         if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
 
-        drawPaths();
+        drawPaths(); // Draws the path
 		drawHuman(); // Draws the human
 		drawShark(); // Draws the shark
         drawLifes(); // Draws the Hearts/Lifes
         drawTimer(); // Draws the timer
         
-        checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize);
-        checkBoundaryCollision(humanPosition, humanVelocity, objectSize);
+        checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize); // Checks if the shark collides with screen border
+        checkBoundaryCollision(humanPosition, humanVelocity, objectSize); // Checks if the human collides with screen border
     }
-    showThemeSongPopup();
+    showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
 }
 
 float RelativeSize(String size) {
