@@ -5,7 +5,7 @@ int timerHours = 0;
 
 void drawTimer() {
     fill(0);
-    textSize(RelativeSize("M"));
+    textSize(relativeSize("M"));
     textAlign(LEFT);
     timerSecondsINT = Math.round(timerSeconds);      //Runden der sekunden 
     

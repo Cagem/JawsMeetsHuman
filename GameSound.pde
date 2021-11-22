@@ -102,7 +102,7 @@ void drawThemeSongPopup(String info) {
   fill(80);
   rect(xPosition, yPosition, width*0.15, height*0.05, 10);
   fill(255);
-  textSize(RelativeSize("M"));
+  textSize(relativeSize("M"));
   text(info, xPosition, height*0.057);
   rectMode(CORNER);
 }

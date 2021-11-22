@@ -35,7 +35,7 @@ void draw() {
     showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
 }
 
-float RelativeSize(String size) {
+float relativeSize(String size) {
     //XL -> Global relative fontsize for TITLES
     //M -> Global relative fontsize for REGULAR TEXT
     //S -> Global relative fontsize for DESCRIPTIVE TEXT
