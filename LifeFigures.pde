@@ -4,25 +4,22 @@ boolean life3 = false;    //Leben 3
 int s = 3;                //Größe von den Herzen (bei Größenänderung auch pos. ändern)
 
 void drawLifes() {
-  if (life1 == true) {
-    life (40, 40);             //pos. Herz1
-  }
-  if (life1 == false) {
+  if (life1) {
+    life (40, 40);            //pos. Herz1
+  } else { 
     nolife (40, 40);           //pos. Herz1
   }
 
-  if (life2 == true) {
-    life (120, 40);           //pos. Herz2
-  }
-  if (life2 == false) {
-    nolife (120, 40);        //pos. Herz2
+  if (life2) {
+    life (120, 40);            //pos. Herz1
+  } else { 
+    nolife (120, 40);           //pos. Herz1
   }
 
-  if (life3 == true) {
-    life (200, 40);            //pos. Herz3
-  }
-  if (life3 == false) {
-    nolife (200, 40);          //pos. Herz3
+  if (life3) {
+    life (200, 40);            //pos. Herz1
+  } else { 
+    nolife (200, 40);           //pos. Herz1
   }
 }
 
