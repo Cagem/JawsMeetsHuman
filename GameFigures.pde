@@ -14,7 +14,7 @@ void drawShark() {
 void drawHuman() {
   img = loadImage("2.png");
   imageMode(CENTER);
-  image(img, humanPosition.x, humanPosition.y, objectSize*2, objectSize*3);
+  image(img, humanPosition.x, humanPosition.y, objectSize*1.6, objectSize*4);
 }
 
 // Initializes the shark vectors
