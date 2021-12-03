@@ -1,4 +1,5 @@
 import java.awt.Robot;
+import toxi.geom.*;
 
 Robot robot;
 
@@ -53,25 +54,44 @@ void drawControlUI() {
     circle(centerOfControlUI[0], centerOfControlUI[1], 0.025 * width);
 }
 
+void initActiveAreas() { // TODO: set correct X and Y and link them to the UI with Variables.
+    
+    Polygon2D upperArea = new Polygon2D();
+    upperArea.add(new Vec2D(10,0));
+    upperArea.add(new Vec2D(100,50));
+    upperArea.add(new Vec2D(110,80));
+    upperArea.add(new Vec2D(40,100));
+
+    Polygon2D lowerArea = new Polygon2D();
+    lowerArea.add(new Vec2D(10,0));
+    lowerArea.add(new Vec2D(100,50));
+    lowerArea.add(new Vec2D(110,80));
+    lowerArea.add(new Vec2D(40,100));
+
+    Polygon2D leftArea = new Polygon2D();
+    leftArea.add(new Vec2D(10,0));
+    leftArea.add(new Vec2D(100,50));
+    leftArea.add(new Vec2D(110,80));
+    leftArea.add(new Vec2D(40,100));
+
+    Polygon2D rightArea = new Polygon2D();
+    rightArea.add(new Vec2D(10,0));
+    rightArea.add(new Vec2D(100,50));
+    rightArea.add(new Vec2D(110,80));
+    rightArea.add(new Vec2D(40,100));
+}
+
 String checkMousePosition() {
     
     String setOrientation = "";
     
-    if (mouseY < centerOfControlUI[1] && 
-        mouseX < centerOfControlUI[0] + 16 && // right site of presented triangle 
-        mouseX > centerOfControlUI[0] - 16) { // left site of presented triangle
+    if (upperArea.containsPoint(new Vec2D(mouseX,mouseY))) {
         setOrientation = "UP";
-    } else if (mouseY > centerOfControlUI[1] && 
-               mouseX < centerOfControlUI[0] + 16 && // right site of presented triangle 
-               mouseX > centerOfControlUI[0] - 16) { // left site of presented triangle
+    } else if (lowerArea.containsPoint(new Vec2D(mouseX,mouseY))) { 
         setOrientation = "DOWN";
-    } else if (mouseX > centerOfControlUI[0] && 
-               mouseY < centerOfControlUI[1] + 16 &&  
-               mouseY > centerOfControlUI[1] - 16) {
+    } else if (rightArea.containsPoint(new Vec2D(mouseX,mouseY))) {
         setOrientation = "RIGHT";
-    } else if (mouseX < centerOfControlUI[0] && 
-               mouseY < centerOfControlUI[1] + 16 &&  
-               mouseY > centerOfControlUI[1] - 16) {
+    } else if (leftArea.containsPoint(new Vec2D(mouseX,mouseY))) {
         setOrientation = "LEFT";
     } 
     
