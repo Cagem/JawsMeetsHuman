@@ -1,8 +1,11 @@
 import java.awt.Robot;
 import toxi.geom.*;
 
+Polygon2D upperArea = new Polygon2D();
+Polygon2D lowerArea = new Polygon2D();
+Polygon2D leftArea = new Polygon2D();
+Polygon2D rightArea = new Polygon2D();
 Robot robot;
-
 int[] centerOfControlUI = new int[2]; // X, Y Coordinates
 PImage cursorImage;
 
@@ -51,30 +54,26 @@ void drawControlUI() {
     circle(centerOfControlUI[0], centerOfControlUI[1], 0.1 * width);
     // draw lines
     // write: UP, DOWN, LEFT, RIGHT
-    circle(centerOfControlUI[0], centerOfControlUI[1], 0.025 * width);
+    circle(centerOfControlUI[0], centerOfControlUI[1], 28); // 28 is used because of the static image size of red_dot, so it can overlay the default position.
 }
 
 void initActiveAreas() { // TODO: set correct X and Y and link them to the UI with Variables.
     
-    Polygon2D upperArea = new Polygon2D();
     upperArea.add(new Vec2D(10,0));
     upperArea.add(new Vec2D(100,50));
     upperArea.add(new Vec2D(110,80));
     upperArea.add(new Vec2D(40,100));
-
-    Polygon2D lowerArea = new Polygon2D();
+    
     lowerArea.add(new Vec2D(10,0));
     lowerArea.add(new Vec2D(100,50));
     lowerArea.add(new Vec2D(110,80));
     lowerArea.add(new Vec2D(40,100));
-
-    Polygon2D leftArea = new Polygon2D();
+    
     leftArea.add(new Vec2D(10,0));
     leftArea.add(new Vec2D(100,50));
     leftArea.add(new Vec2D(110,80));
     leftArea.add(new Vec2D(40,100));
-
-    Polygon2D rightArea = new Polygon2D();
+    
     rightArea.add(new Vec2D(10,0));
     rightArea.add(new Vec2D(100,50));
     rightArea.add(new Vec2D(110,80));
