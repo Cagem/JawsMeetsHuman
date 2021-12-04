@@ -26,10 +26,10 @@ void initSharkOrientationControl() {
 centerOfControlUI[0] = round(0.94 * width); // X
 centerOfControlUI[1] = round(0.1 * height); // Y
 
-diameterBigCircle = 0.1 * width;
-diameterSmallCircle = 28; // 28 is used because of the static image size of red_dot, so it can overlay the default position.
-splitBigCircle = 0.0354 * width; // diameterBigCircle / (0.9 * pi)
-splitSmallCircle = 9.899; // diameterSmallCircle / (0.9 * pi)
+diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
+diameterSmallCircle = 28; // IMPORTANT, don't change: 28 is used because of the static image size of red_dot, so it can overlay the default position.
+splitBigCircle = diameterBigCircle / (0.9 * PI); // 0.0354 * width 
+splitSmallCircle = diameterSmallCircle / (0.9 * PI); // 9.899 
 
 splitUpRight[0] = centerOfControlUI[0] + splitSmallCircle; // X1
 splitUpRight[1] = centerOfControlUI[1] - splitSmallCircle; // Y1
