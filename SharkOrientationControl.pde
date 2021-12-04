@@ -27,7 +27,7 @@ void initSharkOrientationControl() {
     centerOfControlUI[1] = round(0.1 * height); // Y
     
     diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
-    diameterSmallCircle = 28; // IMPORTANT, don't change: 28 is used because of the static image size of red_dot, so it can overlay the default position.
+    diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
     splitBigCircle = diameterBigCircle / (0.9 * PI); // 0.0354 * width 
     splitSmallCircle = diameterSmallCircle / (0.9 * PI); // 9.899 
     
@@ -104,7 +104,7 @@ void initActiveAreas() {
     
     upperArea.add(new Vec2D(splitUpLeft[2], splitUpLeft[3]));
     upperArea.add(new Vec2D(splitUpRight[2], splitUpRight[3]));
-    upperArea.add(new Vec2D(splitDownRight[0], splitDownRight[1]));
+    upperArea.add(new Vec2D(splitUpRight[0], splitUpRight[1]));
     upperArea.add(new Vec2D(splitUpLeft[0], splitUpLeft[1]));
     
     lowerArea.add(new Vec2D(splitDownLeft[2], splitDownLeft[3]));
@@ -127,15 +127,15 @@ String checkMousePosition() {
     
     String setOrientation = "";
     
-    if (upperArea.containsPoint(new Vec2D(mouseX,mouseY))) {
+    if (upperArea.containsPoint(new Vec2D(mouseX, mouseY))) {
         setOrientation = "UP";
-    } else if (lowerArea.containsPoint(new Vec2D(mouseX,mouseY))) { 
+    } else if (lowerArea.containsPoint(new Vec2D(mouseX, mouseY))) { 
         setOrientation = "DOWN";
-    } else if (rightArea.containsPoint(new Vec2D(mouseX,mouseY))) {
+    } else if (rightArea.containsPoint(new Vec2D(mouseX, mouseY))) {
         setOrientation = "RIGHT";
-    } else if (leftArea.containsPoint(new Vec2D(mouseX,mouseY))) {
+    } else if (leftArea.containsPoint(new Vec2D(mouseX, mouseY))) {
         setOrientation = "LEFT";
-    } 
+    }
     
     return setOrientation;
 }
