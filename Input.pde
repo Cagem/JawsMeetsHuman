@@ -1,13 +1,13 @@
 // Event that is called when a key is pressed
 void keyPressed() {
-	if (key == CODED) {
-		handleArrowKeysPressed();
-	} else {
-		handleLetterKeysPressed();
-	}
-	if (displayMenu) {
-		handleDifficultyKeysPressed();
-	}
+  if (key == CODED) {
+    handleArrowKeysPressed();
+  } else {
+    handleKeysPressed();
+  }
+  if (displayMenu) {
+    handleDifficultyKeysPressed();
+  }
 }
 
 void handleArrowKeysPressed() {
@@ -48,34 +48,43 @@ void handleArrowKeysPressed() {
     }
 }
 
-void handleLetterKeysPressed() {
-    boolean eingabe = false;
-	float x = 0;
-	float y = 0;
+void handleKeysPressed() {
+  boolean eingabe = false;
+  float x = 0;
+  float y = 0;
 
-    switch(key) {
-    case 'a':
-        x--;
-		eingabe = true;
-        break;
-    case 'd':
-        x++;
-		eingabe = true;
-        break;
-    case 'w':
-        y--;
-		eingabe = true;
-        break;
-    case 's':
-        y++;
-		eingabe = true;
-        break;
-    case 'p': // Press p to play or pause
-        setPlayOrPause();
-        break;
-    default:
-        break;
-    }
+  switch(key) {
+  case 'a':
+    x--;
+    eingabe = true;
+    break;
+  case 'd':
+    x++;
+    eingabe = true;
+    break;
+  case 'w':
+    y--;
+    eingabe = true;
+    break;
+  case 's':
+    y++;
+    eingabe = true;
+    break;
+  case 'm':
+    playOrPauseThemeSong();
+    break;
+  case 'p': // Press p to play or pause
+    setPlayOrPause();
+    break;
+ case '4':
+    decreaseThemeVolume();
+    break;
+  case '5':
+    increaseThemeVolume();
+    break;
+  default:
+    break;
+  }
 
     if (eingabe) {
         humanVelocity.x = x;
