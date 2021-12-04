@@ -8,6 +8,7 @@ void setup() {
     initShark(); // Initializes the shark vectors
     initHuman(); // Initializes the human vectors
     initBackgroundImage(); // Initializes the menu screen
+    initSharkOrientationControl(); // IMPORTANT: Needs to stay above initActiveAreas(); 
     initActiveAreas(); // These are used to control where the cursor is. This information is used for sharkOrientation();
     
     initThemeSound(); // Initializes the background music
