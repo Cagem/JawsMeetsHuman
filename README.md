@@ -22,6 +22,10 @@ Still in process
 
 An installation of processing is required.
 
+Requiered libraries:
+* Sound (author: The Processing Foundation)
+* ToxicLibs (author: Karsten Schmidt)
+
 # Contributers
 
 | Name                  | GitHub                                  |
