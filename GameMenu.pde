@@ -3,7 +3,7 @@ int countFrames = 0; // utilized for timer capability
 boolean displayMenu = true;
 boolean inPause = false; // Only false after initial startup to show rules etc.
 boolean displayDifficulty = false;
-String ruleset = "The rules go like this: \nNon exercitation pariatur aute qui ea. Pariatur labore commodo ipsum anim excepteur fugiat nulla ea excepteur aute aliquip. Voluptate minim ut mollit Lorem excepteur in irure voluptate elit aliqua. Ea veniam nisi fugiat ea. Nisi est sunt ipsum commodo. Sint consectetur anim enim nulla sunt tempor voluptate nulla aliquip ullamco reprehenderit enim sint tempor. Id sunt non dolor quis labore tempor fugiat minim id excepteur consequat culpa elit voluptate. Deserunt id deserunt officia in incididunt et ullamco adipisicing. Non irure eu eu aliqua in aliqua cillum magna aute adipisicing.";
+final String RULESET = "The rules go like this: \nNon exercitation pariatur aute qui ea. Pariatur labore commodo ipsum anim excepteur fugiat nulla ea excepteur aute aliquip. Voluptate minim ut mollit Lorem excepteur in irure voluptate elit aliqua. Ea veniam nisi fugiat ea. Nisi est sunt ipsum commodo. Sint consectetur anim enim nulla sunt tempor voluptate nulla aliquip ullamco reprehenderit enim sint tempor. Id sunt non dolor quis labore tempor fugiat minim id excepteur consequat culpa elit voluptate. Deserunt id deserunt officia in incididunt et ullamco adipisicing. Non irure eu eu aliqua in aliqua cillum magna aute adipisicing.";
 PImage bgImage;
 
 void initBackgroundImage() {
@@ -63,7 +63,7 @@ void drawInitialMenuScreen() {
     textSize(relativeSize("M"));
     text("Press 'p' to play (or to pause later on)", width / 2, height / 2);
     textAlign(LEFT);
-    text(ruleset, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
+    text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
 }
 
 void drawPauseScreen() {

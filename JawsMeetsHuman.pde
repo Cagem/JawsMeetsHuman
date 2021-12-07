@@ -1,11 +1,15 @@
 // Function to initialize screen
 void setup() {
     fullScreen(); // Initializes the screen as fullscreen
+    // fullScreen(P2D); helps greatly with image performance, but, since it's OpenGL, works only with intel. 
+    // MIND: There are known issues combining a cursor image with P2D/P3D and/or fullscreen();
     
     initPaths(); // Initializes the path vectors
     initShark(); // Initializes the shark vectors
     initHuman(); // Initializes the human vectors
     initBackgroundImage(); // Initializes the menu screen
+    initSharkOrientationControl(); // IMPORTANT: Needs to stay above initActiveAreas(); 
+    initActiveAreas(); // These are used to control where the cursor is. This information is used for sharkOrientation();
     
     initThemeSound(); // Initializes the background music
     
@@ -16,6 +20,7 @@ void setup() {
 void draw() {
     if (displayMenu) {
         	displayMenu();
+            noCursor();
     } else {
         if (displayDifficulty) displayDifficulty = false;
         background(176,196,222);
@@ -28,6 +33,7 @@ void draw() {
         drawShark(); // Draws the shark
         drawLifes(); // Draws the Hearts/Lifes
         drawTimer(); // Draws the timer
+        sharkOrientation(); // controls the sharks orientation by mouse position
         
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize); // Checks if the shark collides with screen border
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize); // Checks if the human collides with screen border
