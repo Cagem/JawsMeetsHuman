@@ -1,29 +1,24 @@
-boolean life1 = true;     //Leben 1
-boolean life2 = true;     //Leben 2
-boolean life3 = false;    //Leben 3
+boolean[] lifes = new boolean [5];
 int s = 3;                //Größe von den Herzen (bei Größenänderung auch pos. ändern)
 
+void initLifes(){
+  for (int i = 0; i < lifes.length; i ++){
+    lifes[i] = true;
+  }
+}
+
 void drawLifes() {
-  if (life1 == true) {
-    life (40, 40);             //pos. Herz1
-  }
-  if (life1 == false) {
-    nolife (40, 40);           //pos. Herz1
-  }
+	int xHeartposition = 40; 
+	
+	for (int i = 0; i <  lifes.length;  i ++){	
+		if (lifes[i]==true){
+  			life(xHeartposition,40);
+		}else{
+  			nolife(xHeartposition,40);
+		}
 
-  if (life2 == true) {
-    life (120, 40);           //pos. Herz2
-  }
-  if (life2 == false) {
-    nolife (120, 40);        //pos. Herz2
-  }
-
-  if (life3 == true) {
-    life (200, 40);            //pos. Herz3
-  }
-  if (life3 == false) {
-    nolife (200, 40);          //pos. Herz3
-  }
+		xHeartposition = xHeartposition + 80;
+	}
 }
 
 void life (int X, int Y) {
