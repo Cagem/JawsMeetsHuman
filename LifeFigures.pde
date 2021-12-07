@@ -7,6 +7,20 @@ void initLifes(){
   }
 }
 
+void reduceLife (){
+
+
+
+// for (int i = 0; i < lifes.length; i++){
+
+// 	if (lifes[i]==false){
+// 		lifes[i-1]=false;
+// 		break;
+// 	}
+// }
+
+}
+
 void drawLifes() {
 	int xHeartposition = 40; 
 	

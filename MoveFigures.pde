@@ -41,3 +41,20 @@ void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
         velocity.y *= -1;
     }
 }
+
+
+void checkFigureCollision(){
+
+if (sharkPosition.x + sharkWidth/2 > humanPosition.x - humanWidth/2 &&
+    sharkPosition.x + sharkWidth/2 < humanPosition.x + humanWidth/2){
+
+        reduceLife();
+
+        println("djhdah");
+    }
+
+
+
+
+
+}

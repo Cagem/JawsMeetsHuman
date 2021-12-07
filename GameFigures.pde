@@ -2,18 +2,24 @@ PVector sharkPosition, sharkVelocity; // Hai-Position & Hai-Richtung
 PVector humanPosition, humanVelocity; // Mensch-Position & Mensch-Richtung
 float objectSize = 15; // The default size of any drawn object
 
+float sharkHeight = objectSize * 4;
+float sharkWidth = objectSize * 8;
+float humanHeight = objectSize * 3;
+float humanWidth = objectSize * 2;
+
+
 // Function to draw the shark object at given coordinates
 void drawShark() {
     PImage img = loadImage("shark.png");
     imageMode(CENTER);
-    image(img, sharkPosition.x, sharkPosition.y, objectSize * 8, objectSize * 4);
+    image(img, sharkPosition.x, sharkPosition.y, sharkWidth, sharkHeight);
 }
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
     PImage img = loadImage("human.png");
     imageMode(CENTER);
-    image(img, humanPosition.x, humanPosition.y, objectSize * 2, objectSize * 3);
+    image(img, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
 }
 
 // Initializes the shark vectors

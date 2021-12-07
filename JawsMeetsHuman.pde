@@ -39,6 +39,8 @@ void draw() {
         
         checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize); // Checks if the shark collides with screen border
         checkBoundaryCollision(humanPosition, humanVelocity, objectSize); // Checks if the human collides with screen border
+
+        checkFigureCollision();
     }
     showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
 }
