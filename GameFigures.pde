@@ -7,7 +7,6 @@ float sharkWidth = objectSize * 8;
 float humanHeight = objectSize * 3;
 float humanWidth = objectSize * 2;
 
-
 // Function to draw the shark object at given coordinates
 void drawShark() {
     PImage img = loadImage("shark.png");
