@@ -1,7 +1,7 @@
 import java.awt.Robot;
-Robot robot;
-
 import toxi.geom.*;
+
+Robot robot;
 Polygon2D upperArea = new Polygon2D();
 Polygon2D lowerArea = new Polygon2D();
 Polygon2D leftArea = new Polygon2D();
@@ -28,8 +28,8 @@ void initSharkOrientationControl() {
     
     diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
     diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
-    splitBigCircle = diameterBigCircle / (0.9 * PI); // 0.0354 * width 
-    splitSmallCircle = diameterSmallCircle / (0.9 * PI); // 9.899 
+    splitBigCircle = diameterBigCircle / (0.9 * PI); 
+    splitSmallCircle = diameterSmallCircle / (0.9 * PI);
     
     splitUpRight[0] = centerOfControlUI[0] + splitSmallCircle; // X1
     splitUpRight[1] = centerOfControlUI[1] - splitSmallCircle; // Y1
@@ -42,14 +42,14 @@ void initSharkOrientationControl() {
     splitDownRight[3] = centerOfControlUI[1] + splitBigCircle; // Y2
     
     splitUpLeft[0] = centerOfControlUI[0] - splitSmallCircle; // X1
-    splitUpLeft[1] = centerOfControlUI[1] + splitSmallCircle; // Y1
+    splitUpLeft[1] = centerOfControlUI[1] - splitSmallCircle; // Y1
     splitUpLeft[2] = centerOfControlUI[0] - splitBigCircle; // X2
-    splitUpLeft[3] = centerOfControlUI[1] + splitBigCircle; // Y2
+    splitUpLeft[3] = centerOfControlUI[1] - splitBigCircle; // Y2
     
     splitDownLeft[0] = centerOfControlUI[0] - splitSmallCircle; // X1
-    splitDownLeft[1] = centerOfControlUI[1] - splitSmallCircle; // Y1
+    splitDownLeft[1] = centerOfControlUI[1] + splitSmallCircle; // Y1
     splitDownLeft[2] = centerOfControlUI[0] - splitBigCircle; // X2
-    splitDownLeft[3] = centerOfControlUI[1] - splitBigCircle; // Y2
+    splitDownLeft[3] = centerOfControlUI[1] + splitBigCircle; // Y2
 }
 
 void sharkOrientation() {
