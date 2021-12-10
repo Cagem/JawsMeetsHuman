@@ -9,67 +9,65 @@ boolean shouldHumanMove = false, shouldSharkMove = true; // Used to identify if 
 
 // Moves the position-vector in  the directon of the velocity-vector
 void moveVectorObject(PVector position, PVector velocity) {
-    position.add(velocity);
+  position.add(velocity);
 }
 
 // Increases the speed of the shark
 void increaseSharkSpeed() {
-    if (currentSharkSpeed < maxConstantMovingSpeed) {
-        currentSharkSpeed += acceleration;
-    }
+  if (currentSharkSpeed < maxConstantMovingSpeed) {
+    currentSharkSpeed += acceleration;
+  }
 }
 
 // Increases the speed of the human
 void increaseHumanSpeed() {
-    if (currentHumanSpeed < maxOnPressMovingSpeed) {
-        currentHumanSpeed += acceleration;
-    }
+  if (currentHumanSpeed < maxOnPressMovingSpeed) {
+    currentHumanSpeed += acceleration;
+  }
 }
 
 // Checks if the position-vector is colliding with the boundary
 // If it collides, the velocity will be inverted
 void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
-    if (position.x > width - radius) {
-        position.x = width - radius;
-        velocity.x *= -1;
-    } else if (position.x < radius) {
-        position.x = radius;
-        velocity.x *= -1;
-    } else if (position.y > height - radius) {
-        position.y = height - radius;
-        velocity.y *= -1;
-    } else if (position.y < radius) {
-        position.y = radius;
-        velocity.y *= -1;
-    }
+  if (position.x > width - radius) {
+    position.x = width - radius;
+    velocity.x *= -1;
+  } else if (position.x < radius) {
+    position.x = radius;
+    velocity.x *= -1;
+  } else if (position.y > height - radius) {
+    position.y = height - radius;
+    velocity.y *= -1;
+  } else if (position.y < radius) {
+    position.y = radius;
+    velocity.y *= -1;
+  }
 }
 
 
-void checkFigureCollision(){
+void checkFigureCollision() {
 
-    if (sharkPosition.x + sharkWidth/2 > humanPosition.x - humanWidth/2 &&
-        sharkPosition.x - sharkWidth/2 < humanPosition.x + humanWidth/2 &&
-        sharkPosition.y + sharkHeight/2 > humanPosition.y - humanHeight/2 &&
-        sharkPosition.y - sharkHeight/2 < humanPosition.y + humanHeight/2){
+  if (sharkPosition.x + sharkWidth/2 > humanPosition.x - humanWidth/2 &&
+    sharkPosition.x - sharkWidth/2 < humanPosition.x + humanWidth/2 &&
+    sharkPosition.y + sharkHeight/2 > humanPosition.y - humanHeight/2 &&
+    sharkPosition.y - sharkHeight/2 < humanPosition.y + humanHeight/2) {
 
-    
-        reduceLife();
-        sharkRespawn();
 
-    }
-
+    reduceLife();
+    sharkRespawn();
+  }
 }
 
 
 
-void sharkRespawn(){
-    
+void sharkRespawn() {
 
-    if (sharkPosition.x > width/2){
-        sharkPosition.x = random(width - width/3 , width);
-        sharkPosition.y = random(0,height);
-    }else{
-        sharkPosition.x = random(0, width/3);
-        sharkPosition.y = random(0,height);
-    }
+
+  if (sharkPosition.x > width/2) {
+    sharkPosition.x = random(width - width/3, width);
+    sharkPosition.y = random(0, height);
+  } else {
+    sharkPosition.x = random(0, width/3);
+    sharkPosition.y = random(0, height);
+  }
 }

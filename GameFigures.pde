@@ -10,33 +10,33 @@ float humanWidth = objectSize * 2;
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
-    PImage img = loadImage("shark.png");
-    imageMode(CENTER);
-    image(img, sharkPosition.x, sharkPosition.y, sharkWidth, sharkHeight);
+  PImage img = loadImage("shark.png");
+  imageMode(CENTER);
+  image(img, sharkPosition.x, sharkPosition.y, sharkWidth, sharkHeight);
 }
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
-    PImage img = loadImage("human.png");
-    imageMode(CENTER);
-    image(img, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
+  PImage img = loadImage("human.png");
+  imageMode(CENTER);
+  image(img, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
 }
 
 // Initializes the shark vectors
 void initShark() {
-    sharkPosition = initRandomPositionVector();
-    sharkVelocity = PVector.random2D();
-    sharkVelocity.mult(3);
+  sharkPosition = initRandomPositionVector();
+  sharkVelocity = PVector.random2D();
+  sharkVelocity.mult(3);
 }
 
 // Initializes the human vectors
 void initHuman() {
-    humanPosition = new PVector(paths.get(0).x, paths.get(0).y);
-    humanVelocity = new PVector(0, 0);
-    humanVelocity.mult(3);
+  humanPosition = new PVector(paths.get(0).x, paths.get(0).y);
+  humanVelocity = new PVector(0, 0);
+  humanVelocity.mult(3);
 }
 
 // Initializes a Vector with random x & y coordinates
 PVector initRandomPositionVector() {
-    return new PVector(random(width), random(height));
+  return new PVector(random(width), random(height));
 }
