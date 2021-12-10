@@ -10,10 +10,12 @@ void setup() {
     initBackgroundImage(); // Initializes the menu screen
     initSharkOrientationControl(); // IMPORTANT: Needs to stay above initActiveAreas(); 
     initActiveAreas(); // These are used to control where the cursor is. This information is used for sharkOrientation();
-    
+    initLifes(); //used to set all lifes to true
     initThemeSound(); // Initializes the background music
     
     frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
+
+    
 }
 
 // Function to draw on screen in loop
