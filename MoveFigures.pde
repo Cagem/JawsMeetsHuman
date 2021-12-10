@@ -5,6 +5,8 @@ float currentSharkSpeed = 0; // Current speed of the shark
 float currentHumanSpeed = 0; // Current speed of the human
 boolean shouldHumanMove = false, shouldSharkMove = true; // Used to identify if the figures position should be updated at the next draw-call
 
+
+
 // Moves the position-vector in  the directon of the velocity-vector
 void moveVectorObject(PVector position, PVector velocity) {
     position.add(velocity);
@@ -45,16 +47,29 @@ void checkBoundaryCollision(PVector position, PVector velocity, float radius) {
 
 void checkFigureCollision(){
 
-if (sharkPosition.x + sharkWidth/2 > humanPosition.x - humanWidth/2 &&
-    sharkPosition.x + sharkWidth/2 < humanPosition.x + humanWidth/2){
+    if (sharkPosition.x + sharkWidth/2 > humanPosition.x - humanWidth/2 &&
+        sharkPosition.x - sharkWidth/2 < humanPosition.x + humanWidth/2 &&
+        sharkPosition.y + sharkHeight/2 > humanPosition.y - humanHeight/2 &&
+        sharkPosition.y - sharkHeight/2 < humanPosition.y + humanHeight/2){
 
+    
         reduceLife();
+        sharkRespawn();
 
-        println("djhdah");
     }
 
+}
 
 
 
+void sharkRespawn(){
+    
 
+    if (sharkPosition.x > width/2){
+        sharkPosition.x = random(width - width/3 , width);
+        sharkPosition.y = random(0,height);
+    }else{
+        sharkPosition.x = random(0, width/3);
+        sharkPosition.y = random(0,height);
+    }
 }

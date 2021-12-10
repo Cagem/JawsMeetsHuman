@@ -23,7 +23,12 @@ void draw() {
     if (displayMenu) {
         	displayMenu();
             noCursor();
-    } else {
+    } else if (deathScreen){
+        drawDeathScreen();
+    }
+    
+    
+    else {
         if (displayDifficulty) displayDifficulty = false;
         background(176,196,222);
         

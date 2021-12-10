@@ -1,5 +1,8 @@
-boolean[] lifes = new boolean [5];
-int s = 3;                //Größe von den Herzen (bei Größenänderung auch pos. ändern)
+boolean[] lifes = new boolean [2];
+boolean deathScreen = false;
+
+int s = 3;                            //Größe von den Herzen (bei Größenänderung auch pos. ändern)
+int currentLifes = lifes.length;
 
 void initLifes(){
   for (int i = 0; i < lifes.length; i ++){
@@ -7,19 +10,23 @@ void initLifes(){
   }
 }
 
+
 void reduceLife (){
 
 
+  if (currentLifes<=1){
 
-// for (int i = 0; i < lifes.length; i++){
+    deathScreen=true;
+    //xdisplayMenu=false;
 
-// 	if (lifes[i]==false){
-// 		lifes[i-1]=false;
-// 		break;
-// 	}
-// }
-
+  }else {
+    currentLifes --;
+    lifes[currentLifes]=false;
+  }
 }
+
+
+
 
 void drawLifes() {
 	int xHeartposition = 40; 

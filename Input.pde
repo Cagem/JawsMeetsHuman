@@ -8,6 +8,9 @@ void keyPressed() {
     if (displayMenu) {
         handleDifficultyKeysPressed();
     }
+    if (deathScreen){
+        handleRestartKey();
+    }
 }
 
 void handleArrowKeysPressed() {
@@ -128,5 +131,25 @@ void keyReleased() {
             break;
         default:
         break;
+    }
+}
+
+void handleRestartKey (){
+
+    switch(key) {
+        case'r' :
+
+        deathScreen = false;
+        currentLifes = lifes.length;
+        sharkRespawn();
+
+        for(int i = 0; i < lifes.length; i++){
+            lifes[i]=true;
+        } 
+        
+
+
+        break;
+        
     }
 }

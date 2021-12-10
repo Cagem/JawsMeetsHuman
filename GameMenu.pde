@@ -12,11 +12,11 @@ void initBackgroundImage() {
 }
 
 void displayMenu() {
-    if (!inPause) { // Startup-specific content that is only displayed once
+    if (!inPause) {                         // Startup-specific content that is only displayed once
         	drawInitialMenuScreen();
-        } else {
-        	drawPauseScreen();
-        }
+        }   else {
+        	    drawPauseScreen();
+            }
     drawDifficultySetting();
     
     if (displayDifficulty) {
@@ -82,3 +82,15 @@ void drawDifficultySetting() {
     textSize(relativeSize("S"));
     text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
 }
+
+void drawDeathScreen() {
+    
+    fill(255);
+    textAlign(CENTER);
+    textSize(relativeSize("XL"));
+    text("The Game has ended", width / 2, height / 2.5);
+    textSize(relativeSize("M"));
+    text("Press 'r' to restart the game or esc to exit", width / 2, height / 2);
+}
+
+
