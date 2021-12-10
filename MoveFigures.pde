@@ -1,6 +1,6 @@
 float maxConstantMovingSpeed = 3 * difficulty; // The global speed if an object moves constantly
 float maxOnPressMovingSpeed = 3 * difficulty; // The global speed if an object moves only on press
-float acceleration = 0.5; // Beschleunigung
+float acceleration = 0.9; // Beschleunigung
 float currentSharkSpeed = 0; // Current speed of the shark
 float currentHumanSpeed = 0; // Current speed of the human
 boolean shouldHumanMove = false, shouldSharkMove = true; // Used to identify if the figures position should be updated at the next draw-call
