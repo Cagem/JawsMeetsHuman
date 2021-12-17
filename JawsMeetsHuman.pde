@@ -1,8 +1,11 @@
 void setup() {
+
+  
+ 
   fullScreen(); // Initializes the screen as fullscreen
   // fullScreen(P2D); helps greatly with image performance, but, since it's OpenGL, works only with intel. 
   // MIND: There are known issues combining a cursor image with P2D/P3D and/or fullscreen();
-
+  loadHighscore(); //Loads the Highscores from Highscores.txt
   initPaths(); // Initializes the path vectors
   initShark(); // Initializes the shark vectors
   initHuman(); // Initializes the human vectors
@@ -13,6 +16,7 @@ void setup() {
   initThemeSound(); // Initializes the background music
 
   frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
+  
 }
 
 // Function to draw on screen in loop

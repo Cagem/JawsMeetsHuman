@@ -64,6 +64,8 @@ void drawInitialMenuScreen() {
   text("Press 'p' to play (or to pause later on)", width / 2, height / 2);
   textAlign(LEFT);
   text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
+  
+  drawHighscores(); // Draws the Highscore Board
 }
 
 void drawPauseScreen() {
@@ -90,5 +92,5 @@ void drawDeathScreen() {
   textSize(relativeSize("XL"));
   text("The Game has ended", width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text("Press 'r' to restart the game or esc to exit", width / 2, height / 2);
+  text("Press 'r' to restart the game, press 'l' to save your score or esc to exit", width / 2, height / 2);
 }

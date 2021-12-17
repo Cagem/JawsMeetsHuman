@@ -138,17 +138,20 @@ void handleRestartKey () {
 
   switch(key) {
   case'r' :
-
     deathScreen = false;
     currentLifes = lifes.length;
     sharkRespawn();
-
     for (int i = 0; i < lifes.length; i++) {
       lifes[i]=true;
     } 
-
-
-
+    timerSeconds = 0;
+    timerSecondsINT = 0; 
+    timerMinutes = 0;
+    timerHours = 0;
     break;
+  case 'l':
+  setNewHighscore();
+  saveHighscore();
+  break;
   }
 }
