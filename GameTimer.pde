@@ -3,6 +3,14 @@ int timerSecondsINT = 0;
 int timerMinutes = 0;
 int timerHours = 0;
 
+String formatDigits(int num) {
+  return nf(num, 2);
+}
+
+String getTimeString() {
+  return formatDigits(timerHours) + " : " + formatDigits(timerMinutes) + " : " + formatDigits(timerSecondsINT);
+}
+
 void drawTimer() {
   fill(0);
   textSize(relativeSize("M"));
@@ -11,7 +19,7 @@ void drawTimer() {
 
   if (!displayMenu == true) {                  // game start
 
-    text(timerHours + " : " + timerMinutes + " : " + timerSecondsINT, width * 0.02, height - height * 0.02);        //Position vom Timer
+    text(getTimeString(), width * 0.02, height - height * 0.02);        //Position vom Timer
     timerSeconds = timerSeconds + 1 / frameRate;                                  //seconds
 
     if (timerSeconds >= 60) {

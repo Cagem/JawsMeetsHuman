@@ -1,115 +1,69 @@
-ArrayList<PVector> paths = new ArrayList<PVector>(); // Vector positions of the path tiles
+ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
-float getNextPathY(float y) {
-    float yLow = y;
-    float yHigh = y + objectSize * 3;
-    
-    return random(yLow, yHigh);
+float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
+  float lowest = last - pathRadius;
+  float highest = last + pathRadius;
+
+  float low = (lowest > pathRadius) ? lowest + figureRadius : last;
+  float high = (highest < width - pathRadius) ? highest - figureRadius : last;
+
+  return random(low, high);
 }
 
-float getNextPathX(float x, float xLowest, float xHighest) {
-    float xLow = (x - (objectSize * 2.5) > xLowest) ? x - (objectSize * 2.5) : xLowest;
-    float xHigh = (x + (objectSize * 2.5) < xHighest) ? x + (objectSize * 2.5) : xHighest;
-    
-    return random(xLow, xHigh);
+float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
+  float lowest = last;
+  float highest = last + pathRadius;
+
+  return random(lowest, highest);
 }
 
 void initPaths() {
-    float yRange = height - (objectSize * 2);
-    float xLowest = width / 4;
-    float xHighest = width - xLowest;
-    float xLast = random(xLowest, xHighest);
-    
-    for (float i = 0; i <= yRange + (objectSize * 4); i += objectSize * 4) {
-        float xLow = (xLast - (objectSize * 2.5) > xLowest) ? xLast - (objectSize * 2.5) : xLowest;
-        float xHigh = (xLast + (objectSize * 2.5) < xHighest) ? xLast + (objectSize * 2.5) : xHighest;
-        
-        xLast = random(xLow, xHigh);
-        PVector path = new PVector(xLast, i);
-        paths.add(path);
-}
+  float pathRadius = objectSize * 5;
+  float xLowest = width / 4;
+  float xHighest = width - xLowest;
+  float xLast = random(xLowest, xHighest);
+  float yLast = 0;
+
+  for (float i = 0; i <= height; i = yLast) {
+    paths.add(new Path(xLast, yLast, pathRadius, pathRadius));
+
+    float randomFloat = random(0, 1);
+
+    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, objectSize * 2);
+    else yLast = getNextYPathPosition(yLast, pathRadius, objectSize * 2);
+  }
 }
 
 // Function to draw the path at given coordinates
-void drawPath(PVector path) {
-    PImage img = loadImage("pathTile.png");
-    imageMode(CENTER);
-    image(img, path.x, path.y, objectSize * 5, objectSize * 5);
+void drawPath(Path path) {
+  rectMode(CORNER);
+  fill(184, 134, 11);
+  noStroke();
+  rect(path.x, path.y, path.width, path.height);
+}
+
+void drawPathImg(Path path) {
+  PImage img = loadImage("pathTile.png");
+  image(img, path.x, path.y, path.width, path.height);
 }
 
 // Function to draw all path tiles
 void drawPaths() {
-    for (int i = 0; i < paths.size(); i++) {
-        drawPath(paths.get(i));
-    }
+  for (int i = 0; i < paths.size(); i++) {
+    drawPath(paths.get(i));
+  }
 }
 
-PVector getClosestPath(PVector figure, PVector velocity) {
-    int index = -1;
-    float closestDistance = figure.dist(paths.get(0));
-    
-    boolean isLookingUp = velocity.y < 0;
-    boolean isLookingDown = velocity.y > 0;
-    boolean isLookingLeft = velocity.x < 0;
-    boolean isLookingRight = velocity.x > 0;
-    
-    float[] xFigureBorders = {figure.x - objectSize, figure.x + objectSize};
-    float[] yFigureBorders = {figure.y - objectSize, figure.y + objectSize};
-    
-    for (int i = 0; i < paths.size(); i++) {
-        PVector path = paths.get(i);
-        
-        float[] xPathBorders = {path.x - objectSize * 2.5, path.x + objectSize * 2.5};
-        float[] yPathBorders = {path.y - objectSize * 2.5, path.y + objectSize * 2.5};
-        
-        if (isLookingUp) {
-            if (xFigureBorders[0] < xPathBorders[1] || xFigureBorders[1] > xPathBorders[0]) {
-                if (yPathBorders[1] < yFigureBorders[0]) {
-                    float distance = figure.dist(path);
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        index = i;
-                    }
-                } 
-            }
-        }
-        if (isLookingDown) {
-            if (xFigureBorders[0] < xPathBorders[1] || xFigureBorders[1] > xPathBorders[0]) {
-                if (yPathBorders[0] > yFigureBorders[1]) {
-                    float distance = figure.dist(path);
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        index = i;
-                    }
-                } 
-            }
-        }
-        if (isLookingLeft) {
-            if (yFigureBorders[0] > yPathBorders[1] || yFigureBorders[1] < yPathBorders[0]) {
-                if (xPathBorders[1] < xFigureBorders[0]) {
-                    float distance = figure.dist(path);
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        index = i;
-                    }
-                } 
-            }
-        }
-        if (isLookingRight) {
-            if (yFigureBorders[0] > yPathBorders[1] || yFigureBorders[1] < yPathBorders[0]) {
-                if (xPathBorders[0] > xFigureBorders[1]) {
-                    float distance = figure.dist(path);
-                    if (distance < closestDistance) {
-                        closestDistance = distance;
-                        index = i;
-                    }
-                } 
-            }
-        }
-    }
-    
-    println(index);
-    
-    if (index >= 0) return paths.get(index);
-    return paths.get(0);
+class Path {
+  float x;
+  float y;
+  float width;
+  float height;
+
+  public Path(float x, float y, float pathWidth, float pathHeight) {
+    this.x = x;
+    this.y = y;
+    this.width = pathWidth;
+    this.height = pathHeight;
+  }
 }
