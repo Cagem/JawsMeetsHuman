@@ -4,9 +4,11 @@ float objectSize = 15; // The default size of any drawn object
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
-    PImage img = loadImage("shark.png");
+
+    // Je nach sharkOrientation() sharkImg verändern
+    PImage sharkImg = loadImage("shark.png");
     imageMode(CENTER);
-    image(img, sharkPosition.x, sharkPosition.y, objectSize * 8, objectSize * 4);
+    image(sharkImg, sharkPosition.x, sharkPosition.y, objectSize * 8, objectSize * 4);
 }
 
 // Function to draw the human object at given coordinates

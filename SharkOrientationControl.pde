@@ -69,7 +69,7 @@ void sharkOrientation() {
     } else if (checkMousePosition() == "RIGHT") {
         // transform shark's orientation
         println("The shark heads " + checkMousePosition());
-    }
+    } 
 }
 
 void manipulateCursor() {
@@ -79,7 +79,8 @@ void manipulateCursor() {
         robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
     } 
     catch(Throwable e) {
-        println("jawa.awt.Robot: Exception cought");
+        println(e.getMessage());
+        exit();
     }
     
     cursorImage = loadImage("red_dot.png");
