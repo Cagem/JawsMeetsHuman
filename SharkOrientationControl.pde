@@ -54,37 +54,37 @@ void initSharkOrientationControl() {
 
 void sharkOrientation() {
     
-    manipulateCursor();
-    drawControlUI();
+  manipulateCursor();
+  drawControlUI();
     
-    if (checkMousePosition() == "UP") {
-        // transform shark's orientation
-        println("The shark heads " + checkMousePosition());
-    } else if (checkMousePosition() == "DOWN") {
-        // transform shark's orientation
-        println("The shark heads " + checkMousePosition());
-    } else if (checkMousePosition() == "LEFT") {
-        // transform shark's orientation
-        println("The shark heads " + checkMousePosition());
-    } else if (checkMousePosition() == "RIGHT") {
-        // transform shark's orientation
-        println("The shark heads " + checkMousePosition());
-    } 
+  if (checkMousePosition() == "UP") {
+    // transform shark's orientation
+    println("The shark heads " + checkMousePosition());
+  } else if (checkMousePosition() == "DOWN") {
+    // transform shark's orientation
+    println("The shark heads " + checkMousePosition());
+  } else if (checkMousePosition() == "LEFT") {
+    // transform shark's orientation
+    println("The shark heads " + checkMousePosition());
+  } else if (checkMousePosition() == "RIGHT") {
+    // transform shark's orientation
+    println("The shark heads " + checkMousePosition());
+  } 
 }
 
 void manipulateCursor() {
     
-    try {
-        robot = new Robot();
-        robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
-    } 
-    catch(Throwable e) {
-        println(e.getMessage());
-        exit();
-    }
+  try {
+    robot = new Robot();
+    robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
+  } 
+  catch(Throwable e) {
+    println(e.getMessage());
+    exit();
+  }
     
-    cursorImage = loadImage("red_dot.png");
-    cursor(cursorImage, 16, 16); 
+  cursorImage = loadImage("red_dot.png");
+  cursor(cursorImage, 16, 16); 
 }
 
 void drawControlUI() {
