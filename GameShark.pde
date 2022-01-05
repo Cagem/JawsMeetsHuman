@@ -3,7 +3,7 @@ Shark shark;
 int jumpingTimer = 0;
 int blockedJumpTimer = 0;
 
-String newSharkOrientation = "STARTING_STRING";
+String sharkOrientation = "RIGHT"; // This String is  to be used globally for defining the sharks hitarea AND to rotate its image. 
 
 // Function to draw the shark object at given coordinates
 void drawShark() {
@@ -21,22 +21,22 @@ void drawSharkImg() {
   PImage sharkImg = loadImage("shark.png");
   imageMode(CENTER);
 
-  if (oldSharkOrientation != newSharkOrientation &&
-      oldSharkOrientation != "NO_CHANGE") newSharkOrientation = checkMousePosition();
+  if (oldSharkOrientation != sharkOrientation &&
+      oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
 
-  if (newSharkOrientation == "UP") {
+  if (sharkOrientation == "UP") {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(270));
     image(sharkImg, 0, 0, shark.width, shark.height);
     popMatrix();
-  } else if (newSharkOrientation == "DOWN") {
+  } else if (sharkOrientation == "DOWN") {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(90));
     image(sharkImg, 0, 0, shark.width, shark.height);
     popMatrix();
-  } else if (newSharkOrientation == "LEFT") {
+  } else if (sharkOrientation == "LEFT") {
     pushMatrix();
     scale(-1.0, 1.0);
     image(sharkImg, -shark.position.x, shark.position.y, shark.width, shark.height);
