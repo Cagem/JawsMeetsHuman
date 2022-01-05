@@ -28,40 +28,63 @@ void setup() {
 
 // Function to draw on screen in loop
 void draw() {
-    if (displayMenu) {
-        	displayMenu();
-        noCursor();
-    } else {
-        if (displayDifficulty) displayDifficulty = false;
-        background(176,196,222);
-        
-        if (shouldSharkMove) moveVectorObject(sharkPosition, sharkVelocity);
-        if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
-        
-        drawPaths(); // Draws the path
-        drawHuman(); // Draws the human
-        drawShark(); // Draws the shark
-        drawLifes(); // Draws the Hearts/Lifes
-        drawTimer(); // Draws the timer
-        sharkOrientation(); // controls the sharks orientation by mouse position
-        
-        checkBoundaryCollision(sharkPosition, sharkVelocity, objectSize); // Checks if the shark collides with screen border
-        checkBoundaryCollision(humanPosition, humanVelocity, objectSize); // Checks if the human collides with screen border
-    }
-    showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+  if (displayMenu) {
+    displayMenu();
+    noCursor();
+  } else if (deathScreen) {
+    drawDeathScreen();
+  } else {
+    if (displayDifficulty) displayDifficulty = false;
+    updateTimer();
+
+    background(176, 196, 222);
+    drawGameObjects();
+    sharkOrientation(); // controls the sharks orientation by mouse position
+    checkBoundaries();
+    moveGameObjects();
+  }
+  showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+}
+
+void moveGameObjects() {
+  moveVectorObject(shark.position, shark.velocity);
+  if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
+}
+
+void checkBoundaries() {
+  checkBoundaryCollision(shark.position, shark.velocity, shark.width, shark.height); // Checks if the shark collides with screen border
+  checkBoundaryCollision(humanPosition, humanVelocity, humanWidth, humanHeight); // Checks if the human collides with screen border
+  checkPathCollision();
+  checkFigureCollision();
+}
+
+void drawGameObjects() {
+  drawPaths(); // Draws the path
+  drawHuman(); // Draws the human
+  drawShark(); // Draws the shark
+  drawLifes(); // Draws the Hearts/Lifes
+  drawTimer(); // Draws the timer
+}
+
+void updateTimer() {
+  if (shark.isJumping) {
+    setJumpingTimer();
+  } else if (!shark.isAllowedToJump) {
+    setBlockedJumpTimer();
+  }
 }
 
 float relativeSize(String size) {
-    //XL -> Global relative fontsize for TITLES
-    //M -> Global relative fontsize for REGULAR TEXT
-    //S -> Global relative fontsize for DESCRIPTIVE TEXT
-    
-    float relativeSize = 0.1;
-    
-    if (size == "XL") relativeSize = width / 20;
-    else if (size == "M") relativeSize = width / 80;
-    else if (size == "S") relativeSize = width / 90;
-    else println("ERROR: function relativeSize() got an undefined paramenter.");
-    
-    return(relativeSize);
+  //XL -> Global relative fontsize for TITLES
+  //M -> Global relative fontsize for REGULAR TEXT
+  //S -> Global relative fontsize for DESCRIPTIVE TEXT
+
+  float relativeSize = 0.1;
+
+  if (size == "XL")relativeSize = width / 20;
+  else if (size =="M") relativeSize = width / 80;
+  else if (size =="S") relativeSize = width / 90;
+  else println("ERROR: function relativeSize() got an undefined paramenter.");
+
+  return(relativeSize);
 }

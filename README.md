@@ -23,15 +23,16 @@ Still in process
 An installation of processing is required.
 
 Requiered libraries:
-* Sound (author: The Processing Foundation)
-* ToxicLibs (author: Karsten Schmidt)
+
+-   Sound (author: The Processing Foundation)
+-   ToxicLibs (author: Karsten Schmidt)
 
 # Contributers
 
-| Name                  | GitHub                                  |
-| --------------------- | --------------------------------------- |
-| Jona König            | [devdev42](https://github.com/devdev42) |
+| Name                  | GitHub                                            |
+| --------------------- | ------------------------------------------------- |
+| Jona König            | [devdev42](https://github.com/devdev42)           |
 | Luca Virnich          | [luca-virninch](https://github.com/luca-virninch) |
-| Peer Voss             |                                         |
-| Nigina Isamukhamedova |                                         |
-| Kyra Muhl             | [Cagem](https://github.com/Cagem)       |
+| Peer Voss             | [peervoss](https://github.com/peervoss)           |
+| Nigina Isamukhamedova |                                                   |
+| Kyra Muhl             | [Cagem](https://github.com/Cagem)                 |
