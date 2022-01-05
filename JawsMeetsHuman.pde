@@ -18,8 +18,8 @@ void setup() {
     initShark(); // Initializes the shark vectors
     initHuman(); // Initializes the human vectors
     initBackgroundImage(); // Initializes the menu screen
-    initSharkOrientationControl(); // IMPORTANT: Needs to stay above initActiveAreas(); 
-    initActiveAreas(); // These are used to control where the cursor is. This information is used for sharkOrientation();
+    initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
+    initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
     initLifes(); //used to set all lifes to true
     initThemeSound(); // Initializes the background music
     
@@ -39,7 +39,7 @@ void draw() {
 
     background(176, 196, 222);
     drawGameObjects();
-    sharkOrientation(); // controls the sharks orientation by mouse position
+    drawSharkOrientationUI(); // controls the sharks orientation by mouse position
     checkBoundaries();
     moveGameObjects();
   }

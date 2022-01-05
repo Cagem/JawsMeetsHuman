@@ -3,18 +3,47 @@ Shark shark;
 int jumpingTimer = 0;
 int blockedJumpTimer = 0;
 
+String newSharkOrientation = "STARTING_STRING";
+
 // Function to draw the shark object at given coordinates
 void drawShark() {
   if (shark.isJumping) drawSharkShadow();
 
   rectMode(CORNER);
   fill(255);
-  rect(shark.position.x, shark.position.y, shark.width, shark.height);
+  drawSharkImg();
+  //rect(shark.position.x, shark.position.y, shark.width, shark.height);
 }
 
 void drawSharkImg() {
-  PImage img = loadImage("shark.png");
-  image(img, shark.position.x, shark.position.y, shark.width, shark.height);
+  
+  String oldSharkOrientation = checkMousePosition();
+  PImage sharkImg = loadImage("shark.png");
+  imageMode(CENTER);
+
+  if (oldSharkOrientation != newSharkOrientation &&
+      oldSharkOrientation != "NO_CHANGE") newSharkOrientation = checkMousePosition();
+
+  if (newSharkOrientation == "UP") {
+    pushMatrix();
+    translate(shark.position.x, shark.position.y);
+    rotate(radians(270));
+    image(sharkImg, 0, 0, shark.width, shark.height);
+    popMatrix();
+  } else if (newSharkOrientation == "DOWN") {
+    pushMatrix();
+    translate(shark.position.x, shark.position.y);
+    rotate(radians(90));
+    image(sharkImg, 0, 0, shark.width, shark.height);
+    popMatrix();
+  } else if (newSharkOrientation == "LEFT") {
+    pushMatrix();
+    scale(-1.0, 1.0);
+    image(sharkImg, -shark.position.x, shark.position.y, shark.width, shark.height);
+    popMatrix();
+  } else { // standard orientation is heading right
+    image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
+  } 
 }
 
 void drawSharkShadow() {

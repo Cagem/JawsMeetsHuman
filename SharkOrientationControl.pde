@@ -21,7 +21,7 @@ float[] splitUpLeft = new float[4];
 float[] splitDownLeft = new float[4];
 
 // This function initializes all variables needed in this page and is necessary, because it uses width and height which only have a value after fullscreen() was executet.
-void initSharkOrientationControl() {
+void initSharkOrientationUI() {
 
   centerOfControlUI[0] = round(0.94 * width); // X
   centerOfControlUI[1] = round(0.1 * height); // Y
@@ -52,24 +52,10 @@ void initSharkOrientationControl() {
   splitDownLeft[3] = centerOfControlUI[1] + splitBigCircle; // Y2
 }
 
-void sharkOrientation() {
+void drawSharkOrientationUI() {
     
   manipulateCursor();
   drawControlUI();
-    
-  if (checkMousePosition() == "UP") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "DOWN") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "LEFT") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "RIGHT") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } 
 }
 
 void manipulateCursor() {
@@ -126,7 +112,7 @@ void initActiveAreas() {
 
 String checkMousePosition() {
 
-  String setOrientation = "";
+  String setOrientation = "NO_CHANGE";
 
   if (upperArea.containsPoint(new Vec2D(mouseX, mouseY))) {
     setOrientation = "UP";
