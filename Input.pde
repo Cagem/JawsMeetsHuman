@@ -155,8 +155,8 @@ void handleRestartKey () {
     timerHours = 0;
     break;
   case 'l':
-  setNewHighscore();
-  saveHighscore();
-  break;
+    setNewHighscore();
+    saveHighscore();
+    break;
   }
 }

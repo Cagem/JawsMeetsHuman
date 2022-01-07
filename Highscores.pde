@@ -1,25 +1,25 @@
 int newHighscore;
 int[] highscores = new int [5];  //Array mit Int highscore werten
 
-void setNewHighscore(){
+void setNewHighscore() {
   newHighscore = timerHours*60*60 + timerMinutes*60 + timerSecondsINT;
 }
 
 void saveHighscore() {
   String[] highscoresString = new String[5];
-  
-  for (int i = 0; i < highscores.length; i++){
-    
-    if (newHighscore > highscores[highscores.length-1]){
+
+  for (int i = 0; i < highscores.length; i++) {
+
+    if (newHighscore > highscores[highscores.length-1]) {
       highscores[highscores.length-1] = newHighscore;
       break;
-    }else if (highscores[i] < newHighscore && highscores[i+1] > newHighscore){
+    } else if (highscores[i] < newHighscore && highscores[i+1] > newHighscore) {
       highscores[i] = newHighscore;
       break;
     }
   }
-  
-  for (int i = 0; i < highscoresString.length; i++){
+
+  for (int i = 0; i < highscoresString.length; i++) {
     highscoresString[i]=nf(highscores[i]);
   }
   saveStrings("highscores.txt", highscoresString);
@@ -27,15 +27,15 @@ void saveHighscore() {
 
 void loadHighscore() {
   String[] highscoresString = loadStrings("highscores.txt");
-  
-  for (int i = 0; i < highscoresString.length; i++){
+
+  for (int i = 0; i < highscoresString.length; i++) {
     highscores[i] = int(highscoresString[i]);
   }
 }
 
 
-void drawHighscores(){
-  fill(0,0,0,200);
+void drawHighscores() {
+  fill(0, 0, 0, 200);
   rect(width*0.85, height*0.25, width*0.1, height*0.3, 10);
   fill(255);
   textSize(relativeSize("M"));

@@ -64,7 +64,7 @@ void drawInitialMenuScreen() {
   text("Press 'p' to play (or to pause later on)", width / 2, height / 2);
   textAlign(LEFT);
   text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
-  
+
   drawHighscores(); // Draws the Highscore Board
 }
 

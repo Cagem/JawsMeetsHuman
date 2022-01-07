@@ -16,13 +16,13 @@ void drawShark() {
 }
 
 void drawSharkImg() {
-  
+
   String oldSharkOrientation = checkMousePosition();
   PImage sharkImg = loadImage("shark.png");
   imageMode(CORNER);
 
   if (oldSharkOrientation != sharkOrientation &&
-      oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
+    oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
 
   if (sharkOrientation == "UP") {
     pushMatrix();
@@ -43,7 +43,7 @@ void drawSharkImg() {
     popMatrix();
   } else { // standard orientation is heading right
     image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
-  } 
+  }
 }
 
 void drawSharkShadow() {

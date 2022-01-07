@@ -53,13 +53,13 @@ void initSharkOrientationUI() {
 }
 
 void drawSharkOrientationUI() {
-    
+
   manipulateCursor();
   drawControlUI();
 }
 
 void manipulateCursor() {
-    
+
   try {
     robot = new Robot();
     robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
@@ -68,9 +68,9 @@ void manipulateCursor() {
     println(e.getMessage());
     exit();
   }
-    
+
   cursorImage = loadImage("red_dot.png");
-  cursor(cursorImage, 16, 16); 
+  cursor(cursorImage, 16, 16);
 }
 
 void drawControlUI() {
