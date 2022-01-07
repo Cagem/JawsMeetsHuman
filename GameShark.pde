@@ -19,7 +19,7 @@ void drawSharkImg() {
   
   String oldSharkOrientation = checkMousePosition();
   PImage sharkImg = loadImage("shark.png");
-  imageMode(CENTER);
+  imageMode(CORNER);
 
   if (oldSharkOrientation != sharkOrientation &&
       oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
@@ -49,7 +49,7 @@ void drawSharkImg() {
 void drawSharkShadow() {
   rectMode(CORNER);
   fill(0, 50);
-  rect(shark.position.x - 7, shark.position.y + 7, shark.width, shark.height);
+  rect(shark.position.x - 2, shark.position.y + 2, shark.width, shark.height);
 }
 
 void setJumpingTimer() {
