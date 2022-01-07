@@ -14,7 +14,7 @@
 void setup() {
     fullScreen(); // Initializes the screen as fullscreen
 
-
+    loadHighscore(); //Loads the Highscores from Highscores.txt
     initPaths(); // Initializes the path vectors
     initShark(); // Initializes the shark vectors
     initHuman(); // Initializes the human vectors
