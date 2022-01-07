@@ -1,32 +1,69 @@
-ArrayList<PVector> paths = new ArrayList<PVector>(); // Vector positions of the path tiles
+ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
-// Initializes the path vectors
+float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
+  float lowest = last - pathRadius;
+  float highest = last + pathRadius;
+
+  float low = (lowest > pathRadius) ? lowest + figureRadius : last;
+  float high = (highest < width - pathRadius) ? highest - figureRadius : last;
+
+  return random(low, high);
+}
+
+float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
+  float lowest = last;
+  float highest = last + pathRadius;
+
+  return random(lowest, highest);
+}
+
 void initPaths() {
-  float yRange = height - (objectSize * 2);
+  float pathRadius = objectSize * 5;
   float xLowest = width / 4;
   float xHighest = width - xLowest;
   float xLast = random(xLowest, xHighest);
+  float yLast = 0;
 
-  for (float i = 0; i <= yRange + (objectSize * 4); i += objectSize * 4) {
-    float xLow = (xLast - (objectSize * 2.5) > xLowest) ? xLast - (objectSize * 2.5) : xLowest;
-    float xHigh = (xLast + (objectSize * 2.5) < xHighest) ? xLast + (objectSize * 2.5) : xHighest;
+  for (float i = 0; i <= height; i = yLast) {
+    paths.add(new Path(xLast, yLast, pathRadius, pathRadius));
 
-    xLast = random(xLow, xHigh);
-    PVector path = new PVector(xLast, i);
-    paths.add(path);
+    float randomFloat = random(0, 1);
+
+    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, objectSize * 2);
+    else yLast = getNextYPathPosition(yLast, pathRadius, objectSize * 2);
   }
 }
 
 // Function to draw the path at given coordinates
-void drawPath(PVector path) {
+void drawPath(Path path) {
+  rectMode(CORNER);
+  fill(184, 134, 11);
+  noStroke();
+  rect(path.x, path.y, path.width, path.height);
+}
+
+void drawPathImg(Path path) {
   PImage img = loadImage("pathTile.png");
-  imageMode(CENTER);
-  image(img, path.x, path.y, objectSize * 5, objectSize * 5);
+  image(img, path.x, path.y, path.width, path.height);
 }
 
 // Function to draw all path tiles
 void drawPaths() {
   for (int i = 0; i < paths.size(); i++) {
     drawPath(paths.get(i));
+  }
+}
+
+class Path {
+  float x;
+  float y;
+  float width;
+  float height;
+
+  public Path(float x, float y, float pathWidth, float pathHeight) {
+    this.x = x;
+    this.y = y;
+    this.width = pathWidth;
+    this.height = pathHeight;
   }
 }

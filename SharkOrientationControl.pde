@@ -21,7 +21,7 @@ float[] splitUpLeft = new float[4];
 float[] splitDownLeft = new float[4];
 
 // This function initializes all variables needed in this page and is necessary, because it uses width and height which only have a value after fullscreen() was executet.
-void initSharkOrientationControl() {
+void initSharkOrientationUI() {
 
   centerOfControlUI[0] = round(0.94 * width); // X
   centerOfControlUI[1] = round(0.1 * height); // Y
@@ -52,38 +52,25 @@ void initSharkOrientationControl() {
   splitDownLeft[3] = centerOfControlUI[1] + splitBigCircle; // Y2
 }
 
-void sharkOrientation() {
-
+void drawSharkOrientationUI() {
+    
   manipulateCursor();
   drawControlUI();
-
-  if (checkMousePosition() == "UP") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "DOWN") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "LEFT") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  } else if (checkMousePosition() == "RIGHT") {
-    // transform shark's orientation
-    println("The shark heads " + checkMousePosition());
-  }
 }
 
 void manipulateCursor() {
-
+    
   try {
     robot = new Robot();
     robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
   } 
   catch(Throwable e) {
-    println("jawa.awt.Robot: Exception cought");
+    println(e.getMessage());
+    exit();
   }
-
+    
   cursorImage = loadImage("red_dot.png");
-  cursor(cursorImage, 16, 16);
+  cursor(cursorImage, 16, 16); 
 }
 
 void drawControlUI() {
@@ -91,13 +78,22 @@ void drawControlUI() {
   fill(255);
   stroke(0);
   strokeWeight(1);
-  circle(centerOfControlUI[0], centerOfControlUI[1], diameterBigCircle);
+  circle(centerOfControlUI[0], centerOfControlUI[1], diameterBigCircle); // outer circle
+  circle(centerOfControlUI[0], centerOfControlUI[1], diameterSmallCircle); // inner circle
   line(splitUpRight[0], splitUpRight[1], splitUpRight[2], splitUpRight[3]); // splitting UP/RIGHT
   line(splitDownRight[0], splitDownRight[1], splitDownRight[2], splitDownRight[3]); // splitting DOWN/RIGHT
   line(splitUpLeft[0], splitUpLeft[1], splitUpLeft[2], splitUpLeft[3]); // splitting UP/LEFT
   line(splitDownLeft[0], splitDownLeft[1], splitDownLeft[2], splitDownLeft[3]); // splitting DOWN/LEFT
-  //TODO: display text (UP, DOWN, LEFT, RIGHT)
-  circle(centerOfControlUI[0], centerOfControlUI[1], diameterSmallCircle);
+  fill(0);
+  textSize(relativeSize("XS"));
+  textAlign(CENTER, BASELINE);
+  text("UP", (splitUpRight[2]+splitUpLeft[2])/2, (splitUpRight[1]+splitUpRight[3])/2);
+  textAlign(CENTER, TOP);
+  text("DOWN", (splitDownRight[2]+splitDownLeft[2])/2, (splitDownRight[1]+splitDownRight[3])/2);
+  textAlign(LEFT, CENTER);
+  text("RIGHT", (splitUpRight[0]+splitUpRight[2])/2, (splitUpRight[3]+splitDownRight[3])/2);
+  textAlign(RIGHT, CENTER);
+  text("LEFT", (splitUpLeft[0]+splitUpLeft[2])/2, (splitUpLeft[3]+splitDownLeft[3])/2);
 }
 
 void initActiveAreas() {
@@ -125,7 +121,7 @@ void initActiveAreas() {
 
 String checkMousePosition() {
 
-  String setOrientation = "";
+  String setOrientation = "NO_CHANGE";
 
   if (upperArea.containsPoint(new Vec2D(mouseX, mouseY))) {
     setOrientation = "UP";

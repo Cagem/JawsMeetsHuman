@@ -1,6 +1,11 @@
 // Event that is called when any key is pressed
 void keyPressed() {
-  if (key == CODED) { // Handles specifically arrow keys
+  if (key == ENTER || key == RETURN) {
+    if (shark.isAllowedToJump) {
+      shark.setIsJumping(true);
+      shark.setIsAllowedToJump(false);
+    }
+  } else if (key == CODED) { // Handles specifically arrow keys
     handleArrowKeysPressed();
   } else { // Handles any other key
     handleKeysPressed();
@@ -18,23 +23,23 @@ void handleArrowKeysPressed() {
 
   switch(keyCode) {
   case LEFT:
-    sharkVelocity.x = -1;
-    sharkVelocity.y = 0;
+    shark.velocity.x = -1;
+    shark.velocity.y = 0;
     hasPressedArrowKey = true;
     break;
   case RIGHT:
-    sharkVelocity.x = 1;
-    sharkVelocity.y = 0;
+    shark.velocity.x = 1;
+    shark.velocity.y = 0;
     hasPressedArrowKey = true;
     break;
   case UP:
-    sharkVelocity.x = 0;
-    sharkVelocity.y = -1;
+    shark.velocity.x = 0;
+    shark.velocity.y = -1;
     hasPressedArrowKey = true;
     break;
   case DOWN:
-    sharkVelocity.x = 0;
-    sharkVelocity.y = 1;
+    shark.velocity.x = 0;
+    shark.velocity.y = 1;
     hasPressedArrowKey = true;
     break;
   default:
@@ -43,7 +48,7 @@ void handleArrowKeysPressed() {
 
   if (hasPressedArrowKey) {        
     increaseSharkSpeed();
-    moveVectorObject(sharkPosition, sharkVelocity.mult(currentSharkSpeed));
+    moveVectorObject(shark.position, shark.velocity.mult(currentSharkSpeed));
   }
 }
 
@@ -112,30 +117,30 @@ void handleDifficultyKeysPressed() {
 
 // Event that is called when a key is released
 void keyReleased() {
-  if (keyPressed == false || key == 'a' || key == 'd' || key == 'w' || key ==  's') {
-    shouldHumanMove = false;
+  if (keyCode == LEFT || keyCode == RIGHT) {
+    if (shark.velocity.x != 0) {
+      shark.velocity.x = shark.velocity.x / abs(shark.velocity.x);
+    }
+  }
+  if (keyCode == UP || keyCode == DOWN) {
+    if (shark.velocity.y != 0) {
+      shark.velocity.y = shark.velocity.y / abs(shark.velocity.y);
+    }
   }
 
-  switch(key) {
-  case 'a':
-    humanVelocity.x = 0;
-    break;
-  case 'd':
-    humanVelocity.x = 0;
-    break;
-  case 'w':
-    humanVelocity.y = 0;
-    break;
-  case 's':
-    humanVelocity.y = 0;
-    break;
-  default:
-    break;
+  if (key == 'a' || key == 'd' || key == 'w' || key ==  's') {
+    shouldHumanMove = false;
+
+    if (key == 'a' || key == 'd') {
+      humanVelocity.x = 0;
+    }
+    if (key == 'w' || key == 's') {
+      humanVelocity.y = 0;
+    }
   }
 }
 
 void handleRestartKey () {
-
   switch(key) {
   case'r' :
     deathScreen = false;

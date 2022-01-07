@@ -55,6 +55,7 @@ void life(int X, int Y) {
   rect(X + p * 2, Y + p * 3, p * 2, p * 2);
   rect(X - p * 2, Y + p * 3, p * 2, p * 2);
   rect(X, Y + p * 5, p * 2, p * 2);
+  rectMode(CORNER);
 }
 
 void nolife(int X, int Y) {
@@ -79,4 +80,5 @@ void nolife(int X, int Y) {
   rect(X + p * 2, Y + p * 3, p * 2, p * 2);
   rect(X - p * 2, Y + p * 3, p * 2, p * 2);
   rect(X, Y + p * 5, p * 2, p * 2);
+  rectMode(CORNER);
 }
