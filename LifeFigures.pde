@@ -1,3 +1,5 @@
+// @author Luca Virnich
+
 boolean[] lifes = new boolean[2];
 boolean deathScreen = false;
 

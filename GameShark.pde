@@ -1,3 +1,6 @@
+// @author Jona König
+// @author Kyra Muhl
+
 Shark shark;
 
 int jumpingTimer = 0;

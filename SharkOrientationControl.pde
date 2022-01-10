@@ -1,3 +1,5 @@
+// @author Jona König
+
 import java.awt.Robot;
 import toxi.geom.*;
 

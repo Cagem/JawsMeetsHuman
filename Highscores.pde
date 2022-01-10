@@ -1,3 +1,5 @@
+// @author Luca Virnich
+
 int newHighscore;
 int[] highscores = new int [5];  //Array mit Int highscore werten
 

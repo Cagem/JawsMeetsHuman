@@ -1,3 +1,5 @@
+// @author Kyra Muhl
+
 // Event that is called when any key is pressed
 void keyPressed() {
   if (key == ENTER || key == RETURN) {

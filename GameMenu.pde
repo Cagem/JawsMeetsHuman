@@ -1,3 +1,5 @@
+// @author Jona König
+
 int difficulty = 1;
 int countFrames = 0; // utilized for timer capability
 boolean displayMenu = true;

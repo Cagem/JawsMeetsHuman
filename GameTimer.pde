@@ -1,3 +1,5 @@
+// @author Luca Virnich
+
 float timerSeconds = 0;
 int timerSecondsINT = 0; 
 int timerMinutes = 0;

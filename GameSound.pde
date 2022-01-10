@@ -1,3 +1,6 @@
+// @author Kyra Muhl
+// @author Niginabonu Isamukhamedova
+
 import processing.sound.*;
 SoundFile file; // Used to declare sound file object
 boolean shouldShowSongPopup = false; // Used to define if popup should be visible

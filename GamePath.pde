@@ -1,3 +1,5 @@
+// @author Kyra Muhl
+
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
 float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
