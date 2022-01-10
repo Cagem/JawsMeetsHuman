@@ -1,8 +1,8 @@
 PVector humanPosition, humanVelocity; // Mensch-Position & Mensch-Richtung
-float objectSize = 15; // The default size of any drawn object
+float objectSize = 15; // The default size of any drawn object // TODO: Muss relativ werden, auch alle anderen Größen.
 
 float humanHeight = objectSize * 3;
-float humanWidth = objectSize * 2;
+float humanWidth = objectSize * 1.2;
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
