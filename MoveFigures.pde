@@ -1,4 +1,5 @@
 // @author Kyra Muhl
+//@author Luca Virnich
 
 float maxConstantMovingSpeed = 4 * difficulty; // The global speed if an object moves constantly
 float maxOnPressMovingSpeed = 3 * difficulty; // The global speed if an object moves only on press
@@ -80,6 +81,9 @@ void checkPathCollision() {
     }
   }
 }
+
+
+//@author Luca Virnich
 
 
 void checkFigureCollision() {

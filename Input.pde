@@ -142,6 +142,9 @@ void keyReleased() {
   }
 }
 
+
+//@author Luca Virnich
+
 void handleRestartKey () {
   switch(key) {
   case'r' :
