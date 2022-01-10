@@ -19,7 +19,7 @@ void drawSharkImg() {
 
   String oldSharkOrientation = checkMousePosition();
   PImage sharkImg = loadImage("shark.png");
-  imageMode(CORNER);
+  imageMode(CENTER);
 
   if (oldSharkOrientation != sharkOrientation &&
     oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
