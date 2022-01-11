@@ -1,3 +1,7 @@
+// @author Kyra Muhl
+// @author Jona König
+// @author Luca Virnich
+
 // Function to initialize screen (and try to improve the framerate)
 // void settings() {
 //     try {
