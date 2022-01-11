@@ -14,7 +14,7 @@ void initBackgroundImage() {
 }
 
 void displayMenu() {
-  if (!inPause) {                         // Startup-specific content that is only displayed once
+  if (!inPause) { // Startup-specific content that is only displayed once
     drawInitialMenuScreen();
   } else {
     drawPauseScreen();

@@ -103,7 +103,7 @@ void handleKeysPressed() {
 
 void handleDifficultyKeysPressed() {
   switch(key) {
-  case'1' : // TODO: DRY!
+  case'1' :
     setDifficulty(1);
     break;
   case'2':

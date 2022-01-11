@@ -2,7 +2,7 @@
 
 float maxConstantMovingSpeed = 4 * difficulty; // The global speed if an object moves constantly
 float maxOnPressMovingSpeed = 3 * difficulty; // The global speed if an object moves only on press
-float acceleration = 0.9; // Beschleunigung
+float acceleration = 0.9; // TODO: should be a formular 
 float currentSharkSpeed = 0; // Current speed of the shark
 float currentHumanSpeed = 0; // Current speed of the human
 boolean shouldHumanMove = false; // Used to identify if the figures position should be updated at the next draw-call
@@ -43,14 +43,14 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
 
 void checkPathCollision() {
   if (!shark.isJumping) {
-    //iterate over the obstacles
+    // iterate over the obstacles
     for (int i = 0; i < paths.size(); i++) {
       boolean hasSharkStoppedJumping = !shark.isAllowedToJump && blockedJumpTimer < 50;
 
-      //check collision for this obstacle
+      // check collision for this obstacle
       Path path = paths.get(i);
 
-      //check X movment
+      // check X movment
       if (shark.position.x + shark.width + shark.velocity.x > path.x && 
         shark.position.x + shark.velocity.x < path.x + path.width && 
         shark.position.y + shark.height > path.y && 
@@ -64,7 +64,7 @@ void checkPathCollision() {
         }
       }
 
-      //check Y movement
+      // check Y movement
       if (shark.position.x + shark.width > path.x && 
         shark.position.x < path.x + path.width && 
         shark.position.y + shark.height + shark.velocity.y > path.y && 

@@ -18,14 +18,14 @@
 void setup() {
   fullScreen(); // Initializes the screen as fullscreen
 
-  loadHighscore(); //Loads the Highscores from Highscores.txt
+  loadHighscore(); // Loads the Highscores from Highscores.txt
   initPaths(); // Initializes the path vectors
   initShark(); // Initializes the shark vectors
   initHuman(); // Initializes the human vectors
   initBackgroundImage(); // Initializes the menu screen
   initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
-  initLifes(); //used to set all lifes to true
+  initLifes(); // used to set all lifes to true
   initThemeSound(); // Initializes the background music
 
   frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
