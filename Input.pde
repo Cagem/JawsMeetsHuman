@@ -25,6 +25,7 @@ void handleArrowKeysPressed() {
 
   switch(keyCode) {
   case LEFT:
+    leftClick += 1;
     shark.velocity.x = -1;
     shark.velocity.y = 0;
     hasPressedArrowKey = true;
@@ -48,7 +49,7 @@ void handleArrowKeysPressed() {
     break;
   }
 
-  if (hasPressedArrowKey) {        
+  if (hasPressedArrowKey) {
     increaseSharkSpeed();
     moveVectorObject(shark.position, shark.velocity.mult(currentSharkSpeed));
   }
@@ -150,9 +151,9 @@ void handleRestartKey () {
     sharkRespawn();
     for (int i = 0; i < lifes.length; i++) {
       lifes[i]=true;
-    } 
+    }
     timerSeconds = 0;
-    timerSecondsINT = 0; 
+    timerSecondsINT = 0;
     timerMinutes = 0;
     timerHours = 0;
     break;
