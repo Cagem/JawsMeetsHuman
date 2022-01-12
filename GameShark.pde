@@ -21,7 +21,6 @@ void drawShark() {
 void drawSharkImg() {
 
   String oldSharkOrientation = checkMousePosition();
-  PImage sharkImg = loadImage("shark.png");
   imageMode(CORNER); // TODO: should be CENTER, but collision is messed up then.
 
   if (oldSharkOrientation != sharkOrientation &&

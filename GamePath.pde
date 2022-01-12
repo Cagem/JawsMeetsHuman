@@ -37,22 +37,21 @@ void initPaths() {
 }
 
 // Function to draw the path at given coordinates
-void drawPath(Path path) {
-  rectMode(CORNER);
-  fill(184, 134, 11);
-  noStroke();
-  rect(path.x, path.y, path.width, path.height);
-}
+// void drawPath(Path path) {
+//   rectMode(CORNER);
+//   fill(184, 134, 11);
+//   noStroke();
+//   rect(path.x, path.y, path.width, path.height);
+// }
 
 void drawPathImg(Path path) {
-  PImage img = loadImage("pathTile.png");
-  image(img, path.x, path.y, path.width, path.height);
+  image(pathTileImg, path.x, path.y, path.width, path.height);
 }
 
 // Function to draw all path tiles
 void drawPaths() {
   for (int i = 0; i < paths.size(); i++) {
-    drawPath(paths.get(i));
+    drawPathImg(paths.get(i));
   }
 }
 

@@ -2,27 +2,14 @@
 // @author Jona König
 // @author Luca Virnich
 
-// Function to initialize screen (and try to improve the framerate)
-// void settings() {
-//     try {
-//         fullScreen(P2D);
-//         MIND: There are known issues combining a cursor image with P2D/P3D and/or fullscreen();
-//         smooth(4); // problem with text in pause screen after ~2 seconds.
-//     } catch (Throwable e) {
-//         fullScreen(JAVA2D);
-//         smooth(8); // no smooth right now
-//         println("Special graphics for computers which dont support OpenGL Graphics activated.");
-//     }
-// }
-
 void setup() {
   fullScreen(); // Initializes the screen as fullscreen
-
+  
+  loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
   initPaths(); // Initializes the path vectors
   initShark(); // Initializes the shark vectors
   initHuman(); // Initializes the human vectors
-  initBackgroundImage(); // Initializes the menu screen
   initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
   initLifes(); // used to set all lifes to true
@@ -49,6 +36,8 @@ void draw() {
     moveGameObjects();
   }
   showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+
+  print(nf(frameRate, 2, 0) + "   ");
 }
 
 void moveGameObjects() {

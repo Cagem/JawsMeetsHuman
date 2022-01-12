@@ -9,8 +9,6 @@ Polygon2D lowerArea = new Polygon2D();
 Polygon2D leftArea = new Polygon2D();
 Polygon2D rightArea = new Polygon2D();
 
-PImage cursorImage;
-
 float diameterBigCircle;
 int diameterSmallCircle;
 float splitBigCircle;
@@ -71,7 +69,6 @@ void manipulateCursor() {
     exit();
   }
 
-  cursorImage = loadImage("red_dot.png");
   cursor(cursorImage, 16, 16);
 }
 

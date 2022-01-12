@@ -8,9 +8,8 @@ float humanWidth = objectSize * 1.2;
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
-  PImage img = loadImage("human.png");
   imageMode(CENTER);
-  image(img, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
+  image(humanImg, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
   imageMode(CORNER);
 }
 
