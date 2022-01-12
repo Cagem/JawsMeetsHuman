@@ -16,6 +16,7 @@ void loadImages() {
         cursorImage = loadImage("red_dot.png");
     } catch (Exception e) {
         println("One or more images could not be loaded. The game can't be run without them and will quit.");
+        println(e.getClass());
         exit();
     }
 
