@@ -10,9 +10,10 @@ Polygon2D leftArea = new Polygon2D();
 Polygon2D rightArea = new Polygon2D();
 
 float diameterBigCircle;
-int diameterSmallCircle;
+float diameterSmallCircle;
 float splitBigCircle;
 float splitSmallCircle;
+int cursorRadius;
 
 int[] centerOfControlUI = new int[2];
 float[] splitUpRight = new float[4];
@@ -27,7 +28,12 @@ void initSharkOrientationUI() {
   centerOfControlUI[1] = round(0.1 * height); // Y
 
   diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
-  diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
+  if (width/91.4285714 > 28) diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
+  else diameterSmallCircle = round(width/91.4285714); // is used for responsability so that the game works on small (16:9) screens too.
+
+  if (width/160 > 16) cursorRadius = 16;
+  else cursorRadius = width/160; // is used for responsability so that the game works on small (16:9) screens too.
+
   splitBigCircle = diameterBigCircle / (0.9 * PI); 
   splitSmallCircle = diameterSmallCircle / (0.9 * PI);
 
@@ -62,14 +68,14 @@ void manipulateCursor() {
 
   try {
     robot = new Robot();
-    robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
+    robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]); // Does only work in fullScreen(). Artificial manipulation like size() is not supported.
   } 
   catch(Throwable e) {
     println(e.getMessage());
     exit();
   }
 
-  cursor(cursorImage, 16, 16);
+  cursor(cursorImage, cursorRadius, cursorRadius);
 }
 
 void drawControlUI() {
