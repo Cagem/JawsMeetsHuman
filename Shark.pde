@@ -12,7 +12,7 @@ String sharkOrientation = "RIGHT"; // This String is  to be used globally for de
 void drawShark() {
   if (shark.isJumping) drawSharkShadow();
 
-  rectMode(CORNER);
+  rectMode(CENTER);
   fill(255);
   drawSharkImg();
   //rect(shark.position.x, shark.position.y, shark.width, shark.height);
@@ -21,7 +21,7 @@ void drawShark() {
 void drawSharkImg() {
 
   String oldSharkOrientation = checkMousePosition();
-  imageMode(CORNER); // TODO: should be CENTER, but collision is messed up then.
+  imageMode(CENTER); // TODO: should be CENTER, but collision is messed up then.
 
   if (oldSharkOrientation != sharkOrientation &&
     oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
@@ -46,6 +46,7 @@ void drawSharkImg() {
   } else { // standard orientation is heading right
     image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
   }
+  imageMode(CORNER);
 }
 
 void drawSharkShadow() {

@@ -1,6 +1,7 @@
 // @author Jona König
 
-// Loading all assets just once instead of per every frame increases the performance dramatically
+// Loading all assets just once instead of per every frame increases the performance dramatically.
+
 PImage pathTileImg;
 PImage sharkImg;
 PImage humanImg;
@@ -20,5 +21,5 @@ void loadImages() {
         exit();
     }
 
-    bgImage.resize(width, height); // The background image has to be the same size as the program
+    bgImage.resize(width, height); // The background image has to be the same size as the program.
 }
