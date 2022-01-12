@@ -3,6 +3,16 @@
 float maxConstantMovingSpeed = 4 * difficulty; // The global speed if an object moves constantly
 float maxOnPressMovingSpeed = 3 * difficulty; // The global speed if an object moves only on press
 float acceleration = 0.9; // TODO: should be a formular 
+/**
+* Beschleunigung
+* Für die Beschleunigung könnt ihr die Formel für eine gleichmäßig beschleunigte Bewegung nehmen - das Geschwindigkeit-Zeit-Gesetz:
+* vneu = a · t + valt
+
+* vneu ist die Geschwindigkeit
+* a ist die Beschleunigung
+* t ist die Zeit (Differenz aus dem Frame, in dem ich angefangen habe zu beschleunigen und jetzt)
+* valt ist die Anfangsgeschwindigkeit (vom letzten Frame)
+*/
 float currentSharkSpeed = 0; // Current speed of the shark
 float currentHumanSpeed = 0; // Current speed of the human
 boolean shouldHumanMove = false; // Used to identify if the figures position should be updated at the next draw-call
