@@ -14,7 +14,7 @@ void setup() {
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
   initLifes(); // Used to set all lifes to true
   initThemeSound(); // Initializes the background music
-
+  
   frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
 }
 
@@ -36,6 +36,7 @@ void draw() {
     moveGameObjects();
   }
   showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+  print(nf(frameRate, 2, 0) + "   "); // Debugging
 }
 
 void moveGameObjects() {

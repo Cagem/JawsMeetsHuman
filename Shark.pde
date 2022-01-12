@@ -5,6 +5,8 @@ Shark shark;
 
 int jumpingTimer = 0;
 int blockedJumpTimer = 0;
+int sharkHeight = 51; // Original height, used before the resize. NECESSARY for performance reasons
+int sharkWidth = 113; // Original width, used before the resize. NECESSARY for performance reasons
 
 String sharkOrientation = "RIGHT"; // This String is  to be used globally for defining the sharks hitarea AND to rotate its image. 
 
@@ -21,7 +23,7 @@ void drawShark() {
 void drawSharkImg() {
 
   String oldSharkOrientation = checkMousePosition();
-  imageMode(CENTER); // TODO: should be CENTER, but collision is messed up then.
+  imageMode(CENTER);
 
   if (oldSharkOrientation != sharkOrientation &&
     oldSharkOrientation != "NO_CHANGE") sharkOrientation = checkMousePosition();
@@ -46,7 +48,6 @@ void drawSharkImg() {
   } else { // standard orientation is heading right
     image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
   }
-  imageMode(CORNER);
 }
 
 void drawSharkShadow() {
@@ -79,11 +80,13 @@ void resetBlockedJumpTimer() {
 
 // Initializes the shark
 void initShark() {
-  PVector position = new PVector(10, height - objectSize * 4 - 30);
+  sharkWidth = sharkImg.width;
+  sharkHeight = sharkImg.height;
+  PVector position = new PVector(10, height - sharkHeight - 30);
   PVector velocity = new PVector(-1, 0);
   velocity.mult(1);
 
-  shark = new Shark(position, velocity, objectSize * 8, objectSize * 4);
+  shark = new Shark(position, velocity, sharkWidth, sharkHeight);
 }
 
 class Shark {

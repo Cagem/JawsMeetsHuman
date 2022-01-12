@@ -22,4 +22,5 @@ void loadImages() {
     }
 
     bgImage.resize(width, height); // The background image has to be the same size as the program.
+    // TODO: resize other images
 }

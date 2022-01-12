@@ -1,5 +1,7 @@
 // @author Kyra Muhl
 
+int pathWidth = 15; // TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
+
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
 float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
@@ -20,7 +22,7 @@ float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
 }
 
 void initPaths() {
-  float pathRadius = objectSize * 5;
+  float pathRadius = pathWidth * 5;
   float xLowest = width / 4;
   float xHighest = width - xLowest;
   float xLast = random(xLowest, xHighest);
@@ -31,19 +33,12 @@ void initPaths() {
 
     float randomFloat = random(0, 1);
 
-    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, objectSize * 2);
-    else yLast = getNextYPathPosition(yLast, pathRadius, objectSize * 2);
+    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth * 2);
+    else yLast = getNextYPathPosition(yLast, pathRadius, pathWidth * 2);
   }
 }
 
 // Function to draw the path at given coordinates
-// void drawPath(Path path) {
-//   rectMode(CORNER);
-//   fill(184, 134, 11);
-//   noStroke();
-//   rect(path.x, path.y, path.width, path.height);
-// }
-
 void drawPathImg(Path path) {
   image(pathTileImg, path.x, path.y, path.width, path.height);
 }
