@@ -1,6 +1,6 @@
 // @author Kyra Muhl
 
-int pathWidth = 15; // TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
+float pathWidth = 15; // TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
 
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 

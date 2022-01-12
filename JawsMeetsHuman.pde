@@ -3,8 +3,8 @@
 // @author Luca Virnich
 
 void setup() {
-  fullScreen(); // Initializes the screen as fullscreen
-  
+  //fullScreen(); // Initializes the screen as fullscreen
+  size(400, 400);
   loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
   initPaths(); // Initializes the path vectors

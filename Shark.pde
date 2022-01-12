@@ -17,7 +17,6 @@ void drawShark() {
   rectMode(CENTER);
   fill(255);
   drawSharkImg();
-  //rect(shark.position.x, shark.position.y, shark.width, shark.height);
 }
 
 void drawSharkImg() {

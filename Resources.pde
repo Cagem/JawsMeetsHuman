@@ -21,6 +21,8 @@ void loadImages() {
         exit();
     }
 
+    // pathTileImg.resize(width/100, height/100); // if manipulated performance losses are dramatic
+    sharkImg.resize(int(width/22.65), int(height/28.24));
+    humanImg.resize(int(width/106.66), int(height/24));
     bgImage.resize(width, height); // The background image has to be the same size as the program.
-    // TODO: resize other images
 }
