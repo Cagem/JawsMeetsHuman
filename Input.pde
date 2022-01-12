@@ -29,21 +29,25 @@ void handleArrowKeysPressed() {
     shark.velocity.x = -1;
     shark.velocity.y = 0;
     hasPressedArrowKey = true;
+    println("INFO: You pressed key LEFT");
     break;
   case RIGHT:
     shark.velocity.x = 1;
     shark.velocity.y = 0;
     hasPressedArrowKey = true;
+    println("INFO: You pressed key RIGHT");
     break;
   case UP:
     shark.velocity.x = 0;
     shark.velocity.y = -1;
     hasPressedArrowKey = true;
+    println("INFO: You pressed key UP");
     break;
   case DOWN:
     shark.velocity.x = 0;
     shark.velocity.y = 1;
     hasPressedArrowKey = true;
+    println("INFO: You pressed key DOWN");
     break;
   default:
     break;

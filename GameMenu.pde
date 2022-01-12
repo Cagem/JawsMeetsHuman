@@ -92,7 +92,8 @@ void drawDeathScreen() {
   fill(255);
   textAlign(CENTER);
   textSize(relativeSize("XL"));
-  text("The Game has ended", width / 2, height / 2.5);
+  text("The Game has ended: " + leftClick, width / 2, height / 2.5);
+  
   textSize(relativeSize("M"));
   text("Press 'r' to restart the game, press 'l' to save your score or esc to exit", width / 2, height / 2);
 }
