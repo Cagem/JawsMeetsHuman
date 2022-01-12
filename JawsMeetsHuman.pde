@@ -36,8 +36,6 @@ void draw() {
     moveGameObjects();
   }
   showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
-
-  print(nf(frameRate, 2, 0) + "   ");
 }
 
 void moveGameObjects() {
