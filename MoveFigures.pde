@@ -7,7 +7,7 @@ float acceleration = 0.9; // TODO: should be a formular
 * Beschleunigung
 * Für die Beschleunigung könnt ihr die Formel für eine gleichmäßig beschleunigte Bewegung nehmen - das Geschwindigkeit-Zeit-Gesetz:
 * vneu = a · t + valt
-
+*
 * vneu ist die Geschwindigkeit
 * a ist die Beschleunigung
 * t ist die Zeit (Differenz aus dem Frame, in dem ich angefangen habe zu beschleunigen und jetzt)
