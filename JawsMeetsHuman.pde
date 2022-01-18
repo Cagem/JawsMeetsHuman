@@ -26,7 +26,6 @@ void draw() {
   } else if (deathScreen) {
     drawDeathScreen();
   } else {
-    if (displayDifficulty) displayDifficulty = false;
     updateTimer();
 
     background(176, 196, 222);

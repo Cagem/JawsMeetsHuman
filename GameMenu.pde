@@ -1,33 +1,34 @@
 // @author Jona König
 
 int difficulty = 1;
-int countFrames = 0; // utilized for timer capability
+int countFrames = 0; // utilized for timing capability
 boolean displayMenu = true;
-boolean inPause = false; // Only false after initial startup to show rules etc.
+boolean firstStartup = true; // Only true after initial startup to show rules etc.
 boolean displayDifficulty = false;
 final String RULESET = "The rules go like this: \nNon exercitation pariatur aute qui ea. Pariatur labore commodo ipsum anim excepteur fugiat nulla ea excepteur aute aliquip. Voluptate minim ut mollit Lorem excepteur in irure voluptate elit aliqua. Ea veniam nisi fugiat ea. Nisi est sunt ipsum commodo. Sint consectetur anim enim nulla sunt tempor voluptate nulla aliquip ullamco reprehenderit enim sint tempor. Id sunt non dolor quis labore tempor fugiat minim id excepteur consequat culpa elit voluptate. Deserunt id deserunt officia in incididunt et ullamco adipisicing. Non irure eu eu aliqua in aliqua cillum magna aute adipisicing.";
 
 void displayMenu() {
-  if (!inPause) { // Startup-specific content that is only displayed once
+  if (firstStartup) { // Startup-specific content that is only displayed once
     drawInitialMenuScreen();
   } else {
     drawPauseScreen();
   }
-  drawDifficultySetting();
+  
+  drawDifficultyPrompt();
 
   if (displayDifficulty) {
-    displayCurrentDifficulty();
+    displayDifficulty();
     countFrames++;
   }
   if (countFrames == 120) {
     displayDifficulty = false;
     countFrames = 0;
-  } // TODO: does not disappear when inPause
+  } // TODO: does not disappear when firstStartup
 }
 
 void setPlayOrPause() {
   displayMenu = !displayMenu;
-  if (!inPause) inPause = true; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
+  if (firstStartup) firstStartup = false; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
 } 
 
 void setDifficulty(int d) {
@@ -35,7 +36,7 @@ void setDifficulty(int d) {
   displayDifficulty = true;
 } 
 
-void displayCurrentDifficulty() {
+void displayDifficulty() {
   float xPosition = width * 0.9;
   float yPosition = height * 0.05;
   rectMode(CENTER);
@@ -74,7 +75,7 @@ void drawPauseScreen() {
   text("Press 'p' to keep on playing", width / 2, height / 2);
 }
 
-void drawDifficultySetting() {
+void drawDifficultyPrompt() {
   fill(255);
   textAlign(CENTER);
   textSize(relativeSize("S"));
