@@ -11,18 +11,16 @@ void displayMenu() {
   if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
   else drawPauseScreen();
   
-  drawDifficultyPrompt();
-
   if (displayDifficulty) {
     
-    displayDifficulty();
+    popup("Difficulty level: " + nf(difficulty));
     countFrames++;
   }
   if (countFrames == 120) {
     
     displayDifficulty = false;
     countFrames = 0;
-  } // TODO: does not disappear when firstStartup
+  }
 }
 
 void setPlayOrPause() {
@@ -38,17 +36,21 @@ void setDifficulty(int d) {
   displayDifficulty = true;
 } 
 
-void displayDifficulty() {
+void popup(String content) { // Reusable and content-responsive function to show popups
   
-  float xPosition = width * 0.9;
+  textSize(relativeSize("M"));
+  float contentLenght = textWidth(content);
+  float contentHeight = textWidth('O'); // The letter O in the utilized font-familiy is nearly as wide as high and can therefore be used for the sentence's hight.
+  float xPosition = width - width * 0.03 - contentLenght/2;
   float yPosition = height * 0.05;
+
   rectMode(CENTER);
   fill(80);
-  rect(xPosition, yPosition, width * 0.15, height * 0.05, 10);
+  rect(xPosition, yPosition, contentLenght + width/55, contentHeight + height/40, 10); // background of the popup
   fill(255);
-  textSize(relativeSize("M"));
-  text("Difficulty level: " + difficulty, xPosition, height * 0.057);
-  rectMode(CORNER);
+  textAlign(CENTER);
+  text(content , xPosition, yPosition + height * 0.007); // content of the popup
+  rectMode(CORNER); // back to the program's standard
 }
 
 void drawInitialMenuScreen() {
@@ -63,6 +65,8 @@ void drawInitialMenuScreen() {
   text("JAWS meets human", width / 2, height / 2.5);
   textSize(relativeSize("M"));
   text("Press 'p' to play (or to pause later on)", width / 2, height / 2);
+  textSize(relativeSize("S"));
+  text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
   textAlign(LEFT);
   text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
 
@@ -78,15 +82,7 @@ void drawPauseScreen() {
   textSize(relativeSize("XL"));
   text("PAUSE", width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text("Press 'p' to keep on playing", width / 2, height / 2);
-}
-
-void drawDifficultyPrompt() {
-  
-  fill(255);
-  textAlign(CENTER);
-  textSize(relativeSize("S"));
-  text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
+  text("Press 'p' to resume", width / 2, height / 2);
 }
 
 void drawDeathScreen() {

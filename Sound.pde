@@ -87,24 +87,11 @@ void stopThemeSong() {
 // Increases the timer, so the popup will not be visible after a few seconds
 void showThemeSongPopup() {
   if (shouldShowSongPopup) {
-    drawThemeSongPopup(themeSongPopupText);
+    popup(themeSongPopupText);
     themeSongPopupTimer++;
   }
   if (themeSongPopupTimer == 120) {
     shouldShowSongPopup = false;
     themeSongPopupTimer = 0;
   }
-}
-
-// Function to draw the popup for the background music
-void drawThemeSongPopup(String info) {
-  float xPosition = width*0.9;
-  float yPosition = height*0.05;
-  rectMode(CENTER);
-  fill(80);
-  rect(xPosition, yPosition, width*0.15, height*0.05, 10);
-  fill(255);
-  textSize(relativeSize("M"));
-  text(info, xPosition, height*0.057);
-  rectMode(CORNER);
 }
