@@ -39,6 +39,14 @@ void initPaths() {
 }
 
 // Function to draw the path at given coordinates
+void drawPath(Path path) {
+  rectMode(CORNER);
+  fill(184, 134, 11);
+  noStroke();
+  rect(path.x, path.y, path.width, path.height);
+}
+
+// Not active for performance reasons. TODO: needs fix.
 void drawPathImg(Path path) {
   image(pathTileImg, path.x, path.y, path.width, path.height);
 }
@@ -46,7 +54,7 @@ void drawPathImg(Path path) {
 // Function to draw all path tiles
 void drawPaths() {
   for (int i = 0; i < paths.size(); i++) {
-    drawPathImg(paths.get(i));
+    drawPath(paths.get(i));
   }
 }
 
