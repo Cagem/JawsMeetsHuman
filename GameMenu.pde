@@ -1,7 +1,7 @@
 // @author Jona König
 
 int difficulty = 1;
-int countFrames = 0; // utilized for timing capability
+int difficultyPopupTimer = 0; // counting frames, utilized for timing capability
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
 boolean displayDifficulty = false;
@@ -14,12 +14,12 @@ void displayMenu() {
   if (displayDifficulty) {
     
     popup("Difficulty level: " + nf(difficulty));
-    countFrames++;
+    difficultyPopupTimer++;
   }
-  if (countFrames == 120) {
+  if (difficultyPopupTimer == 120) {
     
     displayDifficulty = false;
-    countFrames = 0;
+    difficultyPopupTimer = 0;
   }
 }
 
