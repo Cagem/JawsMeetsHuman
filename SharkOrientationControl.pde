@@ -28,11 +28,8 @@ void initSharkOrientationUI() {
   centerOfControlUI[1] = round(0.1 * height); // Y
 
   diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
-  if (width/91.4285714 > 28) diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
-  else diameterSmallCircle = round(width/91.4285714); // is used for responsability so that the game works on small (16:9) screens too.
-
-  if (width/160 > 16) cursorRadius = 16;
-  else cursorRadius = width/160; // is used for responsability so that the game works on small (16:9) screens too.
+  diameterSmallCircle = cursorImg.width*0.8; // Width of cursorImg minus 20% so the red dot (cursorImg) can overlay the small (inner) circle of the control UI.
+  cursorRadius = cursorImg.width/2;
 
   splitBigCircle = diameterBigCircle / (0.9 * PI); 
   splitSmallCircle = diameterSmallCircle / (0.9 * PI);

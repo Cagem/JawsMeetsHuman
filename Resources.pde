@@ -24,5 +24,6 @@ void loadImages() {
 
     sharkImg.resize(int(width/22.65), int(height/28.24));
     humanImg.resize(int(width/106.66), int(height/24));
+    cursorImg.resize(int(width*0.015), int(width*0.015)); // X and Y need to be the same, since the image is a circle.
     backgroundImg.resize(width, height); // The background image has to be the same size as the program.
 }
