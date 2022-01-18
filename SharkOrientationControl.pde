@@ -75,7 +75,7 @@ void manipulateCursor() {
     exit();
   }
 
-  cursor(cursorImage, cursorRadius, cursorRadius);
+  cursor(cursorImg, cursorRadius, cursorRadius);
 }
 
 void drawControlUI() {

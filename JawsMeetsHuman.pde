@@ -23,7 +23,7 @@ void draw() {
   if (displayMenu) {
     displayMenu();
     noCursor();
-  } else if (deathScreen) {
+  } else if (gameOver) {
     drawDeathScreen();
   } else {
     updateTimer();
@@ -35,6 +35,7 @@ void draw() {
     moveGameObjects();
   }
   showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+  println(frameRate);
 }
 
 void moveGameObjects() {

@@ -1,7 +1,7 @@
 // @author Luca Virnich
 
 boolean[] lifes = new boolean[2];
-boolean deathScreen = false;
+boolean gameOver = false;
 
 int size = 3; // sets the heart-size, is used to reposition them accordingly if changed
 int currentLifes = lifes.length;
@@ -14,7 +14,8 @@ void initLifes() {
 
 void reduceLife() {
   if (currentLifes <=  1) {
-    deathScreen = true;
+    gameOver = true;
+    canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawDeathScreen().
   } else {
     currentLifes --;
     lifes[currentLifes] = false;

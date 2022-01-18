@@ -15,7 +15,7 @@ void keyPressed() {
   if (displayMenu) {
     handleDifficultyKeysPressed();
   }
-  if (deathScreen) {
+  if (gameOver) {
     handleRestartKey();
   }
 }
@@ -145,7 +145,7 @@ void keyReleased() {
 void handleRestartKey () {
   switch(key) {
   case'r' :
-    deathScreen = false;
+    gameOver = false;
     currentLifes = lifes.length;
     sharkRespawn();
     for (int i = 0; i < lifes.length; i++) {
