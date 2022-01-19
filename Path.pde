@@ -1,7 +1,6 @@
 // @author Kyra Muhl
 // @author Jona König
 
-// TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
 float pathWidth;
 float pathHeight;
 
@@ -25,7 +24,9 @@ float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
 }
 
 void initPaths() {
-  pathWidth = width*0.01;
+  pathWidth = humanImg.width/2;
+  pathHeight = humanImg.height/2;
+
   float pathRadius = pathWidth * 5;
   float xLowest = width / 4;
   float xHighest = width - xLowest;
@@ -37,8 +38,8 @@ void initPaths() {
 
     float randomFloat = random(0, 1);
 
-    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth * 2);
-    else yLast = getNextYPathPosition(yLast, pathRadius, pathWidth * 2);
+    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth);
+    else yLast = getNextYPathPosition(yLast, pathRadius, pathWidth);
   }
 
   renderPath(); // Rendering all tiles to a complete path and storing this information in a single image to improve performance.
