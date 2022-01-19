@@ -8,7 +8,7 @@ PImage sharkImg;
 PImage humanImg;
 PImage backgroundImg;
 PImage cursorImg;
-PImage canvasImg; // Will be used later on in GameMenu.pde > drawPauseScreen and drawDeathScreen functions.
+PImage canvasImg; // Will be used later on in GameMenu.pde > drawPauseScreen and drawEndScreen functions.
 
 void loadImages() {
     try {

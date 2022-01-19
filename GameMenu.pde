@@ -87,14 +87,14 @@ void drawPauseScreen() {
   text("Press 'p' to resume", width / 2, height / 2);
 }
 
-void drawDeathScreen() {
+void drawEndScreen(String message) {
 
   // TODO: No feedback after pressing l to save the score! Needs another popup.
   background(canvasImg); // To enable animations like the popup notifications.
   fill(255);
   textAlign(CENTER);
   textSize(relativeSize("XL"));
-  text("The Game has ended", width / 2, height / 2.5);
+  text(message, width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text("Press 'r' to restart the game, press 'l' to save your score or esc to exit", width / 2, height / 2);
+  text("Press 'r' to restart the game, 'h' to save your score or esc to exit", width / 2, height / 2);
 }

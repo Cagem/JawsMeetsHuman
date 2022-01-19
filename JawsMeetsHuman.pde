@@ -24,10 +24,11 @@ void draw() {
     displayMenu();
     noCursor();
   } else if (gameOver) {
-    drawDeathScreen();
+    drawEndScreen("The shark won!");
+  } else if (victory) {
+    drawEndScreen("The human won!");
   } else {
     updateTimer();
-
     drawGameObjects();
     drawSharkOrientationUI(); // controls the sharks orientation by mouse position
     checkBoundaries();

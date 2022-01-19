@@ -15,7 +15,7 @@ void initLifes() {
 void reduceLife() {
   if (currentLifes <=  1) {
     gameOver = true;
-    canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawDeathScreen().
+    canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawEndScreen().
   } else {
     currentLifes --;
     lifes[currentLifes] = false;

@@ -15,7 +15,7 @@ void keyPressed() {
   if (displayMenu) {
     handleDifficultyKeysPressed();
   }
-  if (gameOver) {
+  if (gameOver || victory) {
     handleRestartKey();
   }
 }
@@ -146,6 +146,7 @@ void handleRestartKey () {
   switch(key) {
   case'r' :
     gameOver = false;
+    victory = false;
     currentLifes = lifes.length;
     sharkRespawn();
     for (int i = 0; i < lifes.length; i++) {
@@ -156,9 +157,10 @@ void handleRestartKey () {
     timerMinutes = 0;
     timerHours = 0;
     break;
-  case 'l':
+  case 'h':
     setNewHighscore();
     saveHighscore();
+    // TODO: Need to inform the user after successful update of the highscore. This option should also only be active once! Otherwise the highscore.txt can be filled with just one score.
     break;
   }
 }
