@@ -2,8 +2,8 @@
 // @author Jona König
 
 PVector humanPosition, humanVelocity;
-int humanHeight = 60; // Original height, used before the resize. NECESSARY for performance reasons
-int humanWidth = 24; // Original width, used before the resize. NECESSARY for performance reasons
+int humanHeight;
+int humanWidth;
 
 // Function to draw the human object at given coordinates
 void drawHuman() {

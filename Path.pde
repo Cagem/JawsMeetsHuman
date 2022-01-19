@@ -24,8 +24,8 @@ float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
 }
 
 void initPaths() {
-  pathWidth = humanImg.width/2;
-  pathHeight = humanImg.height/2;
+  pathWidth = humanImg.width*0.7; // The path size is cuppled to the relative human figure size.
+  pathHeight = humanImg.height*0.7;
 
   float pathRadius = pathWidth * 5;
   float xLowest = width / 4;

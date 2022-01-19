@@ -5,8 +5,8 @@ Shark shark;
 
 int jumpingTimer = 0;
 int blockedJumpTimer = 0;
-int sharkHeight = 51; // Original height, used before the resize. NECESSARY for performance reasons
-int sharkWidth = 113; // Original width, used before the resize. NECESSARY for performance reasons
+int sharkHeight;
+int sharkWidth ;
 
 String sharkOrientation = "RIGHT"; // This String is  to be used globally for defining the sharks hitarea AND to rotate its image. 
 
