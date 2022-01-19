@@ -24,9 +24,9 @@ void draw() {
     displayMenu();
     noCursor();
   } else if (gameOver) {
-    drawEndScreen("The shark won!");
+    drawMenuScreen("The shark won!", "Hit 'r' to restart, 'h' to save your score or esc to exit");
   } else if (victory) {
-    drawEndScreen("The human won!");
+    drawMenuScreen("The human won!", "Hit 'r' to restart, 'h' to save your score or esc to exit");
   } else {
     updateTimer();
     drawGameObjects();

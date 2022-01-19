@@ -10,7 +10,7 @@ final String RULESET = "The rules go like this: \nTwo players are required. Play
 void displayMenu() {
   
   if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
-  else drawPauseScreen();
+  else drawMenuScreen("PAUSE", "Press 'p' to resume");
   
   if (displayDifficulty) {
     
@@ -29,7 +29,7 @@ void setPlayOrPause() {
   
   displayMenu = !displayMenu;
   if (firstStartup) firstStartup = false; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
-  if (displayMenu) canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawPauseScreen().
+  if (displayMenu) canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
 } 
 
 void setDifficulty(int d) {
@@ -71,30 +71,18 @@ void drawInitialMenuScreen() {
   text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
   textAlign(LEFT);
   text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
-
   drawHighscores(); // Draws the Highscoreboard
 }
 
-void drawPauseScreen() {
+void drawMenuScreen(String title, String message) {
   
-  // TODO: draw dark transparent background -> tint(100);
   background(canvasImg); // We need a captured state of the game to show what was going on. A trasparent background does not work here, since animations like displayDifficulty() won't be overlayed and stay in view forever.
+  fill(0, 100);
+  rect(0, 0, width, height); // Do a darkened overlay
   fill(255);
   textAlign(CENTER);
   textSize(relativeSize("XL"));
-  text("PAUSE", width / 2, height / 2.5);
+  text(title, width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text("Press 'p' to resume", width / 2, height / 2);
-}
-
-void drawEndScreen(String message) {
-
-  // TODO: No feedback after pressing l to save the score! Needs another popup.
-  background(canvasImg); // To enable animations like the popup notifications.
-  fill(255);
-  textAlign(CENTER);
-  textSize(relativeSize("XL"));
-  text(message, width / 2, height / 2.5);
-  textSize(relativeSize("M"));
-  text("Press 'r' to restart the game, 'h' to save your score or esc to exit", width / 2, height / 2);
+  text(message, width / 2, height / 2); // TODO: No feedback after pressing l to save the score! Needs another popup.
 }
