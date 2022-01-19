@@ -3,11 +3,12 @@
 // Loading all assets just once instead of per every frame increases the performance dramatically.
 
 PImage pathTileImg;
+PImage pathImg; // Will be used later on in Path.pde > renderPath function.
 PImage sharkImg;
 PImage humanImg;
 PImage backgroundImg;
 PImage cursorImg;
-PImage canvasImg;
+PImage canvasImg; // Will be used later on in GameMenu.pde > drawPauseScreen and drawDeathScreen functions.
 
 void loadImages() {
     try {

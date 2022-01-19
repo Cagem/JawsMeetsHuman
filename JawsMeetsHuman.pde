@@ -7,7 +7,7 @@ void setup() {
 
   loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
-  initPaths(); // Initializes the path vectors
+  initPaths(); // Initializes the path vectors, IMPORTANT - needs to be executed first, before any other element of the game view.
   initShark(); // Initializes the shark vectors
   initHuman(); // Initializes the human vectors
   initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
@@ -28,13 +28,14 @@ void draw() {
   } else {
     updateTimer();
 
-    background(176, 196, 222);
     drawGameObjects();
     drawSharkOrientationUI(); // controls the sharks orientation by mouse position
     checkBoundaries();
     moveGameObjects();
   }
   showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+
+  println(frameRate); // debugging
 }
 
 void moveGameObjects() {
@@ -50,11 +51,11 @@ void checkBoundaries() {
 }
 
 void drawGameObjects() {
-  drawPaths(); // Draws the path
-  drawHuman(); // Draws the human
-  drawShark(); // Draws the shark
-  drawLifes(); // Draws the Hearts/Lifes
-  drawTimer(); // Draws the timer
+  background(pathImg);
+  drawHuman();
+  drawShark();
+  drawLifes();
+  drawTimer();
 }
 
 void updateTimer() {

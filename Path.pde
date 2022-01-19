@@ -1,6 +1,8 @@
 // @author Kyra Muhl
+// @author Jona König
 
 float pathWidth = 15; // TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
+float pathHeight = 15;
 
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
@@ -22,6 +24,7 @@ float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
 }
 
 void initPaths() {
+  pathWidth = width*0.01;
   float pathRadius = pathWidth * 5;
   float xLowest = width / 4;
   float xHighest = width - xLowest;
@@ -36,26 +39,21 @@ void initPaths() {
     if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth * 2);
     else yLast = getNextYPathPosition(yLast, pathRadius, pathWidth * 2);
   }
+
+  renderPath(); // Rendering all tiles to a complete path and storing this information in a single image to improve performance.
 }
 
-// Function to draw the path at given coordinates
-void drawPath(Path path) {
-  rectMode(CORNER);
-  fill(184, 134, 11);
-  noStroke();
-  rect(path.x, path.y, path.width, path.height);
+// Function to render all path tiles into one path-image
+void renderPath() {
+  background(176, 196, 222);
+  for (int i = 0; i < paths.size(); i++) {
+    drawPathImg(paths.get(i));
+  }
+  pathImg = get(); // Makes a screenshot of the generated path before any other objects are loaded. Takes place within the first frame of the game view.
 }
 
-// Not active for performance reasons. TODO: needs fix.
 void drawPathImg(Path path) {
   image(pathTileImg, path.x, path.y, path.width, path.height);
-}
-
-// Function to draw all path tiles
-void drawPaths() {
-  for (int i = 0; i < paths.size(); i++) {
-    drawPath(paths.get(i));
-  }
 }
 
 class Path {

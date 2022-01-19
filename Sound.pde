@@ -22,7 +22,7 @@ void playOrPauseThemeSong() {
     themeSongPopupText = "Paused Theme Song";
   } else {
     loopThemeSong();
-    themeSongPopupText = "Playing: Jaws Theme";
+    themeSongPopupText = "Resume Theme Song";
   }
   // When the musics state has changed, the user shall be informed via popup
   shouldShowSongPopup = true;

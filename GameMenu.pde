@@ -1,13 +1,14 @@
 // @author Jona König
 
 int difficulty = 1;
-int difficultyPopupTimer = 0; // counting frames, utilized for timing capability
+int difficultyPopupTimer = 0; // Counting frames, utilized for timing capability.
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
 boolean displayDifficulty = false;
 final String RULESET = "The rules go like this: \nNon exercitation pariatur aute qui ea. Pariatur labore commodo ipsum anim excepteur fugiat nulla ea excepteur aute aliquip. Voluptate minim ut mollit Lorem excepteur in irure voluptate elit aliqua. Ea veniam nisi fugiat ea. Nisi est sunt ipsum commodo. Sint consectetur anim enim nulla sunt tempor voluptate nulla aliquip ullamco reprehenderit enim sint tempor. Id sunt non dolor quis labore tempor fugiat minim id excepteur consequat culpa elit voluptate. Deserunt id deserunt officia in incididunt et ullamco adipisicing. Non irure eu eu aliqua in aliqua cillum magna aute adipisicing.";
 
 void displayMenu() {
+  
   if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
   else drawPauseScreen();
   
@@ -16,6 +17,7 @@ void displayMenu() {
     popup("Difficulty level: " + nf(difficulty));
     difficultyPopupTimer++;
   }
+
   if (difficultyPopupTimer == 120) {
     
     displayDifficulty = false;
@@ -70,12 +72,12 @@ void drawInitialMenuScreen() {
   textAlign(LEFT);
   text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
 
-  drawHighscores(); // Draws the Highscore Board
+  drawHighscores(); // Draws the Highscoreboard
 }
 
 void drawPauseScreen() {
   
-  // TODO: draw dark transparent background
+  // TODO: draw dark transparent background -> tint(100);
   background(canvasImg); // We need a captured state of the game to show what was going on. A trasparent background does not work here, since animations like displayDifficulty() won't be overlayed and stay in view forever.
   fill(255);
   textAlign(CENTER);
