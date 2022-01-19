@@ -1,8 +1,9 @@
 // @author Kyra Muhl
 // @author Jona König
 
-float pathWidth = 15; // TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
-float pathHeight = 15;
+// TODO: must be change to a relative value after those values are reachable (eg. humanImg.width or width), but watch out! Can lead to great performance loss!
+float pathWidth;
+float pathHeight;
 
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
@@ -45,15 +46,14 @@ void initPaths() {
 
 // Function to render all path tiles into one path-image
 void renderPath() {
-  background(176, 196, 222);
+  PGraphics pathCanvas = createGraphics(width, height); // Draw on a new drawing surface so the user cant see it.
+  pathCanvas.beginDraw();
+  pathCanvas.background(176, 196, 222);
   for (int i = 0; i < paths.size(); i++) {
-    drawPathImg(paths.get(i));
+    pathCanvas.image(pathTileImg, paths.get(i).x, paths.get(i).y, paths.get(i).width, paths.get(i).height);
   }
-  pathImg = get(); // Makes a screenshot of the generated path before any other objects are loaded. Takes place within the first frame of the game view.
-}
-
-void drawPathImg(Path path) {
-  image(pathTileImg, path.x, path.y, path.width, path.height);
+  pathImg = pathCanvas.get(); // Makes a screenshot of the generated path before any other objects are loaded. Takes place within the first frame of the game view.
+  pathCanvas.endDraw();
 }
 
 class Path {
