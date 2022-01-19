@@ -33,19 +33,27 @@ void drawSharkImg() {
     rotate(radians(270));
     image(sharkImg, 0, 0, shark.width, shark.height);
     popMatrix();
+    sharkWidth = sharkImg.height;
+    sharkHeight = sharkImg.width;
   } else if (sharkOrientation == "DOWN") {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(90));
     image(sharkImg, 0, 0, shark.width, shark.height);
     popMatrix();
+    sharkWidth = sharkImg.height;
+    sharkHeight = sharkImg.width;
   } else if (sharkOrientation == "LEFT") {
     pushMatrix();
     scale(-1.0, 1.0);
     image(sharkImg, -shark.position.x, shark.position.y, shark.width, shark.height);
     popMatrix();
+    sharkWidth = sharkImg.width;
+    sharkHeight = sharkImg.height;
   } else { // standard orientation is heading right
     image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
+    sharkWidth = sharkImg.width;
+    sharkHeight = sharkImg.height;
   }
 }
 

@@ -61,9 +61,9 @@ void checkPathCollision() {
       Path path = paths.get(i);
 
       // check X movment
-      if (shark.position.x + shark.width + shark.velocity.x > path.x && 
-        shark.position.x + shark.velocity.x < path.x + path.width && 
-        shark.position.y + shark.height > path.y && 
+      if (shark.position.x + shark.width/2 + shark.velocity.x > path.x && 
+        shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
+        shark.position.y + shark.height/2 > path.y && 
         shark.position.y < path.y + path.height) {
 
         shark.reverseXVelocity();
@@ -75,10 +75,10 @@ void checkPathCollision() {
       }
 
       // check Y movement
-      if (shark.position.x + shark.width > path.x && 
+      if (shark.position.x + shark.width/2 > path.x && 
         shark.position.x < path.x + path.width && 
-        shark.position.y + shark.height + shark.velocity.y > path.y && 
-        shark.position.y + shark.velocity.y < path.y + path.height) {
+        shark.position.y + shark.height/2 + shark.velocity.y > path.y && 
+        shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height) {
 
         shark.reverseYVelocity();
 
