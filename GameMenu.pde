@@ -1,28 +1,16 @@
 // @author Jona König
 
-int difficulty = 1;
-int difficultyPopupTimer = 0; // Counting frames, utilized for timing capability.
+int difficulty = 1; // Counting frames, utilized for timing capability.
+int popupTimer = 0;
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
-boolean displayDifficulty = false;
+String popupMessage = ""; // globally relevant! Write to this string an a popup will appear.
 final String RULESET = "The rules go like this: \nTwo players are required. Player 1's goal is to move the human safely along the path. If the human reaches the end of the path, he has won. Player 2 tries to stop him, he plays the shark. The human can be controlled with the W, A, S and D keys and should not leave the path. The shark is moved by the arrow keys, its line of sight is controlled by the mouse. If the shark approaches the path, it can jump over the path by pressing return. If its mouth is directed towards the human, it can swallow him. \n \nThe difficulty of the game can be increased via keys 2 and 3, default is 1. \nThe background music can be muted with M.";
 
 void displayMenu() {
   
   if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
   else drawMenuScreen("PAUSE", "Press 'p' to resume");
-  
-  if (displayDifficulty) {
-    
-    popup("Difficulty level: " + nf(difficulty));
-    difficultyPopupTimer++;
-  }
-
-  if (difficultyPopupTimer == 120) {
-    
-    displayDifficulty = false;
-    difficultyPopupTimer = 0;
-  }
 }
 
 void setPlayOrPause() {
@@ -35,10 +23,25 @@ void setPlayOrPause() {
 void setDifficulty(int d) {
   
   difficulty = d;
-  displayDifficulty = true;
+  popupMessage = "Difficulty level: " + nf(difficulty);
 } 
 
-void popup(String content) { // Reusable and content-responsive function to show popups
+void popup(String content){
+
+  if (popupTimer < 120) {
+    
+    displayPopup(content);
+    popupTimer++;
+  }
+
+  if (popupTimer == 120) {
+    
+    popupMessage = "";
+    popupTimer = 0;
+  }
+}
+
+void displayPopup(String content) { // Reusable and content-responsive function to show popups
   
   textSize(relativeSize("M"));
   float contentLenght = textWidth(content);
@@ -84,5 +87,5 @@ void drawMenuScreen(String title, String message) {
   textSize(relativeSize("XL"));
   text(title, width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text(message, width / 2, height / 2); // TODO: No feedback after pressing l to save the score! Needs another popup.
+  text(message, width / 2, height / 2); // TODO: No feedback after pressing 'h' to save the score! Needs another popup.
 }

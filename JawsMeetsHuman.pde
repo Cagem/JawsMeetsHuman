@@ -34,7 +34,8 @@ void draw() {
     checkBoundaries();
     moveGameObjects();
   }
-  showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+
+  if (popupMessage != "") popup(popupMessage); // If there is a pupupMessage set by another function, the popup will appear for two seconds.
 }
 
 void moveGameObjects() {

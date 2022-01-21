@@ -3,9 +3,7 @@
 
 import processing.sound.*;
 SoundFile file; // Used to declare sound file object
-boolean shouldShowSongPopup = false; // Used to define if popup should be visible
 int themeSongPopupTimer = 0; // Used to calc for how long the popup as been visible
-String themeSongPopupText = ""; // Used to define text of popup
 float amplitude = 0.5; // Used to declare sound amplitude
 
 // Initializes the background music
@@ -19,13 +17,11 @@ void initThemeSound() {
 void playOrPauseThemeSong() {
   if (isThemePlaying()) {
     pauseThemeSong();
-    themeSongPopupText = "Paused Theme Song";
+    popupMessage = "Paused Theme Song";
   } else {
     loopThemeSong();
-    themeSongPopupText = "Resume Theme Song";
+    popupMessage = "Resume Theme Song";
   }
-  // When the musics state has changed, the user shall be informed via popup
-  shouldShowSongPopup = true;
 } 
 
 // Function to check if music is currently playing
@@ -48,8 +44,7 @@ void increaseThemeVolume() {
   if (amplitude < 0.98) {
     amplitude = amplitude + 0.02;
     setThemeVolume(amplitude);
-    themeSongPopupText = "Increased Volume: " + getAmplitudeString();
-    shouldShowSongPopup = true;
+    popupMessage = "Increased Volume: " + getAmplitudeString();
   }
 }
 
@@ -58,8 +53,7 @@ void decreaseThemeVolume() {
   if (amplitude > 0.02) {
     amplitude = amplitude - 0.02;
     setThemeVolume(amplitude);
-    themeSongPopupText = "Decreased Volume: " + getAmplitudeString();
-    shouldShowSongPopup = true;
+    popupMessage = "Decreased Volume: " + getAmplitudeString();
   }
 }
 
@@ -81,17 +75,4 @@ void pauseThemeSong() {
 // Function to stop background music
 void stopThemeSong() {
   file.stop();
-}
-
-// Calls the function to draw the popup & 
-// Increases the timer, so the popup will not be visible after a few seconds
-void showThemeSongPopup() {
-  if (shouldShowSongPopup) {
-    popup(themeSongPopupText);
-    themeSongPopupTimer++;
-  }
-  if (themeSongPopupTimer == 120) {
-    shouldShowSongPopup = false;
-    themeSongPopupTimer = 0;
-  }
 }
