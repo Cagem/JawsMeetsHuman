@@ -1,6 +1,6 @@
 // @author Luca Virnich
 
-boolean[] lifes = new boolean[2];
+boolean[] lifes = new boolean[3];
 boolean deathScreen = false;
 
 int size = 3; // sets the heart-size, is used to reposition them accordingly if changed
@@ -13,7 +13,7 @@ void initLifes() {
 }
 
 void reduceLife() {
-  if (currentLifes <=  1) {
+  if (currentLifes <=  0) {
     deathScreen = true;
   } else {
     currentLifes --;
