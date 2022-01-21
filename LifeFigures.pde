@@ -15,6 +15,7 @@ void initLifes() {
 void reduceLife() {
   if (currentLifes <=  0) {
     deathScreen = true;
+    println("Das Spiel ging "+ timerHours+ " : " +timerMinutes+ " : " +timerSecondsINT+ " Minuten.");
   } else {
     currentLifes --;
     lifes[currentLifes] = false;

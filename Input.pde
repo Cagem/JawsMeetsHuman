@@ -6,6 +6,7 @@ void keyPressed() {
     if (shark.isAllowedToJump) {
       shark.setIsJumping(true);
       shark.setIsAllowedToJump(false);
+      println("Shark is jumping at " + timerHours+ " : " +timerMinutes+ " : " +timerSecondsINT+ " !!!!" );
     }
   } else if (key == CODED) { // Handles specifically arrow keys
     handleArrowKeysPressed();
@@ -105,12 +106,15 @@ void handleDifficultyKeysPressed() {
   switch(key) {
   case'1' :
     setDifficulty(1);
+    println("difficulty changed: Difficutly 1");
     break;
   case'2':
     setDifficulty(2);
+    println("difficulty changed: Difficutly 2");
     break;
   case'3':
     setDifficulty(3);
+    println("difficulty changed: Difficutly 3");
     break;
   default:
     break;
@@ -162,6 +166,7 @@ void handleRestartKey () {
   case 'l':
     setNewHighscore();
     saveHighscore();
+    println("Der Highscore wurde gespeichert.");
     break;
   }
 }
