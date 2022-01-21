@@ -97,6 +97,7 @@ void checkPathCollisionHuman() {
   // CODE
   
   // Checks wheter the human got to the last tile of the path in which case he wins and the game should end (victory = true).
+  // TODO: The last tile sometimes is generated out of reach for the human.
   if (humanPosition.x + humanWidth / 2 > lastTile.x &&
       humanPosition.x + humanWidth / 2 < lastTile.x + lastTile.width &&
       humanPosition.y + humanHeight / 2 > lastTile.y &&
