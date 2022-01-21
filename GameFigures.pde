@@ -1,6 +1,6 @@
 // @author Kyra Muhl
 
-PVector humanPosition, humanVelocity; // Mensch-Position & Mensch-Richtung
+PVector humanPosition, humanVelocity;
 float objectSize = 15; // The default size of any drawn object // TODO: Must become relative - all other references too.
 
 float humanHeight = objectSize * 3;

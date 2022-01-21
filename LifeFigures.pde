@@ -3,7 +3,7 @@
 boolean[] lifes = new boolean[2];
 boolean deathScreen = false;
 
-int size = 3;                            //Größe von den Herzen (bei Größenänderung auch pos. ändern)
+int size = 3; // sets the heart-size, is used to reposition them accordingly if changed
 int currentLifes = lifes.length;
 
 void initLifes() {
@@ -36,7 +36,7 @@ void drawLifes() {
 }
 
 void life(int X, int Y) {
-  int p = size;                          //individuelle Größe vom Herz
+  int p = size; // you can change the size of red hearts without changing black hearts
   rectMode(CENTER);
   noStroke();
 
@@ -61,7 +61,7 @@ void life(int X, int Y) {
 }
 
 void nolife(int X, int Y) {
-  int p = size;                          //individuelle Größe vom Herz
+  int p = size; // you can change the size of black hearts without changing red hearts
   rectMode(CENTER);
   noStroke();
 

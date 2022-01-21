@@ -17,21 +17,21 @@ void drawTimer() {
   fill(0);
   textSize(relativeSize("M"));
   textAlign(LEFT);
-  timerSecondsINT = Math.round(timerSeconds);      //Runden der sekunden 
+  timerSecondsINT = Math.round(timerSeconds); // round to seconds 
 
-  if (!displayMenu == true) {                  // game start
+  if (!displayMenu == true) { // game start
 
-    text(getTimeString(), width * 0.02, height - height * 0.02);        //Position vom Timer
-    timerSeconds = timerSeconds + 1 / frameRate;                                  //seconds
+    text(getTimeString(), width * 0.02, height - height * 0.02); // positioning the timer
+    timerSeconds = timerSeconds + 1 / frameRate; // seconds
 
     if (timerSeconds >= 60) {
-      timerSeconds = 0;                                        // bei 60 sec sind sec wieder 0
-      timerMinutes = timerMinutes + 1;                         // minute + 1 jede 60 sec
+      timerSeconds = 0; // reset to 0 after 60 iterations (seconds)
+      timerMinutes = timerMinutes + 1; // add one minuter after 60 iterations
     }
 
     if (timerMinutes >= 60) {            
-      timerMinutes = 0;                                    // bei 60 minutes sind min wieder 0
-      timerHours = timerHours + 1;                         // jede 60 min hours plus 1
+      timerMinutes = 0; // reset the minutes count after 60 seconds
+      timerHours = timerHours + 1; // add one hour after 60 minutes
     }
   }
 }
