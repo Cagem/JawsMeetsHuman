@@ -148,10 +148,11 @@ void handleRestartKey () {
     gameOver = false;
     victory = false;
     currentLifes = lifes.length;
-    sharkRespawn();
     for (int i = 0; i < lifes.length; i++) {
       lifes[i]=true;
     } 
+    sharkRespawn();
+    humanRespawn();
     timerSeconds = 0;
     timerSecondsINT = 0; 
     timerMinutes = 0;

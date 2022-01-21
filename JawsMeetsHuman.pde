@@ -45,7 +45,8 @@ void moveGameObjects() {
 void checkBoundaries() {
   checkBoundaryCollision(shark.position, shark.velocity, shark.width, shark.height); // Checks if the shark collides with screen border
   checkBoundaryCollision(humanPosition, humanVelocity, humanWidth, humanHeight); // Checks if the human collides with screen border
-  checkPathCollision();
+  checkPathCollisionHuman();
+  checkPathCollisionSkark();
   checkFigureCollision();
 }
 

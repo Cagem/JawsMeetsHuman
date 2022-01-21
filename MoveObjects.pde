@@ -17,6 +17,7 @@ float currentSharkSpeed = 0; // Current speed of the shark
 float currentHumanSpeed = 0; // Current speed of the human
 boolean shouldHumanMove = false; // Used to identify if the figures position should be updated at the next draw-call
 boolean hasHumanOverstepped = false;
+boolean victory = false;
 
 // Moves the position-vector in  the directon of the velocity-vector
 void moveVectorObject(PVector position, PVector velocity) {
@@ -51,7 +52,7 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
   }
 }
 
-void checkPathCollision() {
+void checkPathCollisionSkark() {
   if (!shark.isJumping) {
     // iterate over the obstacles
     for (int i = 0; i < paths.size(); i++) {
@@ -91,6 +92,20 @@ void checkPathCollision() {
   }
 }
 
+void checkPathCollisionHuman() {
+  // Idea: Check if human is within a tile. If not, check wheter the human is on one of the other tiles in the array. If not, he should slow donw or similar.
+  // CODE
+  
+  // Checks wheter the human got to the last tile of the path in which case he wins and the game should end (victory = true).
+  if (humanPosition.x + humanWidth / 2 > lastTile.x &&
+      humanPosition.x + humanWidth / 2 < lastTile.x + lastTile.width &&
+      humanPosition.y + humanHeight / 2 > lastTile.y &&
+      humanPosition.y + humanHeight / 2 < lastTile.y + lastTile.width) {
+        canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
+        victory = true;
+      }
+}
+
 
 void checkFigureCollision() {
   if (shark.position.x + shark.width / 2 > humanPosition.x - humanWidth / 2 && 
@@ -111,4 +126,8 @@ void sharkRespawn() {
     shark.position.x = random(0, width / 3);
     shark.position.y = random(0, height);
   }
+}
+
+void humanRespawn() {
+  humanPosition = new PVector(paths.get(0).x + paths.get(0).width/2, paths.get(0).y + paths.get(0).height/2);
 }
