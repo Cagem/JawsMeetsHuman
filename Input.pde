@@ -165,9 +165,9 @@ void handleRestartKey() {
             if (pressableH) {
                 setNewHighscore();
                 saveHighscore();
-                popupMessage = "Score saved";
+                setPopup("Score saved");
                 pressableH = false;
-            } else popupMessage = "You already saved your score";
+            } else setPopup("You already saved your score");
             break;
     }
 }

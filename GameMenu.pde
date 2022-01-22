@@ -1,7 +1,8 @@
 // @author Jona König
 
-int difficulty = 1; // Counting frames, utilized for timing capability.
-int popupTimer = 0;
+int difficulty = 1; 
+int popupTime = 120; // Default option
+int popupTimer = 0; // Counting frames, utilized for timing capability.
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
 String popupMessage = ""; // globally relevant! Write to this string an a popup will appear.
@@ -23,21 +24,31 @@ void setPlayOrPause() {
 void setDifficulty(int d) {
   
   difficulty = d;
-  popupMessage = "Difficulty level: " + nf(difficulty);
+  setPopup("Difficulty level: " + nf(difficulty), 120);
 } 
 
-void popup(String content){
+void setPopup(String content, int time){
+    popupMessage = content;
+    popupTime = time;
+}
 
-  if (popupTimer < 120) {
+void setPopup(String content){ // function overloading, time is optional
+    popupMessage = content;
+}
+
+void popup(String content, int time){
+
+  if (popupTimer < time) {
     
     displayPopup(content);
     popupTimer++;
   }
 
-  if (popupTimer == 120) {
+  if (popupTimer == time) {
     
     popupMessage = "";
     popupTimer = 0;
+    popupTime = 120;
   }
 }
 

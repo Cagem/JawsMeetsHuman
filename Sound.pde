@@ -17,10 +17,10 @@ void initThemeSound() {
 void playOrPauseThemeSong() {
   if (isThemePlaying()) {
     pauseThemeSong();
-    popupMessage = "Paused Theme Song";
+    setPopup("Paused Theme Song");
   } else {
     loopThemeSong();
-    popupMessage = "Resume Theme Song";
+    setPopup("Resume Theme Song");
   }
 } 
 
@@ -44,7 +44,7 @@ void increaseThemeVolume() {
   if (amplitude < 0.98) {
     amplitude = amplitude + 0.02;
     setThemeVolume(amplitude);
-    popupMessage = "Increased Volume: " + getAmplitudeString();
+    setPopup("Increased Volume: " + getAmplitudeString(), 60);
   }
 }
 
@@ -53,7 +53,7 @@ void decreaseThemeVolume() {
   if (amplitude > 0.02) {
     amplitude = amplitude - 0.02;
     setThemeVolume(amplitude);
-    popupMessage = "Decreased Volume: " + getAmplitudeString();
+    setPopup("Decreased Volume: " + getAmplitudeString(), 60);
   }
 }
 
