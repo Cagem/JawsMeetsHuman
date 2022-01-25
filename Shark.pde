@@ -1,5 +1,5 @@
-// @author Jona König
 // @author Kyra Muhl
+// @author Jona König
 
 Shark shark;
 
@@ -155,8 +155,8 @@ class Shark {
   }
 
   void jump() {
-        this.setIsJumping(true);
-      this.setIsAllowedToJump(false);
+    this.setIsJumping(true);
+    this.setIsAllowedToJump(false);
   }
 
   void changeVelocity(float x, float y, float accelerationFactor) {

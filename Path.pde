@@ -27,21 +27,24 @@ void initPaths() {
   pathWidth = humanImg.width*0.7; // The path size is cuppled to the relative human figure size.
   pathHeight = humanImg.height*0.7;
 
-  float pathRadius = pathWidth * 5;
-  float xLowest = width / 4;
+  float pathDiameter = pathWidth * 5;
+  float pathRadius = pathDiameter/2;
+
+  float xLowest = width / 3;
   float xHighest = width - xLowest;
   float xLast = random(xLowest, xHighest);
   float yLast = 0;
 
-  for (float i = 0; i <= height; i = yLast) {
-    paths.add(new Path(xLast, yLast, pathRadius, pathRadius));
+  for (float i = 0; i <= height-pathDiameter; i = yLast) {
+    paths.add(new Path(xLast, yLast, pathDiameter, pathDiameter));
 
     float randomFloat = random(0, 1);
 
-    if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth);
-    else yLast = getNextYPathPosition(yLast, pathRadius);
+    if (randomFloat > 0.25) xLast = getNextXPathPosition(xLast, pathDiameter, pathWidth);
+    else yLast = getNextYPathPosition(yLast, pathDiameter);
   }
 
+  paths.add(new Path(xLast, height-pathDiameter, pathDiameter, pathDiameter));
 
   renderPath(); // Rendering all tiles to a complete path and storing this information in a single image to improve performance.
 }
@@ -54,6 +57,7 @@ void renderPath() {
   for (int i = 0; i < paths.size(); i++) {
     pathCanvas.image(pathTileImg, paths.get(i).x, paths.get(i).y, paths.get(i).width, paths.get(i).height);
   }
+  pathCanvas.image(goalImg, paths.get(paths.size()-1).x, paths.get(paths.size()-1).y, paths.get(paths.size()-1).width, paths.get(paths.size()-1).height);
   pathImg = pathCanvas.get(); // Makes a screenshot of the generated path before any other objects are loaded. Takes place within the first frame of the game view.
   pathCanvas.endDraw();
 }

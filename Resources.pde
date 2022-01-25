@@ -4,6 +4,7 @@
 
 PImage pathTileImg;
 PImage pathImg; // Will be used later on in Path.pde > renderPath function.
+PImage goalImg;
 PImage sharkImg;
 PImage humanImg;
 PImage backgroundImg;
@@ -13,6 +14,7 @@ PImage canvasImg; // Will be used later on in GameMenu.pde > drawMenuScreen func
 void loadImages() {
   try {
     pathTileImg = loadImage("pathTile.png"); // if resized, performance losses are dramatic
+    goalImg = loadImage("goalFlag.png");
     sharkImg = loadImage("shark.png");
     humanImg = loadImage("human.png");
     backgroundImg = loadImage("backgroundImg.jpg");
