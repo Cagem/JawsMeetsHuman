@@ -3,6 +3,8 @@
 float accelerationFactor = difficulty;
 float standardSharkSpeed = difficulty;
 float standardHumanSpeed = difficulty * 2;
+float maxSharkSpeed = difficulty * 20; // defines for how many frames the object can accelerate
+float maxHumanSpeed = difficulty * 10;
 float currentSharkSpeed = standardSharkSpeed; // Current speed of the shark
 float currentHumanSpeed = standardHumanSpeed; // Current speed of the human
 int timeDeltaShark = 0;
@@ -18,12 +20,12 @@ void moveVectorObject(PVector position, PVector velocity) {
 
 // Increases the speed of the shark
 void increaseSharkSpeed() {
-  currentSharkSpeed = accelerationFactor * timeDeltaShark + currentSharkSpeed;
+  if (currentSharkSpeed < maxSharkSpeed) currentSharkSpeed = accelerationFactor * timeDeltaShark + currentSharkSpeed;
 }
 
 // Increases the speed of the human
 void increaseHumanSpeed() {
-  currentHumanSpeed = accelerationFactor * timeDeltaHuman + currentHumanSpeed;
+  if (currentHumanSpeed < maxHumanSpeed) currentHumanSpeed = accelerationFactor * timeDeltaHuman + currentHumanSpeed;
 }
 
 // Checks if theposition - vector is colliding with the boundary
