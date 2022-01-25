@@ -107,7 +107,7 @@ boolean isHumanOnPath() {
   return false;
 }
 
-void checkHumanBoundaries() {
+void checkHumanTileBoundary() {
   if (!isHumanOnPath()) human.respawn();  
 
   // Checks whether the human got to the last tile of the path in which case he wins and the game should end (victory = true).
