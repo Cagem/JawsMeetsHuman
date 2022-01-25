@@ -16,10 +16,10 @@ void drawShark() {
 
   rectMode(CENTER);
   fill(255);
-  drawSharkImg();
+  drawSharkImg(0);
 }
 
-void drawSharkImg() {
+void drawSharkImg(int shift) {
 
   String oldSharkOrientation = checkMousePosition();
   imageMode(CENTER);
@@ -31,7 +31,7 @@ void drawSharkImg() {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(270));
-    image(sharkImg, 0, 0, shark.width, shark.height);
+    image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
     popMatrix();
     sharkWidth = sharkImg.height;
     sharkHeight = sharkImg.width;
@@ -39,19 +39,19 @@ void drawSharkImg() {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(90));
-    image(sharkImg, 0, 0, shark.width, shark.height);
+    image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
     popMatrix();
     sharkWidth = sharkImg.height;
     sharkHeight = sharkImg.width;
   } else if (sharkOrientation == "LEFT") {
     pushMatrix();
     scale(-1.0, 1.0);
-    image(sharkImg, -shark.position.x, shark.position.y, shark.width, shark.height);
+    image(sharkImg, -shark.position.x - shift, shark.position.y + shift, shark.width, shark.height);
     popMatrix();
     sharkWidth = sharkImg.width;
     sharkHeight = sharkImg.height;
   } else { // standard orientation is heading right
-    image(sharkImg, shark.position.x, shark.position.y, shark.width, shark.height);
+    image(sharkImg, shark.position.x - shift, shark.position.y + shift, shark.width, shark.height);
     sharkWidth = sharkImg.width;
     sharkHeight = sharkImg.height;
   }
@@ -59,8 +59,9 @@ void drawSharkImg() {
 
 void drawSharkShadow() {
   rectMode(CORNER);
-  fill(0, 50);
-  rect(shark.position.x - 2, shark.position.y + 2, shark.width, shark.height);
+  tint(10); // make the shadow dark
+  drawSharkImg(20);
+  tint(255); // back to normal
 }
 
 void setJumpingTimer() {
