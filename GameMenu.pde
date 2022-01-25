@@ -2,7 +2,7 @@
 
 int difficulty = 1; 
 int popupTime = 120; // Default option
-int popupTimer = 0; // Counting frames, utilized for timing capability.
+int popupTimer = 0; // Counting frames, utilized for timing capability, see setPopup().
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
 String popupMessage = ""; // globally relevant! Write to this string an a popup will appear.
@@ -84,12 +84,12 @@ void drawInitialMenuScreen() {
   textSize(relativeSize("S"));
   text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
   textAlign(LEFT);
-  text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2
-  drawHighscores(); // Draws the Highscoreboard
+  text(RULESET, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2.
+  drawHighscores(); // draws the highscore board
 }
 
 void drawMenuScreen(String title, String message) {
-  
+
   background(canvasImg); // We need a captured state of the game to show what was going on. A trasparent background does not work here, since animations like displayDifficulty() won't be overlayed and stay in view forever.
   fill(0, 100);
   rect(0, 0, width, height); // Do a darkened overlay
@@ -98,5 +98,5 @@ void drawMenuScreen(String title, String message) {
   textSize(relativeSize("XL"));
   text(title, width / 2, height / 2.5);
   textSize(relativeSize("M"));
-  text(message, width / 2, height / 2); // TODO: No feedback after pressing 'h' to save the score! Needs another popup.
+  text(message, width / 2, height / 2);
 }

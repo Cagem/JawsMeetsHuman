@@ -146,7 +146,7 @@ boolean pressableH = true; // will be false if 'h' was pressed so the highscore.
 
 void handleRestartKey() {
     switch(key) {
-        case'r' :
+        case 'r' :
         gameOver = false;
         victory = false;
         currentLifes = lifes.length;

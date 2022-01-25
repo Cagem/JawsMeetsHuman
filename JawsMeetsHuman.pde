@@ -10,7 +10,7 @@ void setup() {
   initPaths(); // Initializes the path vectors, IMPORTANT - needs to be executed first, before any other element of the game view.
   initShark(); // Initializes the shark vectors
   initHuman(); // Initializes the human vectors
-  initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
+  initSharkOrientationUI(); // IMPORTANT - Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
   initLifes(); // Used to set all lifes to true
   initThemeSound(); // Initializes the background music
