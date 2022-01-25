@@ -4,7 +4,7 @@ float xRubberRing;
 float yRubberRing;
 float rubberRingWidth;
 boolean isRubberRingCollected = false;
-boolean showLifePreserver = true;
+boolean showLifePreserver = false;
 int iconTimer = 240;
 
 void initRubberRing() {
