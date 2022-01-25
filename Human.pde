@@ -1,21 +1,70 @@
 // @author Kyra Muhl
 // @author Jona König
 
-PVector humanPosition, humanVelocity;
-int humanHeight;
-int humanWidth;
+Human human;
 
 // Function to draw the human object at given coordinates
 void drawHuman() {
   imageMode(CENTER);
-  image(humanImg, humanPosition.x, humanPosition.y, humanWidth, humanHeight);
+  image(humanImg, human.position.x, human.position.y, human.width, human.height);
 }
 
 // Initializes the human vectors
 void initHuman() {
-  humanHeight = humanImg.height;
-  humanWidth = humanImg.width;
-  humanPosition = new PVector(paths.get(0).x + paths.get(0).width/2, paths.get(0).y + paths.get(0).height/2);
-  humanVelocity = new PVector(0, 0);
-  humanVelocity.mult(3);
+  PVector position = new PVector(paths.get(0).x + paths.get(0).width/2, paths.get(0).y + paths.get(0).height/2);
+  PVector velocity = new PVector(0, 0);
+  velocity.mult(3);
+
+  human = new Human(position, velocity, humanImg.width, humanImg.height);
+}
+
+class Human {
+  PVector position;
+  PVector velocity;
+  float width;
+  float height;
+  float maxSpeed;
+  float currentSpeed;
+  float standardSpeed;
+  int timeDelta;
+
+  public Human(PVector position, PVector velocity, float humanWidth, float humanHeight) {
+    this.position = position;
+    this.velocity = velocity;
+    this.width = humanWidth;
+    this.height = humanHeight;
+
+    this.maxSpeed = difficulty * 1.5; // defines for how many frames the object can accelerate
+    this.standardSpeed = difficulty * 0.85;
+    this.currentSpeed = this.standardSpeed; // Current speed of the human
+    this.timeDelta = 0;
+  }
+
+  void setCurrentSpeed(float currentSpeed) {
+    this.currentSpeed = currentSpeed;
+  }
+
+  void setPosition(PVector position) {
+    this.position = position;
+  }
+
+  void reverseXVelocity() {
+    this.velocity.x *= -1;
+  }
+
+  void reverseYVelocity() {
+    this.velocity.y *= -1;
+  }
+
+  void respawn() {
+    this.position = new PVector(paths.get(0).x + paths.get(0).width/2, paths.get(0).y + paths.get(0).height/2);
+  }
+
+  void increaseTimeDelta() {
+    this.timeDelta = this.timeDelta + 1;
+  }
+
+  void resetTimeDelta() {
+    this.timeDelta = 0;
+  }
 }

@@ -1,7 +1,7 @@
 // @author Kyra Muhl
-// @author Niginabonu Isamukhamedova
 
 import processing.sound.*;
+
 SoundFile file; // Used to declare sound file object
 int themeSongPopupTimer = 0; // Used to calc for how long the popup as been visible
 float amplitude = 0.5; // Used to declare sound amplitude

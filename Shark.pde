@@ -5,9 +5,6 @@ Shark shark;
 
 int jumpingTimer = 0;
 int blockedJumpTimer = 0;
-int sharkHeight;
-int sharkWidth ;
-
 String sharkOrientation = "RIGHT"; // This String is  to be used globally for defining the sharks hitarea AND to rotate its image. 
 
 // Function to draw the shark object at given coordinates
@@ -33,27 +30,23 @@ void drawSharkImg(int shift) {
     rotate(radians(270));
     image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
     popMatrix();
-    sharkWidth = sharkImg.height;
-    sharkHeight = sharkImg.width;
+    shark.setDimensions(sharkImg.width, sharkImg.height);
   } else if (sharkOrientation == "DOWN") {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(90));
     image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
     popMatrix();
-    sharkWidth = sharkImg.height;
-    sharkHeight = sharkImg.width;
+    shark.setDimensions(sharkImg.width, sharkImg.height);
   } else if (sharkOrientation == "LEFT") {
     pushMatrix();
     scale(-1.0, 1.0);
     image(sharkImg, -shark.position.x - shift, shark.position.y + shift, shark.width, shark.height);
     popMatrix();
-    sharkWidth = sharkImg.width;
-    sharkHeight = sharkImg.height;
+    shark.setDimensions(sharkImg.height, sharkImg.width);
   } else { // standard orientation is heading right
     image(sharkImg, shark.position.x - shift, shark.position.y + shift, shark.width, shark.height);
-    sharkWidth = sharkImg.width;
-    sharkHeight = sharkImg.height;
+    shark.setDimensions(sharkImg.height, sharkImg.width);
   }
 }
 
@@ -88,8 +81,8 @@ void resetBlockedJumpTimer() {
 
 // Initializes the shark
 void initShark() {
-  sharkWidth = sharkImg.width;
-  sharkHeight = sharkImg.height;
+  int sharkWidth = sharkImg.width;
+  int sharkHeight = sharkImg.height;
   PVector position = new PVector(10, height - sharkHeight - 30);
   PVector velocity = new PVector(-1, 0);
   velocity.mult(1);
@@ -104,6 +97,10 @@ class Shark {
   float height;
   boolean isJumping;
   boolean isAllowedToJump;
+  float maxSpeed;
+  float currentSpeed;
+  float standardSpeed;
+  int timeDelta;
 
   public Shark(PVector position, PVector velocity, float sharkWidth, float sharkHeight) {
     this.position = position;
@@ -112,6 +109,28 @@ class Shark {
     this.height = sharkHeight;
     this.isJumping = false;
     this.isAllowedToJump = true;
+
+    this.maxSpeed = difficulty * 2; // defines for how many frames the object can accelerate
+    this.standardSpeed = difficulty;
+    this.currentSpeed = this.standardSpeed; // Current speed of the shark
+    this.timeDelta = 0;
+  }
+
+  void setCurrentSpeed(float currentSpeed) {
+    this.currentSpeed = currentSpeed;
+  }
+
+  void setDimensions(float sharkHeight, float sharkWidth) {
+    this.height = sharkHeight;
+    this.width = sharkWidth;
+  }
+
+  void setHeight(float sharkHeight) {
+    this.height = sharkHeight;
+  }
+
+  void setWidth(float sharkWidth) {
+    this.width = sharkWidth;
   }
 
   void setIsAllowedToJump(boolean isAllowedToJump) {
@@ -128,5 +147,23 @@ class Shark {
 
   void reverseYVelocity() {
     this.velocity.y *= -1;
+  }
+
+  void increaseTimeDelta() {
+    this.timeDelta = this.timeDelta + 1;
+  }
+
+  void resetTimeDelta() {
+    this.timeDelta = 0;
+  }
+
+  void respawn() {
+    if (this.position.x > width / 2) {
+      this.position.x = random(width - width / 3, width);
+      this.position.y = random(0, height);
+    } else {
+      this.position.x = random(0, width / 3);
+      this.position.y = random(0, height);
+    }
   }
 }

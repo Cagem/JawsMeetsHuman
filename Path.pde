@@ -5,7 +5,6 @@ float pathWidth;
 float pathHeight;
 
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
-Path lastTile;
 
 float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
   float lowest = last - pathRadius;
@@ -17,7 +16,7 @@ float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
   return random(low, high);
 }
 
-float getNextYPathPosition(float last, float pathRadius, float figureRadius) {
+float getNextYPathPosition(float last, float pathRadius) {
   float lowest = last;
   float highest = last + pathRadius;
 
@@ -40,10 +39,10 @@ void initPaths() {
     float randomFloat = random(0, 1);
 
     if (randomFloat > 0.35) xLast = getNextXPathPosition(xLast, pathRadius, pathWidth);
-    else yLast = getNextYPathPosition(yLast, pathRadius, pathWidth);
+    else yLast = getNextYPathPosition(yLast, pathRadius);
   }
 
-  lastTile = paths.get(paths.size()-1); // Create an object for the path's last tile. The human wins if he gets to this tile.
+
   renderPath(); // Rendering all tiles to a complete path and storing this information in a single image to improve performance.
 }
 
