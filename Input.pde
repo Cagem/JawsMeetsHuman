@@ -51,6 +51,7 @@ void handleArrowKeysPressed() {
     if (hasPressedArrowKey) {
         increaseSharkSpeed();
         moveVectorObject(shark.position, shark.velocity.mult(currentSharkSpeed));
+        timeDeltaShark++;
     }
 }
 
@@ -98,19 +99,20 @@ void handleKeysPressed() {
         increaseHumanSpeed();
         moveVectorObject(humanPosition, humanVelocity.mult(currentHumanSpeed));
         shouldHumanMove = true;
+        timeDeltaHuman++;
     }
 }
 
 void handleDifficultyKeysPressed() {
     switch(key) {
         case'1' :
-        setDifficulty(1);
+        setDifficulty(10, 1);
         break;
         case'2':
-        setDifficulty(2);
+        setDifficulty(100, 2);
         break;
         case'3':
-        setDifficulty(3);
+        setDifficulty(1000, 3);
         break;
         default:
         break;
@@ -120,18 +122,24 @@ void handleDifficultyKeysPressed() {
 // Event that is called when a key is released
 void keyReleased() {
     if (keyCode == LEFT || keyCode == RIGHT) {
+        timeDeltaShark = 0;
         if (shark.velocity.x != 0) {
             shark.velocity.x = shark.velocity.x / abs(shark.velocity.x);
+            currentSharkSpeed = standardSharkSpeed;
         }
     }
     if (keyCode == UP || keyCode == DOWN) {
+        timeDeltaShark = 0;
         if (shark.velocity.y != 0) {
             shark.velocity.y = shark.velocity.y / abs(shark.velocity.y);
+            currentSharkSpeed = standardSharkSpeed;
         }
     }
     
     if (key == 'a' || key == 'd' || key == 'w' || key == 's') {
         shouldHumanMove = false;
+        currentHumanSpeed = standardHumanSpeed;
+        timeDeltaHuman = 0;
         
         if (key == 'a' || key == 'd') {
             humanVelocity.x = 0;

@@ -1,6 +1,6 @@
 // @author Jona König
 
-int difficulty = 1; 
+float difficulty = 1.5; 
 int popupTime = 120; // Default option
 int popupTimer = 0; // Counting frames, utilized for timing capability, see setPopup().
 boolean displayMenu = true;
@@ -21,10 +21,10 @@ void setPlayOrPause() {
   if (displayMenu) canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
 } 
 
-void setDifficulty(int d) {
+void setDifficulty(float factor, int chosenDifficulty) {
   
-  difficulty = d;
-  setPopup("Difficulty level: " + nf(difficulty), 120);
+  difficulty = factor;
+  setPopup("Difficulty level: " + nf(chosenDifficulty), 120);
 } 
 
 void setPopup(String content, int time){

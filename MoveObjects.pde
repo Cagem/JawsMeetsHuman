@@ -1,20 +1,12 @@
 // @author Kyra Muhl
 
-float maxConstantMovingSpeed = 4 * difficulty; // The global speed if an object moves constantly
-float maxOnPressMovingSpeed = 3 * difficulty; // The global speed if an object moves only on press
-float acceleration = 0.9; // TODO: should be a formular 
-/**
-* Beschleunigung
-* Für die Beschleunigung könnt ihr die Formel für eine gleichmäßig beschleunigte Bewegung nehmen - das Geschwindigkeit-Zeit-Gesetz:
-* vneu = a · t + valt
-*
-* vneu ist die Geschwindigkeit
-* a ist die Beschleunigung
-* t ist die Zeit (Differenz aus dem Frame, in dem ich angefangen habe zu beschleunigen und jetzt)
-* valt ist die Anfangsgeschwindigkeit (vom letzten Frame)
-*/
-float currentSharkSpeed = 0; // Current speed of the shark
-float currentHumanSpeed = 0; // Current speed of the human
+float accelerationFactor = difficulty;
+float standardSharkSpeed = difficulty;
+float standardHumanSpeed = difficulty * 2;
+float currentSharkSpeed = standardSharkSpeed; // Current speed of the shark
+float currentHumanSpeed = standardHumanSpeed; // Current speed of the human
+int timeDeltaShark = 0;
+int timeDeltaHuman = 0;
 boolean shouldHumanMove = false; // Used to identify if the figures position should be updated at the next draw-call
 boolean hasHumanOverstepped = false;
 boolean victory = false;
@@ -26,16 +18,12 @@ void moveVectorObject(PVector position, PVector velocity) {
 
 // Increases the speed of the shark
 void increaseSharkSpeed() {
-  if (currentSharkSpeed < maxConstantMovingSpeed) {
-    currentSharkSpeed += acceleration;
-  }
+  currentSharkSpeed = accelerationFactor * timeDeltaShark + currentSharkSpeed;
 }
 
 // Increases the speed of the human
 void increaseHumanSpeed() {
-  if (currentHumanSpeed < maxOnPressMovingSpeed) {
-    currentHumanSpeed += acceleration;
-  }
+  currentHumanSpeed = accelerationFactor * timeDeltaHuman + currentHumanSpeed;
 }
 
 // Checks if theposition - vector is colliding with the boundary
