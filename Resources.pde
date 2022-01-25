@@ -5,6 +5,8 @@
 PImage pathTileImg;
 PImage pathImg; // Will be used later on in Path.pde > renderPath function.
 PImage goalImg;
+PImage lifePreserverImg;
+PImage rubberRingImg;
 PImage sharkImg;
 PImage humanImg;
 PImage backgroundImg;
@@ -15,6 +17,8 @@ void loadImages() {
   try {
     pathTileImg = loadImage("pathTile.png"); // if resized, performance losses are dramatic
     goalImg = loadImage("goalFlag.png");
+    lifePreserverImg = loadImage("lifePreserver.png");
+    rubberRingImg = loadImage("rubberRing.png");
     sharkImg = loadImage("shark.png");
     humanImg = loadImage("human.png");
     backgroundImg = loadImage("backgroundImg.jpg");

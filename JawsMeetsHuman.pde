@@ -7,9 +7,10 @@ void setup() {
 
   loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
-  initPaths(); // Initializes the path vectors, IMPORTANT - needs to be executed first, before any other element of the game view.
-  initShark(); // Initializes the shark vectors
-  initHuman(); // Initializes the human vectors
+  initPaths(); // Initializes the path, IMPORTANT - needs to be executed first, before any other element of the game view.
+  initShark(); // Initializes the shark
+  initHuman(); // Initializes the human
+  initRubberRing();
   initSharkOrientationUI(); // IMPORTANT - Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
   initLifes(); // Used to set all lifes to true
@@ -49,12 +50,15 @@ void checkBoundaries() {
   checkHumanTileBoundary();
   checkPathCollisionShark();
   checkFigureCollision();
+  checkItemCollision();
 }
 
 void drawGameObjects() {
   background(pathImg);
+  if (!isRubberRingCollected) drawRubberRing();
+  if (showLifePreserver) drawLifePreserver();
   drawHuman();
-  drawShark();
+  drawShark(); 
   drawLifes();
   drawTimer();
 }

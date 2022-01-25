@@ -92,7 +92,7 @@ boolean isHumanOnPath() {
 }
 
 void checkHumanTileBoundary() {
-  if (!isHumanOnPath()) human.respawn();  
+  if (!isHumanOnPath() && !showLifePreserver) human.respawn();  
 
   // Checks whether the human got to the last tile of the path in which case he wins and the game should end (victory = true).
   // TODO: The last tile sometimes is generated out of reach for the human.
@@ -111,5 +111,15 @@ void checkFigureCollision() {
     reduceLife();
     shark.respawn();
     human.respawn();
+  }
+}
+
+void checkItemCollision() {
+  if (human.position.x + human.width / 2 > xRubberRing - rubberRingWidth / 2 && 
+    human.position.x - human.width / 2 < xRubberRing + rubberRingWidth / 2 && 
+    human.position.y + human.height / 2 > yRubberRing - rubberRingWidth / 2 && 
+    human.position.y - human.height / 2 < yRubberRing + rubberRingWidth / 2) {
+    showLifePreserver = true;
+    isRubberRingCollected = true;
   }
 }
