@@ -48,6 +48,26 @@ class Human {
     this.position = position;
   }
 
+  void setVelocity(float x, float y) {
+    this.velocity.x = x;
+    this.velocity.y = y;
+  }
+
+  void increaseSpeed(float accelerationFactor) {
+    if (this.currentSpeed < this.maxSpeed) this.currentSpeed = accelerationFactor * this.timeDelta + this.currentSpeed;
+  }
+
+  void move() {
+    this.position.add(this.velocity);
+  }
+
+  void changeVelocity(float x, float y, float accelerationFactor) {
+    this.setVelocity(x, y);
+    this.increaseSpeed(accelerationFactor);
+    this.velocity.mult(this.currentSpeed);
+    this.increaseTimeDelta();
+  }
+
   void reverseXVelocity() {
     this.velocity.x *= -1;
   }

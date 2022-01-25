@@ -110,7 +110,7 @@ class Shark {
     this.isJumping = false;
     this.isAllowedToJump = true;
 
-    this.maxSpeed = difficulty * 2; // defines for how many frames the object can accelerate
+    this.maxSpeed = difficulty * 3; // defines for how many frames the object can accelerate
     this.standardSpeed = difficulty;
     this.currentSpeed = this.standardSpeed; // Current speed of the shark
     this.timeDelta = 0;
@@ -139,6 +139,31 @@ class Shark {
 
   void setIsJumping(boolean isJumping) {
     this.isJumping = isJumping;
+  }
+
+  void setVelocity(float x, float y) {
+    this.velocity.x = x;
+    this.velocity.y = y;
+  }
+
+  void increaseSpeed(float accelerationFactor) {
+    if (this.currentSpeed < this.maxSpeed) this.currentSpeed = accelerationFactor * this.timeDelta + this.currentSpeed;
+  }
+
+  void move() {
+    this.position.add(this.velocity);
+  }
+
+  void jump() {
+        this.setIsJumping(true);
+      this.setIsAllowedToJump(false);
+  }
+
+  void changeVelocity(float x, float y, float accelerationFactor) {
+    this.setVelocity(x, y);
+    this.increaseSpeed(accelerationFactor);
+    this.velocity.mult(this.currentSpeed);
+    this.increaseTimeDelta();
   }
 
   void reverseXVelocity() {

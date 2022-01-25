@@ -1,22 +1,6 @@
 // @author Kyra Muhl
 
-float accelerationFactor = difficulty;
 boolean victory = false;
-
-// Moves the position-vector in  the directon of the velocity-vector
-void moveVectorObject(PVector position, PVector velocity) {
-  position.add(velocity);
-}
-
-// Increases the speed of the shark
-void increaseSharkSpeed() {
-  if (shark.currentSpeed < shark.maxSpeed) shark.setCurrentSpeed(accelerationFactor * shark.timeDelta + shark.currentSpeed);
-}
-
-// Increases the speed of the human
-void increaseHumanSpeed() {
-  if (human.currentSpeed < human.maxSpeed) human.setCurrentSpeed(accelerationFactor * human.timeDelta + human.currentSpeed);
-}
 
 // Checks if theposition - vector is colliding with the boundary
 // If it collides, the velocity will be inverted

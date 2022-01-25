@@ -9,20 +9,17 @@ String popupMessage = ""; // globally relevant! Write to this string an a popup 
 final String RULESET = "The rules go like this: \nTwo players are required. Player 1's goal is to move the human safely along the path. If the human reaches the end of the path, he has won. Player 2 tries to stop him, he plays the shark. The human can be controlled with the W, A, S and D keys and should not leave the path. The shark is moved by the arrow keys, its line of sight is controlled by the mouse. If the shark approaches the path, it can jump over the path by pressing return. If its mouth is directed towards the human, it can swallow him. \n \nThe difficulty of the game can be increased via keys 2 and 3, default is 1. \nThe background music can be muted with M.";
 
 void displayMenu() {
-
   if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
   else drawMenuScreen("PAUSE", "Press 'p' to resume");
 }
 
 void setPlayOrPause() {
-
   displayMenu = !displayMenu;
   if (firstStartup) firstStartup = false; // As soon as the player got into the game, there is no need for startup-specific options like rules anymore.
   if (displayMenu) canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
 } 
 
 void setDifficulty(float factor, int chosenDifficulty) {
-
   difficulty = factor;
   setPopup("Difficulty level: " + nf(chosenDifficulty), 120);
 } 
@@ -37,15 +34,12 @@ void setPopup(String content) { // function overloading, time is optional
 }
 
 void popup(String content, int time) {
-
   if (popupTimer < time) {
-
     displayPopup(content);
     popupTimer++;
   }
 
   if (popupTimer == time) {
-
     popupMessage = "";
     popupTimer = 0;
     popupTime = 120;
@@ -53,7 +47,6 @@ void popup(String content, int time) {
 }
 
 void displayPopup(String content) { // Reusable and content-responsive function to show popups
-
   textSize(relativeSize("M"));
   float contentLenght = textWidth(content);
   float contentHeight = textWidth('O'); // The letter O in the utilized font-familiy is nearly as wide as high and can therefore be used for the sentence's hight.
@@ -70,7 +63,6 @@ void displayPopup(String content) { // Reusable and content-responsive function 
 }
 
 void drawInitialMenuScreen() {
-
   background(backgroundImg);
   fill(0, 0, 0, 200);
   strokeWeight(0);
@@ -89,7 +81,6 @@ void drawInitialMenuScreen() {
 }
 
 void drawMenuScreen(String title, String message) {
-
   background(canvasImg); // We need a captured state of the game to show what was going on. A trasparent background does not work here, since animations like displayDifficulty() won't be overlayed and stay in view forever.
   fill(0, 100);
   rect(0, 0, width, height); // Do a darkened overlay

@@ -11,7 +11,6 @@ void saveHighscore() {
   String[] highscoresString = new String[5];
 
   for (int i = 0; i < highscores.length; i++) {
-
     if (newHighscore > highscores[highscores.length-1]) {
       highscores[highscores.length-1] = newHighscore;
       break;

@@ -1,11 +1,12 @@
 // @author Kyra Muhl
 
+boolean isKeyHDisabled = false; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
+
 // Event that is called when any key is pressed
 void keyPressed() {
   if (key == ENTER || key == RETURN) {
     if (shark.isAllowedToJump) {
-      shark.setIsJumping(true);
-      shark.setIsAllowedToJump(false);
+      shark.jump();
     }
   } else if (key == CODED) { // Handles specifically arrow keys
     handleArrowKeysPressed();
@@ -16,68 +17,42 @@ void keyPressed() {
     handleDifficultyKeysPressed();
   }
   if (gameOver || victory) {
-    handleRestartKey();
+    handleGameOverKeys();
   }
 }
 
 void handleArrowKeysPressed() {
-  boolean hasPressedArrowKey = false;
-
   switch(keyCode) {
   case LEFT:
-    shark.velocity.x = -1;
-    shark.velocity.y = 0;
-    hasPressedArrowKey = true;
+    shark.changeVelocity(-1, 0, difficulty);
     break;
   case RIGHT:
-    shark.velocity.x = 1;
-    shark.velocity.y = 0;
-    hasPressedArrowKey = true;
+    shark.changeVelocity(1, 0, difficulty);
     break;
   case UP:
-    shark.velocity.x = 0;
-    shark.velocity.y = -1;
-    hasPressedArrowKey = true;
+    shark.changeVelocity(0, -1, difficulty);
     break;
   case DOWN:
-    shark.velocity.x = 0;
-    shark.velocity.y = 1;
-    hasPressedArrowKey = true;
+    shark.changeVelocity(0, 1, difficulty);
     break;
   default:
     break;
   }
-
-  if (hasPressedArrowKey) {
-    increaseSharkSpeed();
-    moveVectorObject(shark.position, shark.velocity.mult(shark.currentSpeed));
-    shark.increaseTimeDelta();
-  }
 }
 
 void handleKeysPressed() {
-  boolean hasPressedWASDKey = false;
-
   switch(key) {
   case 'a':
-    human.velocity.x = -0.5;
-    human.velocity.y = 0;
-    hasPressedWASDKey = true;
+    human.changeVelocity(-0.5, 0, difficulty);
     break;
   case 'd':
-    human.velocity.x = 0.5;
-    human.velocity.y = 0;
-    hasPressedWASDKey = true;
+    human.changeVelocity(0.5, 0, difficulty);
     break;
   case 'w':
-    human.velocity.x = 0;
-    human.velocity.y = -0.5;
-    hasPressedWASDKey = true;
+    human.changeVelocity(0, -0.5, difficulty);
     break;
   case 's':
-    human.velocity.x = 0;
-    human.velocity.y = 0.5;
-    hasPressedWASDKey = true;
+    human.changeVelocity(0, 0.5, difficulty);
     break;
   case 'm':
     playOrPauseThemeSong();
@@ -93,12 +68,6 @@ void handleKeysPressed() {
     break;
   default:
     break;
-  }
-
-  if (hasPressedWASDKey) {
-    increaseHumanSpeed();
-    human.velocity.mult(human.currentSpeed);
-    human.increaseTimeDelta();
   }
 }
 
@@ -148,32 +117,38 @@ void keyReleased() {
   }
 }
 
-boolean pressableH = true; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
-
-void handleRestartKey() {
+void handleGameOverKeys() {
   switch(key) {
   case 'r' :
-    gameOver = false;
-    victory = false;
-    currentLifes = lifes.length;
-    for (int i = 0; i < lifes.length; i++) {
-      lifes[i] = true;
-    } 
-    shark.respawn();
-    human.respawn();
-    timerSeconds = 0;
-    timerSecondsINT = 0; 
-    timerMinutes = 0;
-    timerHours = 0;
-    pressableH = true;
+    handleRestartKey();
     break;
   case 'h':
-    if (pressableH) {
-      setNewHighscore();
-      saveHighscore();
-      setPopup("Score saved");
-      pressableH = false;
-    } else setPopup("You already saved your score");
+    handleHighScoreKey();
     break;
   }
+}
+
+void handleRestartKey() {
+  gameOver = false;
+  victory = false;
+  currentLifes = lifes.length;
+  for (int i = 0; i < lifes.length; i++) {
+    lifes[i] = true;
+  } 
+  shark.respawn();
+  human.respawn();
+  timerSeconds = 0;
+  timerSecondsINT = 0; 
+  timerMinutes = 0;
+  timerHours = 0;
+  isKeyHDisabled = false;
+}
+
+void handleHighScoreKey() {
+  if (!isKeyHDisabled) {
+    setNewHighscore();
+    saveHighscore();
+    setPopup("Score saved");
+    isKeyHDisabled = true;
+  } else setPopup("You already saved your score");
 }

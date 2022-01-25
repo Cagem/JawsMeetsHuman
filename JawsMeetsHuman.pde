@@ -39,8 +39,8 @@ void draw() {
 }
 
 void moveGameObjects() {
-  moveVectorObject(shark.position, shark.velocity);
-  moveVectorObject(human.position, human.velocity);
+  shark.move();
+  human.move();
 }
 
 void checkBoundaries() {
