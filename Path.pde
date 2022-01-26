@@ -6,7 +6,16 @@ float pathHeight;
 
 ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
 
-float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
+// returns a random path position depending only on the last position and path radius
+float getRandomPathPosition(float last, float pathRadius) {
+  float lowest = last;
+  float highest = last + pathRadius;
+
+  return random(lowest, highest);
+}
+
+// overloading prev: returns a random path position depending on the last position, path radius & figure radius
+float getRandomPathPosition(float last, float pathRadius, float figureRadius) {
   float lowest = last - pathRadius;
   float highest = last + pathRadius;
 
@@ -16,19 +25,12 @@ float getNextXPathPosition(float last, float pathRadius, float figureRadius) {
   return random(low, high);
 }
 
-float getNextYPathPosition(float last, float pathRadius) {
-  float lowest = last;
-  float highest = last + pathRadius;
-
-  return random(lowest, highest);
-}
-
+// initialize the paths array
 void initPaths() {
   pathWidth = humanImg.width*0.7; // The path size is cuppled to the relative human figure size.
   pathHeight = humanImg.height*0.7;
 
   float pathDiameter = pathWidth * 5;
-  float pathRadius = pathDiameter/2;
 
   float xLowest = width / 3;
   float xHighest = width - xLowest;
@@ -38,10 +40,10 @@ void initPaths() {
   for (float i = 0; i <= height-pathDiameter; i = yLast) {
     paths.add(new Path(xLast, yLast, pathDiameter, pathDiameter));
 
-    float randomFloat = random(0, 1);
+    float probability = random(0, 1);
 
-    if (randomFloat > 0.25) xLast = getNextXPathPosition(xLast, pathDiameter, pathWidth);
-    else yLast = getNextYPathPosition(yLast, pathDiameter);
+    if (probability > 0.25) xLast = getRandomPathPosition(xLast, pathDiameter, pathWidth);
+    else yLast = getRandomPathPosition(yLast, pathDiameter);
   }
 
   paths.add(new Path(xLast, height-pathDiameter, pathDiameter, pathDiameter));
@@ -63,12 +65,14 @@ void renderPath() {
   pathCanvas.endDraw();
 }
 
+// Class for creating Path Objects
 class Path {
   float x;
   float y;
   float width;
   float height;
 
+  // Constructor that is being called while creating a new Path Object
   public Path(float x, float y, float pathWidth, float pathHeight) {
     this.x = x;
     this.y = y;

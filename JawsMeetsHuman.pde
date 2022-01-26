@@ -31,30 +31,33 @@ void draw() {
   } else if (victory) {
     drawMenuScreen("The human won!", "Hit 'r' to restart, 'h' to save your score or esc to exit");
   } else {
-    updateTimer();
-    drawGameObjects();
+    updateTimer(); // updates the jumping timer of the shark
+    drawGameObjects(); // draws all game objects
     drawSharkOrientationUI(); // controls the sharks orientation by mouse position
-    checkBoundaries();
-    moveGameObjects();
+    checkBoundaries(); // checks all boundaries
+    moveGameObjects(); // moves all game objects
   }
 
   if (popupMessage != "") timePopup(popupMessage, popupTime); // If there is a popupMessage set by another function, the popup will appear for two seconds.
 }
 
+// moves all game objects
 void moveGameObjects() {
   shark.move();
   human.move();
 }
 
+// checks all boundaries
 void checkBoundaries() {
   checkBoundaryCollision(shark.position, shark.velocity, shark.width, shark.height); // Checks if the shark collides with screen border
   checkBoundaryCollision(human.position, human.velocity, human.width, human.height); // Checks if the human collides with screen border
-  checkHumanTileBoundary();
+  checkHumanPathBoundary();
   checkPathCollisionShark();
   checkFigureCollision();
   checkItemCollision();
 }
 
+// draws all game objects & background
 void drawGameObjects() {
   background(pathImg);
   drawRubberRing();
@@ -65,6 +68,7 @@ void drawGameObjects() {
   drawTimer();
 }
 
+// updates the jumping timer of the shark
 void updateTimer() {
   if (shark.isJumping) {
     setJumpingTimer();

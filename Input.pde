@@ -1,6 +1,6 @@
 // @author Kyra Muhl
 
-boolean isKeyHDisabled = false; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
+boolean isHighscoreSaveDisabled = false; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
 
 // Event that is called when any key is pressed
 void keyPressed() {
@@ -8,10 +8,10 @@ void keyPressed() {
     if (shark.isAllowedToJump) {
       shark.jump();
     }
-  } else if (key == CODED) { // Handles specifically arrow keys
-    handleArrowKeysPressed();
-  } else { // Handles any other key
-    handleKeysPressed();
+  } else if (key == CODED) { 
+    handleArrowKeysPressed(); // Handles specifically arrow keys
+  } else { 
+    handleKeysPressed(); // Handles any other key
   }
   if (displayMenu) {
     handleDifficultyKeysPressed();
@@ -21,6 +21,7 @@ void keyPressed() {
   }
 }
 
+// Changes the shark velocity depending on the pressed arrow key
 void handleArrowKeysPressed() {
   switch(keyCode) {
   case LEFT:
@@ -44,6 +45,7 @@ void handleArrowKeysPressed() {
   }
 }
 
+// Changes the human velocity depending on the wasd key, changes the volume & game state
 void handleKeysPressed() {
   switch(key) {
   case 'a':
@@ -75,6 +77,7 @@ void handleKeysPressed() {
   }
 }
 
+// Changes the difficulty depending on whether 1,2 or 3 gets pressed
 void handleDifficultyKeysPressed() {
   switch(key) {
   case'1' :
@@ -121,6 +124,7 @@ void keyReleased() {
   }
 }
 
+// Keys designated to be used in case of game over
 void handleGameOverKeys() {
   switch(key) {
   case 'r' :
@@ -132,6 +136,7 @@ void handleGameOverKeys() {
   }
 }
 
+// Resets all related game variables to restart the game
 void handleRestartKey() {
   gameOver = false;
   victory = false;
@@ -145,14 +150,15 @@ void handleRestartKey() {
   timerSecondsINT = 0; 
   timerMinutes = 0;
   timerHours = 0;
-  isKeyHDisabled = false;
+  isHighscoreSaveDisabled = false;
 }
 
+// Saves the highscore
 void handleHighScoreKey() {
-  if (!isKeyHDisabled) {
+  if (!isHighscoreSaveDisabled) {
     setNewHighscore();
     saveHighscore();
     setPopup("Score saved");
-    isKeyHDisabled = true;
+    isHighscoreSaveDisabled = true;
   } else setPopup("You already saved your score");
 }

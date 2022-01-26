@@ -2,6 +2,7 @@
 
 String ruleset = "";
 
+// loads the current ruleset from txt & formats it into a string
 void loadRuleSet() {
   String[] ruleSetArray = loadStrings("ruleset.txt");
 
