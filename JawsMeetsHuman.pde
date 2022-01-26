@@ -37,7 +37,7 @@ void draw() {
     moveGameObjects();
   }
 
-  if (popupMessage != "") popup(popupMessage, popupTime); // If there is a popupMessage set by another function, the popup will appear for two seconds.
+  if (popupMessage != "") timePopup(popupMessage, popupTime); // If there is a popupMessage set by another function, the popup will appear for two seconds.
 }
 
 void moveGameObjects() {

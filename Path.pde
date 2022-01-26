@@ -57,7 +57,7 @@ void renderPath() {
   for (int i = 0; i < paths.size(); i++) {
     pathCanvas.image(pathTileImg, paths.get(i).x, paths.get(i).y, paths.get(i).width, paths.get(i).height);
   }
-  pathCanvas.image(goalImg, paths.get(paths.size()-1).x, paths.get(paths.size()-1).y, paths.get(paths.size()-1).width, paths.get(paths.size()-1).height);
+  pathCanvas.image(goalImg, paths.get(paths.size()-1).x, paths.get(paths.size()-1).y, paths.get(paths.size()-1).width*0.7, paths.get(paths.size()-1).height*0.7);
   pathImg = pathCanvas.get(); // Makes a screenshot of the generated path before any other objects are loaded. Takes place within the first frame of the game view.
   pathCanvas.endDraw();
 }

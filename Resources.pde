@@ -15,7 +15,7 @@ PImage canvasImg; // Will be used later on in GameMenu.pde > drawMenuScreen func
 
 void loadImages() {
   try {
-    pathTileImg = loadImage("pathTile.png"); // if resized, performance losses are dramatic
+    pathTileImg = loadImage("pathTile.png");
     goalImg = loadImage("goalFlag.png");
     lifePreserverImg = loadImage("lifePreserver.png");
     rubberRingImg = loadImage("rubberRing.png");

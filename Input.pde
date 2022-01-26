@@ -25,15 +25,19 @@ void handleArrowKeysPressed() {
   switch(keyCode) {
   case LEFT:
     shark.changeVelocity(-1, 0, difficulty);
+    println("INFO: You pressed key" + keyCode);
     break;
   case RIGHT:
     shark.changeVelocity(1, 0, difficulty);
+    println("INFO: You pressed key Right");
     break;
   case UP:
     shark.changeVelocity(0, -1, difficulty);
+    println("INFO: You pressed key UP");
     break;
   case DOWN:
     shark.changeVelocity(0, 1, difficulty);
+    println("INFO: You pressed key DOWN");
     break;
   default:
     break;

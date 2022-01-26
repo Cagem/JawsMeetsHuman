@@ -34,5 +34,5 @@ Requiered libraries:
 | Jona König            | [devdev42](https://github.com/devdev42)           |
 | Luca Virnich          | [luca-virninch](https://github.com/luca-virninch) |
 | Peer Voss             | [peervoss](https://github.com/peervoss)           |
-| Nigina Isamukhamedova |                                                   |
+| Nigina Isamukhamedova | [nigina23](https://github.com/nigina23)           |
 | Kyra Muhl             | [Cagem](https://github.com/Cagem)                 |

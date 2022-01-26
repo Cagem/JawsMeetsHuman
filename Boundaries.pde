@@ -119,7 +119,7 @@ void checkHumanTileBoundary() {
   }
 }
 
-void checkFigureCollision() {
+void checkFigureCollision() { // TODO: Blickrichtung
   if (shark.position.x + shark.width / 2 > human.position.x - human.width / 2 && 
     shark.position.x - shark.width / 2 < human.position.x + human.width / 2 && 
     shark.position.y + shark.height / 2 > human.position.y - human.height / 2 && 
