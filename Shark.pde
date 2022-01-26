@@ -90,7 +90,6 @@ void initShark() {
   shark = new Shark(position, velocity, sharkWidth, sharkHeight);
 }
 
-// TODO: Blickrichtung berücksichtigen
 class Shark {
   PVector position;
   PVector velocity;
