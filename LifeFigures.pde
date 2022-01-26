@@ -37,51 +37,49 @@ void drawLifes() {
 }
 
 void life(int X, int Y) {
-  int p = size; // you can change the size of red hearts without changing black hearts
   rectMode(CENTER);
   noStroke();
 
   fill(255, 0, 0);
-  rect(X, Y, p * 6, p * 4);
-  rect(X + p * 3, Y - p * 2, p * 4, p * 4);
-  rect(X - p * 3, Y - p * 2, p * 4, p * 4);
-  rect(X, Y + p * 3, p * 2, p * 2);
+  rect(X, Y, relativeSize("XXS") * 6, relativeSize("XXS")  * 4);
+  rect(X + relativeSize("XXS")  * 3, Y - relativeSize("XXS")  * 2, relativeSize("XXS")  * 4, relativeSize("XXS")  * 4);
+  rect(X - relativeSize("XXS")  * 3, Y - relativeSize("XXS")  * 2, relativeSize("XXS")  * 4, relativeSize("XXS")  * 4);
+  rect(X, Y + relativeSize("XXS")  * 3, relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
 
   fill(0);
-  rect(X, Y - p * 3, p * 2, p * 2);
-  rect(X + p * 3, Y - p * 5, p * 4, p * 2);
-  rect(X - p * 3, Y - p * 5, p * 4, p * 2);
-  rect(X + p * 6, Y - p * 2, p * 2, p * 4);
-  rect(X - p * 6, Y - p * 2, p * 2, p * 4);
-  rect(X + p * 4, Y + p, p * 2, p * 2);
-  rect(X - p * 4, Y + p, p * 2, p * 2);
-  rect(X + p * 2, Y + p * 3, p * 2, p * 2);
-  rect(X - p * 2, Y + p * 3, p * 2, p * 2);
-  rect(X, Y + p * 5, p * 2, p * 2);
+  rect(X, Y - relativeSize("XXS")  * 3, relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
+  rect(X + relativeSize("XXS")  * 3, Y - relativeSize("XXS")  * 5, relativeSize("XXS")  * 4, relativeSize("XXS")  * 2);
+  rect(X - relativeSize("XXS")  * 3, Y - relativeSize("XXS")  * 5, relativeSize("XXS")  * 4, relativeSize("XXS")  * 2);
+  rect(X + relativeSize("XXS")  * 6, Y - relativeSize("XXS")  * 2, relativeSize("XXS") * 2, relativeSize("XXS")  * 4);
+  rect(X - relativeSize("XXS")  * 6, Y - relativeSize("XXS")  * 2, relativeSize("XXS")  * 2, relativeSize("XXS")  * 4);
+  rect(X + relativeSize("XXS")  * 4, Y + relativeSize("XXS") , relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
+  rect(X - relativeSize("XXS")  * 4, Y + relativeSize("XXS") , relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
+  rect(X + relativeSize("XXS")  * 2, Y + relativeSize("XXS")  * 3, relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
+  rect(X - relativeSize("XXS")  * 2, Y + relativeSize("XXS")  * 3, relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
+  rect(X, Y + relativeSize("XXS")  * 5, relativeSize("XXS")  * 2, relativeSize("XXS")  * 2);
   rectMode(CORNER);
 }
 
 void nolife(int X, int Y) {
-  int p = size; // you can change the size of black hearts without changing red hearts
   rectMode(CENTER);
   noStroke();
 
   fill(0);
-  rect(X, Y, p * 6, p * 4);
-  rect(X + p * 3, Y - p * 2, p * 4, p * 4);
-  rect(X - p * 3, Y - p * 2, p * 4, p * 4);
-  rect(X, Y + p * 3, p * 2, p * 2);
+  rect(X, Y, relativeSize("XXS") * 6, relativeSize("XXS") * 4);
+  rect(X + relativeSize("XXS") * 3, Y - relativeSize("XXS") * 2, relativeSize("XXS") * 4, relativeSize("XXS") * 4);
+  rect(X - relativeSize("XXS") * 3, Y - relativeSize("XXS") * 2, relativeSize("XXS") * 4, relativeSize("XXS") * 4);
+  rect(X, Y + relativeSize("XXS") * 3, relativeSize("XXS") * 2, relativeSize("XXS") * 2);
 
   fill(0);
-  rect(X, Y - p * 3, p * 2, p * 2);
-  rect(X + p * 3, Y - p * 5, p * 4, p * 2);
-  rect(X - p * 3, Y - p * 5, p * 4, p * 2);
-  rect(X + p * 6, Y - p * 2, p * 2, p * 4);
-  rect(X - p * 6, Y - p * 2, p * 2, p * 4);
-  rect(X + p * 4, Y + p, p * 2, p * 2);
-  rect(X - p * 4, Y + p, p * 2, p * 2);
-  rect(X + p * 2, Y + p * 3, p * 2, p * 2);
-  rect(X - p * 2, Y + p * 3, p * 2, p * 2);
-  rect(X, Y + p * 5, p * 2, p * 2);
+  rect(X, Y - relativeSize("XXS") * 3, relativeSize("XXS") * 2, relativeSize("XXS") * 2);
+  rect(X + relativeSize("XXS") * 3, Y - relativeSize("XXS") * 5, relativeSize("XXS") * 4, relativeSize("XXS") * 2);
+  rect(X - relativeSize("XXS") * 3, Y - relativeSize("XXS") * 5, relativeSize("XXS") * 4, relativeSize("XXS") * 2);
+  rect(X + relativeSize("XXS") * 6, Y - relativeSize("XXS") * 2, relativeSize("XXS") * 2, relativeSize("XXS") * 4);
+  rect(X - relativeSize("XXS") * 6, Y - relativeSize("XXS") * 2, relativeSize("XXS") * 2, relativeSize("XXS") * 4);
+  rect(X + relativeSize("XXS") * 4, Y + relativeSize("XXS"), relativeSize("XXS") * 2, relativeSize("XXS") * 2);
+  rect(X - relativeSize("XXS") * 4, Y + relativeSize("XXS"), relativeSize("XXS") * 2, relativeSize("XXS") * 2);
+  rect(X + relativeSize("XXS") * 2, Y + relativeSize("XXS") * 3, relativeSize("XXS") * 2, relativeSize("XXS") * 2);
+  rect(X - relativeSize("XXS") * 2, Y + relativeSize("XXS") * 3, relativeSize("XXS") * 2, relativeSize("XXS") * 2);
+  rect(X, Y + relativeSize("XXS") * 5, relativeSize("XXS") * 2, relativeSize("XXS") * 2);
   rectMode(CORNER);
 }
