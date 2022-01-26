@@ -27,18 +27,20 @@ class Human {
   float currentSpeed;
   float standardSpeed;
   int timeDelta;
+  boolean isSwimming;
 
-// TODO: Difficulty fixen , Speed erhöhen
   public Human(PVector position, PVector velocity, float humanWidth, float humanHeight) {
     this.position = position;
     this.velocity = velocity;
     this.width = humanWidth;
     this.height = humanHeight;
 
-    this.maxSpeed = difficulty * 1.5; // defines for how many frames the object can accelerate
+    this.maxSpeed = difficulty * 2; // defines for how many frames the object can accelerate
     this.standardSpeed = difficulty * 0.85;
     this.currentSpeed = this.standardSpeed; // Current speed of the human
     this.timeDelta = 0;
+
+    this.isSwimming = false;
   }
 
   void setCurrentSpeed(float currentSpeed) {
@@ -55,7 +57,12 @@ class Human {
   }
 
   void increaseSpeed(float accelerationFactor) {
-    if (this.currentSpeed < this.maxSpeed) this.currentSpeed = accelerationFactor * this.timeDelta + this.currentSpeed;
+    if (this.isSwimming) {
+      this.currentSpeed = difficulty * 0.45;
+      this.resetTimeDelta();
+    } else if (this.currentSpeed < this.maxSpeed) {
+      this.currentSpeed = accelerationFactor * this.timeDelta + this.currentSpeed;
+    }
   }
 
   void move() {
@@ -63,8 +70,8 @@ class Human {
   }
 
   void changeVelocity(float x, float y, float accelerationFactor) {
-    this.setVelocity(x, y);
     this.increaseSpeed(accelerationFactor);
+    this.setVelocity(x, y);
     this.velocity.mult(this.currentSpeed);
     this.increaseTimeDelta();
   }
