@@ -28,6 +28,7 @@ class Human {
   float standardSpeed;
   int timeDelta;
 
+// TODO: Difficulty fixen , Speed erhöhen
   public Human(PVector position, PVector velocity, float humanWidth, float humanHeight) {
     this.position = position;
     this.velocity = velocity;

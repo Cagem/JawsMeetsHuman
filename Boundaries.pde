@@ -4,18 +4,6 @@ boolean victory = false;
 
 // Checks if the position vector is colliding with the boundary
 // If it collides, the velocity will be inverted
-void _checkBoundaryCollision(PVector position, PVector velocity, float objWidth, float objHeight) {
-  if (position.x >= width - objWidth) {
-    velocity.x *= -1;
-  } else if (position.x <= 0) {
-    velocity.x *= -1;
-  } else if (position.y >= height - objHeight) {
-    velocity.y *= -1;
-  } else if (position.y <= 0) {
-    velocity.y *= -1;
-  }
-}
-
 void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, float objHeight) {
   if (position.x + objWidth/2 + velocity.x > width) {
     velocity.x *= -1;
@@ -53,21 +41,23 @@ void checkPathCollisionShark() {
 
       // check X movment
       if (isSharkHorizontallyOnTile(path)) {
-        shark.reverseXVelocity();
-
         if (hasSharkStoppedJumping) {
           resetBlockedJumpTimer();
           shark.respawn();
+        } else {
+            shark.reverseXVelocity();
         }
       }
 
       // check Y movement
       if (isSharkVerticallyOnTile(path)) {
-        shark.reverseYVelocity();
+        
 
         if (hasSharkStoppedJumping) {
           resetBlockedJumpTimer();
           shark.respawn();
+        } else {
+            shark.reverseYVelocity();
         }
       }
     }
