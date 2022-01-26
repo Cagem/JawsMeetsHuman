@@ -5,7 +5,8 @@ int popupTime = 120; // Default option
 int popupTimer = 0; // Counting frames, utilized for timing capability, see setPopup().
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
-String popupMessage = ""; // globally relevant! Write to this string with setPopup() and a popup will appear.
+String popupMessage = ""; // globally relevant! Write to this string an a popup will appear.
+// TODO: txt
 final String RULESET = "The rules go like this: \nTwo players are required. Player 1's goal is to move the human safely along the path. If the human reaches the end of the path, he has won. Player 2 tries to stop him, he plays the shark. The human can be controlled with the W, A, S and D keys and should not leave the path. The shark is moved by the arrow keys, its line of sight is controlled by the mouse. If the shark approaches the path, it can jump over the path by pressing return. If its mouth is directed towards the human, it can swallow him. \n \nThe difficulty of the game can be increased via keys 2 and 3, default is 1. \nThe background music can be muted with M.";
 
 void displayMenu() {

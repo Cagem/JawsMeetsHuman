@@ -90,6 +90,7 @@ void initShark() {
   shark = new Shark(position, velocity, sharkWidth, sharkHeight);
 }
 
+// TODO: Blickrichtung berücksichtigen
 class Shark {
   PVector position;
   PVector velocity;
@@ -182,13 +183,24 @@ class Shark {
     this.timeDelta = 0;
   }
 
+// TODO: fix
   void respawn() {
-    if (this.position.x > width / 2) {
-      this.position.x = random(width - width / 3, width);
-      this.position.y = random(0, height);
-    } else {
-      this.position.x = random(0, width / 3);
-      this.position.y = random(0, height);
-    }
+      float fWidth = width;
+      println(fWidth-this.width);
+      float randomX = random(this.width + 10, fWidth-this.width);
+      float randomY = random(this.height, height-this.height);
+
+      println(randomX);
+      println(randomY);
+
+      this.position.set(randomX, randomY);
+
+    // if (this.position.x > width / 2) {
+    //   this.position.x = random(width - width / 3, width-this.width);
+    //   this.position.y = random(this.height, height-this.height);
+    // } else {
+    //   this.position.x = random(this.width, width / 3);
+    //   this.position.y = random(this.height, height-this.height);
+    // }
   }
 }
