@@ -18,16 +18,16 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
 
 boolean isSharkHorizontallyOnTile(Path path) {
   return (shark.position.x + shark.width/2 + shark.velocity.x > path.x && 
-        shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
-        shark.position.y + shark.height/2 > path.y && 
-        shark.position.y < path.y + path.height);
+    shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
+    shark.position.y + shark.height/2 > path.y && 
+    shark.position.y < path.y + path.height);
 }
 
 boolean isSharkVerticallyOnTile(Path path) {
   return (shark.position.x + shark.width/2 > path.x && 
-        shark.position.x < path.x + path.width && 
-        shark.position.y + shark.height/2 + shark.velocity.y > path.y && 
-        shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height);
+    shark.position.x < path.x + path.width && 
+    shark.position.y + shark.height/2 + shark.velocity.y > path.y && 
+    shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height);
 }
 
 void checkPathCollisionShark() {
@@ -43,21 +43,21 @@ void checkPathCollisionShark() {
       if (isSharkHorizontallyOnTile(path)) {
         if (hasSharkStoppedJumping) {
           resetBlockedJumpTimer();
-          shark.respawn();
+          shark.respawn(width, height);
         } else {
-            shark.reverseXVelocity();
+          shark.reverseXVelocity();
         }
       }
 
       // check Y movement
       if (isSharkVerticallyOnTile(path)) {
-        
+
 
         if (hasSharkStoppedJumping) {
           resetBlockedJumpTimer();
-          shark.respawn();
+          shark.respawn(width, height);
         } else {
-            shark.reverseYVelocity();
+          shark.reverseYVelocity();
         }
       }
     }
@@ -100,7 +100,8 @@ boolean isHumanOnPath() {
 }
 
 void checkHumanTileBoundary() {
-  if (!isHumanOnPath() && !showLifePreserver) human.respawn();  
+  if (!isHumanOnPath() && !showLifePreserver && !human.isSwimming) human.isSwimming = true;
+  else if (isHumanOnPath() || showLifePreserver) human.isSwimming = false;
 
   // Checks whether the human got to the last tile of the path in which case he wins and the game should end (victory = true).
   if (isHumanOnLastTile()) {
@@ -116,7 +117,7 @@ void checkFigureCollision() { // TODO: Blickrichtung
     shark.position.y - shark.height / 2 < human.position.y + human.height / 2) {
 
     reduceLife();
-    shark.respawn();
+    shark.respawn(width, height);
     human.respawn();
   }
 }

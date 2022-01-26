@@ -81,10 +81,10 @@ void handleDifficultyKeysPressed() {
     setDifficulty(10, 1);
     break;
   case'2':
-    setDifficulty(100, 2);
+    setDifficulty(12.5, 2);
     break;
   case'3':
-    setDifficulty(1000, 3);
+    setDifficulty(15, 3);
     break;
   default:
     break;
@@ -139,7 +139,7 @@ void handleRestartKey() {
   for (int i = 0; i < lifes.length; i++) {
     lifes[i] = true;
   } 
-  shark.respawn();
+  shark.respawn(width, height);
   human.respawn();
   timerSeconds = 0;
   timerSecondsINT = 0; 

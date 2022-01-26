@@ -182,24 +182,16 @@ class Shark {
     this.timeDelta = 0;
   }
 
-// TODO: fix
-  void respawn() {
-      float fWidth = width;
-      println(fWidth-this.width);
-      float randomX = random(this.width + 10, fWidth-this.width);
-      float randomY = random(this.height, height-this.height);
+  void respawn(int screenWidth, int screenHeight) {
+    float fWidth = screenWidth;
+    float fHeight = screenHeight;
 
-      println(randomX);
-      println(randomY);
-
-      this.position.set(randomX, randomY);
-
-    // if (this.position.x > width / 2) {
-    //   this.position.x = random(width - width / 3, width-this.width);
-    //   this.position.y = random(this.height, height-this.height);
-    // } else {
-    //   this.position.x = random(this.width, width / 3);
-    //   this.position.y = random(this.height, height-this.height);
-    // }
+    if (this.position.x > width / 2) {
+      this.position.x = random(fWidth - fWidth / 3, fWidth-this.width);
+      this.position.y = random(this.height, fHeight-this.height);
+    } else {
+      this.position.x = random(this.width, fWidth / 3);
+      this.position.y = random(this.height, fHeight-this.height);
+    }
   }
 }
