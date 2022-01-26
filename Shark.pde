@@ -28,14 +28,14 @@ void drawSharkImg(int shift) {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(270));
-    image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
+    image(sharkImg, 0 - shift, 0 + shift, sharkImg.width, sharkImg.height);
     popMatrix();
     shark.setDimensions(sharkImg.width, sharkImg.height);
   } else if (sharkOrientation == "DOWN") {
     pushMatrix();
     translate(shark.position.x, shark.position.y);
     rotate(radians(90));
-    image(sharkImg, 0 - shift, 0 + shift, shark.width, shark.height);
+    image(sharkImg, 0 - shift, 0 + shift, sharkImg.width, sharkImg.height);
     popMatrix();
     shark.setDimensions(sharkImg.width, sharkImg.height);
   } else if (sharkOrientation == "LEFT") {
@@ -83,7 +83,7 @@ void resetBlockedJumpTimer() {
 void initShark() {
   int sharkWidth = sharkImg.width;
   int sharkHeight = sharkImg.height;
-  PVector position = new PVector(10, height - sharkHeight - 30);
+  PVector position = new PVector(sharkWidth + 10, height - sharkHeight - 30);
   PVector velocity = new PVector(-1, 0);
   velocity.mult(1);
 

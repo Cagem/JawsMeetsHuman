@@ -2,9 +2,9 @@
 
 boolean victory = false;
 
-// Checks if theposition - vector is colliding with the boundary
+// Checks if the position vector is colliding with the boundary
 // If it collides, the velocity will be inverted
-void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, float objHeight) {
+void _checkBoundaryCollision(PVector position, PVector velocity, float objWidth, float objHeight) {
   if (position.x >= width - objWidth) {
     velocity.x *= -1;
   } else if (position.x <= 0) {
@@ -12,6 +12,18 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
   } else if (position.y >= height - objHeight) {
     velocity.y *= -1;
   } else if (position.y <= 0) {
+    velocity.y *= -1;
+  }
+}
+
+void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, float objHeight) {
+  if (position.x + objWidth/2 + velocity.x > width) {
+    velocity.x *= -1;
+  } else if (position.x + velocity.x - objWidth/2 < 0) {
+    velocity.x *= -1;
+  } else if (position.y + objHeight/2 + velocity.y > height) {
+    velocity.y *= -1;
+  } else if (position.y + velocity.y - objHeight/2 < 0) {
     velocity.y *= -1;
   }
 }
