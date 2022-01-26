@@ -1,4 +1,5 @@
 // @author Kyra Muhl
+// @author Niginabonu Isamukhamedova
 
 import processing.sound.*;
 

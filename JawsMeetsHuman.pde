@@ -7,6 +7,7 @@ void setup() {
 
   loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
+  loadRuleSet(); // Loads the Ruleset from ruleset.txt
   initPaths(); // Initializes the path, IMPORTANT - needs to be executed first, before any other element of the game view.
   initShark(); // Initializes the shark
   initHuman(); // Initializes the human
