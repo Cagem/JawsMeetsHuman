@@ -50,6 +50,7 @@ void drawSharkImg(int shift) {
   }
 }
 
+// Function to draw the sharks shadow
 void drawSharkShadow() {
   rectMode(CORNER);
   tint(10); // make the shadow dark
@@ -57,6 +58,7 @@ void drawSharkShadow() {
   tint(255); // back to normal
 }
 
+// Function to set the sharks jumping time
 void setJumpingTimer() {
   jumpingTimer++;
 
@@ -66,6 +68,7 @@ void setJumpingTimer() {
   }
 }
 
+// Function to set the sharks blockage time until he can jump again
 void setBlockedJumpTimer() {
   blockedJumpTimer++;
 
@@ -74,6 +77,7 @@ void setBlockedJumpTimer() {
   }
 }
 
+// Function to reset the sharks blockage so he can jump again
 void resetBlockedJumpTimer() {
   shark.setIsAllowedToJump(true);
   blockedJumpTimer = 0;
@@ -90,6 +94,7 @@ void initShark() {
   shark = new Shark(position, velocity, sharkWidth, sharkHeight);
 }
 
+// Class for creating Shark Objects
 class Shark {
   PVector position;
   PVector velocity;
@@ -102,6 +107,7 @@ class Shark {
   float standardSpeed;
   int timeDelta;
 
+  // Constructor that is being called while creating a new Shark Object
   public Shark(PVector position, PVector velocity, float sharkWidth, float sharkHeight) {
     this.position = position;
     this.velocity = velocity;
@@ -116,49 +122,60 @@ class Shark {
     this.timeDelta = 0;
   }
 
+  // Setter for currentSpeed
   void setCurrentSpeed(float currentSpeed) {
     this.currentSpeed = currentSpeed;
   }
 
+  // Setter for shark dimension
   void setDimensions(float sharkHeight, float sharkWidth) {
     this.height = sharkHeight;
     this.width = sharkWidth;
   }
 
+  // Setter for height
   void setHeight(float sharkHeight) {
     this.height = sharkHeight;
   }
 
+  // Setter for width
   void setWidth(float sharkWidth) {
     this.width = sharkWidth;
   }
 
+  // Setter for isAllowedToJump
   void setIsAllowedToJump(boolean isAllowedToJump) {
     this.isAllowedToJump = isAllowedToJump;
   }
 
+  // Setter for isJumping
   void setIsJumping(boolean isJumping) {
     this.isJumping = isJumping;
   }
 
+  // Setter for velocity vector
   void setVelocity(float x, float y) {
     this.velocity.x = x;
     this.velocity.y = y;
   }
 
+  // Function to increase the speed of the shark
   void increaseSpeed(float accelerationFactor) {
     if (this.currentSpeed < this.maxSpeed) this.currentSpeed = accelerationFactor * this.timeDelta + this.currentSpeed;
   }
 
+  // Function to let the shark move
   void move() {
     this.position.add(this.velocity);
   }
 
+  // Function to let the shark jump
   void jump() {
     this.setIsJumping(true);
     this.setIsAllowedToJump(false);
   }
 
+  // Function to change the velocity (used if key gets pressed)
   void changeVelocity(float x, float y, float accelerationFactor) {
     this.setVelocity(x, y);
     this.increaseSpeed(accelerationFactor);
@@ -166,22 +183,27 @@ class Shark {
     this.increaseTimeDelta();
   }
 
+  // Function to reverse the x coordinate of the velocity
   void reverseXVelocity() {
     this.velocity.x *= -1;
   }
 
+  // Function to reverse the y coordinate of the velocity
   void reverseYVelocity() {
     this.velocity.y *= -1;
   }
 
+  // Function to increase the time delta
   void increaseTimeDelta() {
     this.timeDelta = this.timeDelta + 1;
   }
 
+  // Function to reset the time delta
   void resetTimeDelta() {
     this.timeDelta = 0;
   }
 
+  // Function to let the shark respawn at a random point
   void respawn(int screenWidth, int screenHeight) {
     float fWidth = screenWidth;
     float fHeight = screenHeight;

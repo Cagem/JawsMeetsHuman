@@ -16,6 +16,7 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
   }
 }
 
+// Checks if the shark collides horizontally with a path tile
 boolean isSharkHorizontallyOnTile(Path path) {
   return (shark.position.x + shark.width/2 + shark.velocity.x > path.x && 
     shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
@@ -23,6 +24,7 @@ boolean isSharkHorizontallyOnTile(Path path) {
     shark.position.y < path.y + path.height);
 }
 
+// Checks if the shark collides vertically with a path tile
 boolean isSharkVerticallyOnTile(Path path) {
   return (shark.position.x + shark.width/2 > path.x && 
     shark.position.x < path.x + path.width && 
@@ -30,13 +32,14 @@ boolean isSharkVerticallyOnTile(Path path) {
     shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height);
 }
 
+// Checks if the shark collides generally collides with the path
 void checkPathCollisionShark() {
   if (!shark.isJumping) {
-    // iterate over the obstacles
+    // iterate over the path tiles
     for (int i = 0; i < paths.size(); i++) {
       boolean hasSharkStoppedJumping = !shark.isAllowedToJump && blockedJumpTimer < 50;
 
-      // check collision for this obstacle
+      // check collision for this path tile
       Path path = paths.get(i);
 
       // check X movment
@@ -51,8 +54,6 @@ void checkPathCollisionShark() {
 
       // check Y movement
       if (isSharkVerticallyOnTile(path)) {
-
-
         if (hasSharkStoppedJumping) {
           resetBlockedJumpTimer();
           shark.respawn(width, height);
@@ -64,6 +65,7 @@ void checkPathCollisionShark() {
   }
 }
 
+// Checks if the human is horizontally on a path tile
 boolean isHumanHorizontallyOnTile(Path path) {
   return (human.position.x + human.width/2 + human.velocity.x > path.x && 
     human.position.x + human.velocity.x - human.width/2 < path.x + path.width && 
@@ -71,6 +73,7 @@ boolean isHumanHorizontallyOnTile(Path path) {
     human.position.y < path.y + path.height);
 }
 
+// Checks if the human is vertically on a path tile
 boolean isHumanVerticallyOnTile(Path path) {
   return (human.position.x + human.width/2 > path.x && 
     human.position.x < path.x + path.width && 
@@ -78,6 +81,7 @@ boolean isHumanVerticallyOnTile(Path path) {
     human.position.y + human.velocity.y - human.height/2 < path.y + path.height);
 }
 
+// Checks if the human reached the last path tile
 boolean isHumanOnLastTile() {
   Path lastTile = paths.get(paths.size()-1);
 
@@ -87,6 +91,7 @@ boolean isHumanOnLastTile() {
     human.position.y + human.height / 2 < lastTile.y + lastTile.width);
 }
 
+// Checks if the human is generally on the path
 boolean isHumanOnPath() {
   for (int i = 0; i < paths.size(); i++) {
     Path path = paths.get(i);
@@ -99,17 +104,19 @@ boolean isHumanOnPath() {
   return false;
 }
 
-void checkHumanTileBoundary() {
+// Checks all boundaries regarding the human and its path
+void checkHumanPathBoundary() {
   if (!isHumanOnPath() && !showLifePreserver && !human.isSwimming) human.isSwimming = true;
   else if (isHumanOnPath() || showLifePreserver) human.isSwimming = false;
 
-  // Checks whether the human got to the last tile of the path in which case he wins and the game should end (victory = true).
+  // Checks whether the human got to the last tile of the path
   if (isHumanOnLastTile()) {
     canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
-    victory = true;
+    victory = true; // The Human wins and the game should end
   }
 }
 
+// Checks if the human and shark collide
 void checkFigureCollision() {
   if (shark.position.x + shark.width / 2 > human.position.x - human.width / 2 && 
     shark.position.x - shark.width / 2 < human.position.x + human.width / 2 && 
@@ -122,6 +129,7 @@ void checkFigureCollision() {
   }
 }
 
+// Checks if the human collides with the rubberring (collects it)
 void checkItemCollision() {
   if (human.position.x + human.width / 2 > rubberRing.x - rubberRingWidth / 2 && 
     human.position.x - human.width / 2 < rubberRing.x + rubberRingWidth / 2 && 
