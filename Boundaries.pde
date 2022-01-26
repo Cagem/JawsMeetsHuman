@@ -16,6 +16,20 @@ void checkBoundaryCollision(PVector position, PVector velocity, float objWidth, 
   }
 }
 
+boolean isSharkHorizontallyOnTile(Path path) {
+  return (shark.position.x + shark.width/2 + shark.velocity.x > path.x && 
+        shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
+        shark.position.y + shark.height/2 > path.y && 
+        shark.position.y < path.y + path.height);
+}
+
+boolean isSharkVerticallyOnTile(Path path) {
+  return (shark.position.x + shark.width/2 > path.x && 
+        shark.position.x < path.x + path.width && 
+        shark.position.y + shark.height/2 + shark.velocity.y > path.y && 
+        shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height);
+}
+
 void checkPathCollisionShark() {
   if (!shark.isJumping) {
     // iterate over the obstacles
@@ -26,11 +40,7 @@ void checkPathCollisionShark() {
       Path path = paths.get(i);
 
       // check X movment
-      if (shark.position.x + shark.width/2 + shark.velocity.x > path.x && 
-        shark.position.x + shark.velocity.x - shark.width/2 < path.x + path.width && 
-        shark.position.y + shark.height/2 > path.y && 
-        shark.position.y < path.y + path.height) {
-
+      if (isSharkHorizontallyOnTile(path)) {
         shark.reverseXVelocity();
 
         if (hasSharkStoppedJumping) {
@@ -40,11 +50,7 @@ void checkPathCollisionShark() {
       }
 
       // check Y movement
-      if (shark.position.x + shark.width/2 > path.x && 
-        shark.position.x < path.x + path.width && 
-        shark.position.y + shark.height/2 + shark.velocity.y > path.y && 
-        shark.position.y + shark.velocity.y - shark.height/2 < path.y + path.height) {
-
+      if (isSharkVerticallyOnTile(path)) {
         shark.reverseYVelocity();
 
         if (hasSharkStoppedJumping) {
@@ -95,7 +101,6 @@ void checkHumanTileBoundary() {
   if (!isHumanOnPath() && !showLifePreserver) human.respawn();  
 
   // Checks whether the human got to the last tile of the path in which case he wins and the game should end (victory = true).
-  // TODO: The last tile sometimes is generated out of reach for the human.
   if (isHumanOnLastTile()) {
     canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
     victory = true;
@@ -115,11 +120,11 @@ void checkFigureCollision() {
 }
 
 void checkItemCollision() {
-  if (human.position.x + human.width / 2 > xRubberRing - rubberRingWidth / 2 && 
-    human.position.x - human.width / 2 < xRubberRing + rubberRingWidth / 2 && 
-    human.position.y + human.height / 2 > yRubberRing - rubberRingWidth / 2 && 
-    human.position.y - human.height / 2 < yRubberRing + rubberRingWidth / 2) {
+  if (human.position.x + human.width / 2 > rubberRing.x - rubberRingWidth / 2 && 
+    human.position.x - human.width / 2 < rubberRing.x + rubberRingWidth / 2 && 
+    human.position.y + human.height / 2 > rubberRing.y - rubberRingWidth / 2 && 
+    human.position.y - human.height / 2 < rubberRing.y + rubberRingWidth / 2) {
     showLifePreserver = true;
-    isRubberRingCollected = true;
+    initRubberRing();
   }
 }

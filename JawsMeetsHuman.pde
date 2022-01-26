@@ -10,7 +10,8 @@ void setup() {
   initPaths(); // Initializes the path, IMPORTANT - needs to be executed first, before any other element of the game view.
   initShark(); // Initializes the shark
   initHuman(); // Initializes the human
-  initRubberRing();
+  initRubberRing(); // Initializes the rubbering, with which the human can swim
+  initLifePreserverIcon(); // Initializes the icon position
   initSharkOrientationUI(); // IMPORTANT - Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
   initLifes(); // Used to set all lifes to true
@@ -55,7 +56,7 @@ void checkBoundaries() {
 
 void drawGameObjects() {
   background(pathImg);
-  if (!isRubberRingCollected) drawRubberRing();
+  drawRubberRing();
   if (showLifePreserver) drawLifePreserver();
   drawHuman();
   drawShark(); 
