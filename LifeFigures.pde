@@ -1,6 +1,6 @@
 // @author Luca Virnich
 
-boolean[] lifes = new boolean[2];
+boolean[] lifes = new boolean[3];
 boolean gameOver = false;
 
 int size = 3; // sets the heart-size, is used to reposition them accordingly if changed

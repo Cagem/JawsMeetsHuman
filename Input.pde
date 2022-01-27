@@ -1,5 +1,7 @@
 // @author Kyra Muhl
 // logging by @author Niginabonu Isamukhamedova
+// handleRestartKey() by @author Luca Virnich
+// handleHighScoreKey() by @authors Luca Virnich & Jona König
 
 boolean isHighscoreSaveDisabled = false; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
 
