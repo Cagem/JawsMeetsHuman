@@ -1,7 +1,7 @@
 // @author Luca Virnich
 
 int newHighscore;
-int[] highscores = new int [5];  // Array with Int highscores
+int[] highscores = new int [5];  // Array to save highscores as integers
 
 void setNewHighscore() {
   newHighscore = timerHours*60*60 + timerMinutes*60 + timerSecondsINT;
@@ -11,7 +11,6 @@ void saveHighscore() {
   String[] highscoresString = new String[5];
 
   for (int i = 0; i < highscores.length; i++) {
-
     if (newHighscore > highscores[highscores.length-1]) {
       highscores[highscores.length-1] = newHighscore;
       break;
@@ -24,14 +23,11 @@ void saveHighscore() {
   for (int i = 0; i < highscoresString.length; i++) {
     highscoresString[i]=nf(highscores[i]);
   }
-  saveStrings("highscores.txt", highscoresString);
+  saveStrings("data/highscores.txt", highscoresString);
 }
 
 void loadHighscore() {
-  
-  try {
-  
-    String[] highscoresString = loadStrings("highscores.txt");
+  String[] highscoresString = loadStrings("data/highscores.txt");
 
     for (int i = 0; i < highscoresString.length; i++) {
       highscores[i] = int(highscoresString[i]);

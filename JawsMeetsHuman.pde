@@ -1,31 +1,21 @@
 // @author Kyra Muhl
-// @author Jona König
+// @author Jona König - especially relativeSize() functionality
 // @author Luca Virnich
-
-// Function to initialize screen (and try to improve the framerate)
-// void settings() {
-//     try {
-//         fullScreen(P2D);
-//         MIND: There are known issues combining a cursor image with P2D/P3D and/or fullscreen();
-//         smooth(4); // problem with text in pause screen after ~2 seconds.
-//     } catch (Throwable e) {
-//         fullScreen(JAVA2D);
-//         smooth(8); // no smooth right now
-//         println("Special graphics for computers which dont support OpenGL Graphics activated.");
-//     }
-// }
 
 void setup() {
   fullScreen(); // Initializes the screen as fullscreen
 
+  loadImages(); // Loads images just once, IMPORTANT - Has to stay up top beneath fullScreen() to get width and height and exit the game if assets are missing.
   loadHighscore(); // Loads the Highscores from Highscores.txt
-  initPaths(); // Initializes the path vectors
-  initShark(); // Initializes the shark vectors
-  initHuman(); // Initializes the human vectors
-  initBackgroundImage(); // Initializes the menu screen
-  initSharkOrientationUI(); // IMPORTANT: Needs to stay above initActiveAreas(); 
+  loadRuleSet(); // Loads the Ruleset from ruleset.txt
+  initPaths(); // Initializes the path, IMPORTANT - needs to be executed first, before any other element of the game view.
+  initShark(); // Initializes the shark
+  initHuman(); // Initializes the human
+  initRubberRing(); // Initializes the rubbering, with which the human can swim
+  initLifePreserverIcon(); // Initializes the icon position
+  initSharkOrientationUI(); // IMPORTANT - Needs to stay above initActiveAreas(); 
   initActiveAreas(); // These are used to control where the cursor is. This information is used for drawSharkOrientationUI();
-  initLifes(); // used to set all lifes to true
+  initLifes(); // Used to set all lifes to true
   initThemeSound(); // Initializes the background music
 
   frameRate(60); // IMPORTANT - needs to stay at 60! Is utilized for measurements of time.
@@ -37,40 +27,48 @@ void draw() {
     displayMenu();
     noCursor();
   } else if (deathScreen) {
-    drawDeathScreen();
+    drawMenuScreen("The shark won!", "Hit 'r' to restart, 'h' to save your score or esc to exit");
+  } else if (victory) {
+    drawMenuScreen("The human won!", "Hit 'r' to restart, 'h' to save your score or esc to exit");
   } else {
-    if (displayDifficulty) displayDifficulty = false;
-    updateTimer();
-
-    background(176, 196, 222);
-    drawGameObjects();
+    updateTimer(); // updates the jumping timer of the shark
+    drawGameObjects(); // draws all game objects
     drawSharkOrientationUI(); // controls the sharks orientation by mouse position
-    checkBoundaries();
-    moveGameObjects();
+    checkBoundaries(); // checks all boundaries
+    moveGameObjects(); // moves all game objects
   }
-  showThemeSongPopup(); // Shows current state of the background music (play/pause/amplitude)
+
+  if (popupMessage != "") timePopup(popupMessage, popupTime); // If there is a popupMessage set by another function, the popup will appear for two seconds.
 }
 
+// moves all game objects
 void moveGameObjects() {
-  moveVectorObject(shark.position, shark.velocity);
-  if (shouldHumanMove) moveVectorObject(humanPosition, humanVelocity);
+  shark.move();
+  human.move();
 }
 
+// checks all boundaries
 void checkBoundaries() {
   checkBoundaryCollision(shark.position, shark.velocity, shark.width, shark.height); // Checks if the shark collides with screen border
-  checkBoundaryCollision(humanPosition, humanVelocity, humanWidth, humanHeight); // Checks if the human collides with screen border
-  checkPathCollision();
+  checkBoundaryCollision(human.position, human.velocity, human.width, human.height); // Checks if the human collides with screen border
+  checkHumanPathBoundary();
+  checkPathCollisionShark();
   checkFigureCollision();
+  checkItemCollision();
 }
 
+// draws all game objects & background
 void drawGameObjects() {
-  drawPaths(); // Draws the path
-  drawHuman(); // Draws the human
-  drawShark(); // Draws the shark
-  drawLifes(); // Draws the Hearts/Lifes
-  drawTimer(); // Draws the timer
+  background(pathImg);
+  drawRubberRing();
+  if (showLifePreserver) drawLifePreserver();
+  drawHuman();
+  drawShark(); 
+  drawLifes();
+  drawTimer();
 }
 
+// updates the jumping timer of the shark
 void updateTimer() {
   if (shark.isJumping) {
     setJumpingTimer();
@@ -80,9 +78,9 @@ void updateTimer() {
 }
 
 float relativeSize(String size) {
-  //XL -> Global relative fontsize for TITLES
-  //M -> Global relative fontsize for REGULAR TEXT
-  //S -> Global relative fontsize for DESCRIPTIVE TEXT
+  // XL -> Global relative fontsize for TITLES
+  // M -> Global relative fontsize for REGULAR TEXT
+  // S -> Global relative fontsize for DESCRIPTIVE TEXT
 
   float relativeSize = 0.1;
 

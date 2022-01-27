@@ -9,12 +9,11 @@ Polygon2D lowerArea = new Polygon2D();
 Polygon2D leftArea = new Polygon2D();
 Polygon2D rightArea = new Polygon2D();
 
-PImage cursorImage;
-
 float diameterBigCircle;
-int diameterSmallCircle;
+float diameterSmallCircle;
 float splitBigCircle;
 float splitSmallCircle;
+int cursorRadius;
 
 int[] centerOfControlUI = new int[2];
 float[] splitUpRight = new float[4];
@@ -29,7 +28,9 @@ void initSharkOrientationUI() {
   centerOfControlUI[1] = round(0.1 * height); // Y
 
   diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
-  diameterSmallCircle = 28; // is used because of the static image size of red_dot (32), so it can overlay the default position.
+  diameterSmallCircle = cursorImg.width * 0.8; // Width of cursorImg minus 20% so the red dot (cursorImg) can overlay the small (inner) circle of the control UI.
+  cursorRadius = cursorImg.width/2;
+
   splitBigCircle = diameterBigCircle / (0.9 * PI); 
   splitSmallCircle = diameterSmallCircle / (0.9 * PI);
 
@@ -64,15 +65,14 @@ void manipulateCursor() {
 
   try {
     robot = new Robot();
-    robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]);
+    robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]); // Does only work in fullScreen(). Artificial manipulation like size() is not supported.
   } 
   catch(Throwable e) {
-    println(e.getMessage());
+    println("There was an error controlling the cursor: " + e.getMessage());
     exit();
   }
 
-  cursorImage = loadImage("red_dot.png");
-  cursor(cursorImage, 16, 16);
+  cursor(cursorImg, cursorRadius, cursorRadius);
 }
 
 void drawControlUI() {

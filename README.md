@@ -10,13 +10,13 @@
 
 This is a Game in which a Human tries to win against Nature!
 
-You watched jaws and wonder if you would stand a chance against them?
+You watched JAWS and wonder if you would stand a chance against them?
 
 This is your game to play.
 
 ## Project Status
 
-Still in process
+v1.0
 
 # Getting Started
 
@@ -34,5 +34,5 @@ Requiered libraries:
 | Jona König            | [devdev42](https://github.com/devdev42)           |
 | Luca Virnich          | [luca-virninch](https://github.com/luca-virninch) |
 | Peer Voss             | [peervoss](https://github.com/peervoss)           |
-| Nigina Isamukhamedova |                                                   |
+| Nigina Isamukhamedova | [nigina23](https://github.com/nigina23)           |
 | Kyra Muhl             | [Cagem](https://github.com/Cagem)                 |

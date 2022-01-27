@@ -13,8 +13,9 @@ void initLifes() {
 }
 
 void reduceLife() {
-  if (currentLifes <=  0) {
+  if (currentLifes <=  1) {
     deathScreen = true;
+    canvasImg = get(); // Takes a screenshot of the canvas which is then utilized in drawMenuScreen().
     println("Das Spiel ging "+ timerHours+ " : " +timerMinutes+ " : " +timerSecondsINT+ " Minuten.");
   } else {
     currentLifes --;
