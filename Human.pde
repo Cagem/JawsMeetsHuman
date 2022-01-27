@@ -1,5 +1,5 @@
 // @author Kyra Muhl
-// @author Jona König
+// increaseSpeed() & changeVelocity() by @author Jona König
 
 Human human;
 
