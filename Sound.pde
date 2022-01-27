@@ -18,10 +18,10 @@ void initThemeSound() {
 void playOrPauseThemeSong() {
   if (isThemePlaying()) {
     pauseThemeSong();
-    setPopup("Paused Theme Song");
+    setPopup("Theme Song muted");
   } else {
     loopThemeSong();
-    setPopup("Resume Theme Song");
+    setPopup("Playing Theme Song");
   }
 } 
 
