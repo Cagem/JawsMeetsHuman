@@ -173,6 +173,7 @@ class Shark {
   void jump() {
     this.setIsJumping(true);
     this.setIsAllowedToJump(false);
+    println("Shark is jumping at " + timerHours+ " : " +timerMinutes+ " : " +timerSecondsINT+ " !!!!" );
   }
 
   // Function to change the velocity (used if key gets pressed)
