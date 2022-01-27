@@ -88,6 +88,7 @@ float relativeSize(String size) {
   else if (size =="M") relativeSize = width / 80;
   else if (size =="S") relativeSize = width / 90;
   else if (size =="XS") relativeSize = width / 110;
+  else if (size =="XXS") relativeSize = width / 300;
   else println("ERROR: function relativeSize() got an undefined paramenter.");
 
   return(relativeSize);

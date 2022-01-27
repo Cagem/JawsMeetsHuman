@@ -19,7 +19,7 @@ void keyPressed() {
   if (displayMenu) {
     handleDifficultyKeysPressed();
   }
-  if (gameOver || victory) {
+  if (deathScreen || victory) {
     handleGameOverKeys();
   }
 }
@@ -85,12 +85,15 @@ void handleDifficultyKeysPressed() {
   switch(key) {
   case'1' :
     setDifficulty(10, 1);
+    println("difficulty changed: Difficutly 1");
     break;
   case'2':
     setDifficulty(12.5, 2);
+    println("difficulty changed: Difficutly 2");
     break;
   case'3':
     setDifficulty(15, 3);
+    println("difficulty changed: Difficutly 3");
     break;
   default:
     break;
@@ -141,7 +144,7 @@ void handleGameOverKeys() {
 
 // Resets all related game variables to restart the game
 void handleRestartKey() {
-  gameOver = false;
+    deathScreen = false;
   victory = false;
   currentLifes = lifes.length;
   for (int i = 0; i < lifes.length; i++) {
@@ -161,6 +164,7 @@ void handleHighScoreKey() {
   if (!isHighscoreSaveDisabled) {
     setNewHighscore();
     saveHighscore();
+    println("Der Highscore wurde gespeichert.");
     setPopup("Score saved");
     isHighscoreSaveDisabled = true;
   } else setPopup("You already saved your score");

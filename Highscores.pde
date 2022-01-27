@@ -29,9 +29,14 @@ void saveHighscore() {
 void loadHighscore() {
   String[] highscoresString = loadStrings("data/highscores.txt");
 
-  for (int i = 0; i < highscoresString.length; i++) {
-    highscores[i] = int(highscoresString[i]);
+    for (int i = 0; i < highscoresString.length; i++) {
+      highscores[i] = int(highscoresString[i]);
+    }
+  } catch (NullPointerException e ){
+    println("No Highscores file found. Make sure you have a text file named 'highscores.txt.' in the same folder as the game!");
+    exit();
   }
+
 }
 
 
