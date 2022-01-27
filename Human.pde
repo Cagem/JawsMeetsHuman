@@ -11,7 +11,8 @@ void drawHuman() {
 
 // Initializes the human vectors.
 void initHuman() {
-  PVector position = new PVector(paths.get(0).x + paths.get(0).width/2, paths.get(0).y + paths.get(0).height/2);
+  Path firstTile = paths.get(0);
+  PVector position = new PVector(firstTile.x + firstTile.width/2, firstTile.y + firstTile.height/2);
   PVector velocity = new PVector(0, 0);
   velocity.mult(3);
 
