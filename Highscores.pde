@@ -1,7 +1,7 @@
 // @author Luca Virnich
 
 int newHighscore;
-int[] highscores = new int [5];  // Array mit Int highscore werten
+int[] highscores = new int [5];  // Array with Int highscores
 
 void setNewHighscore() {
   newHighscore = timerHours*60*60 + timerMinutes*60 + timerSecondsINT;
