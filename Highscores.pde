@@ -23,11 +23,11 @@ void saveHighscore() {
   for (int i = 0; i < highscoresString.length; i++) {
     highscoresString[i]=nf(highscores[i]);
   }
-  saveStrings("highscores.txt", highscoresString);
+  saveStrings("data/highscores.txt", highscoresString);
 }
 
 void loadHighscore() {
-  String[] highscoresString = loadStrings("highscores.txt");
+  String[] highscoresString = loadStrings("data/highscores.txt");
 
   for (int i = 0; i < highscoresString.length; i++) {
     highscores[i] = int(highscoresString[i]);
