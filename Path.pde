@@ -1,5 +1,5 @@
 // @author Kyra Muhl
-// @author Jona König
+// renderPath() by @author Jona König
 
 float pathWidth;
 float pathHeight;
@@ -14,7 +14,7 @@ float getRandomPathPosition(float last, float pathRadius) {
   return random(lowest, highest);
 }
 
-// Overloading prev: returns a random path position depending on the last position, path radius & figure radius.
+// Overloading: returns a random path position depending on the last position, path radius & figure radius.
 float getRandomPathPosition(float last, float pathRadius, float figureRadius) {
   float lowest = last - pathRadius;
   float highest = last + pathRadius;
