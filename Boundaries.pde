@@ -1,4 +1,5 @@
 // @author Kyra Muhl
+// checkFigureCollision() by @authors Luca Virnich & Jona König
 
 boolean victory = false;
 
@@ -116,16 +117,21 @@ void checkHumanPathBoundary() {
   }
 }
 
-// Checks if the human and shark collide
+// Checks wheter the shark hits the human with its jaws first.
 void checkFigureCollision() {
   if (shark.position.x + shark.width / 2 > human.position.x - human.width / 2 && 
     shark.position.x - shark.width / 2 < human.position.x + human.width / 2 && 
     shark.position.y + shark.height / 2 > human.position.y - human.height / 2 && 
     shark.position.y - shark.height / 2 < human.position.y + human.height / 2) {
 
-    reduceLife();
-    shark.respawn(width, height);
-    human.respawn();
+    if ((sharkOrientation == "RIGHT" && shark.velocity.x > 0) ||
+    (sharkOrientation == "LEFT" && shark.velocity.x < 0) ||
+    (sharkOrientation == "DOWN" && shark.velocity.y > 0) ||
+    (sharkOrientation == "UP" && shark.velocity.y < 0)) {
+      reduceLife();
+      shark.respawn(width, height);
+      human.respawn();
+    }
   }
 }
 

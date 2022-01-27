@@ -1,4 +1,5 @@
 // @author Kyra Muhl
+// logging by @author Niginabonu Isamukhamedova
 
 boolean isHighscoreSaveDisabled = false; // will be false if 'h' was pressed so the highscore.txt can't be spammed.
 
@@ -26,11 +27,11 @@ void handleArrowKeysPressed() {
   switch(keyCode) {
   case LEFT:
     shark.changeVelocity(-1, 0, difficulty);
-    println("INFO: You pressed key" + keyCode);
+    println("INFO: You pressed key LEFT");
     break;
   case RIGHT:
     shark.changeVelocity(1, 0, difficulty);
-    println("INFO: You pressed key Right");
+    println("INFO: You pressed key RIGHT");
     break;
   case UP:
     shark.changeVelocity(0, -1, difficulty);
