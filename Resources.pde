@@ -1,6 +1,6 @@
 // @author Jona König
 
-// Loading all assets just once instead of per every frame increases the performance dramatically.
+// Loading all assets just once instead of every frame increases the performance dramatically.
 PImage pathTileImg;
 PImage pathImg; // Will be used later on in Path.pde > renderPath function.
 PImage goalImg;

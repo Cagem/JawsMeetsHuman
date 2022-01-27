@@ -3,13 +3,13 @@
 
 import processing.sound.*;
 
-SoundFile file; // Used to declare sound file object
+SoundFile backgroundMusic; // Used to declare sound file object
 int themeSongPopupTimer = 0; // Used to calc for how long the popup as been visible
 float amplitude = 0.5; // Used to declare sound amplitude
 
 // Initializes the background music
 void initThemeSound() {
-  file = new SoundFile(this, "Jaws-theme-song.mp3");
+  backgroundMusic = new SoundFile(this, "Jaws-theme-song.mp3");
   setThemeVolume(amplitude);
   loopThemeSong();
 }
@@ -27,12 +27,12 @@ void playOrPauseThemeSong() {
 
 // Function to check if music is currently playing
 boolean isThemePlaying() {
-  return file.isPlaying();
+  return backgroundMusic.isPlaying();
 }
 
 // Function to change the musics volume
 void setThemeVolume(float volume) {
-  file.amp(volume);
+  backgroundMusic.amp(volume);
 }
 
 // Function to get the current music volume as a string
@@ -60,20 +60,20 @@ void decreaseThemeVolume() {
 
 // Function to play background music
 void playThemeSong() {
-  file.play();
+  backgroundMusic.play();
 }
 
 // Function to play background music as a loop
 void loopThemeSong() {
-  file.loop();
+  backgroundMusic.loop();
 }
 
 // Function to pause background music
 void pauseThemeSong() {
-  file.pause();
+  backgroundMusic.pause();
 }
 
 // Function to stop background music
 void stopThemeSong() {
-  file.stop();
+  backgroundMusic.stop();
 }

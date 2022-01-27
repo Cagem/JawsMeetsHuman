@@ -10,13 +10,13 @@
 
 This is a Game in which a Human tries to win against Nature!
 
-You watched jaws and wonder if you would stand a chance against them?
+You watched JAWS and wonder if you would stand a chance against them?
 
 This is your game to play.
 
 ## Project Status
 
-Still in process
+v1.0
 
 # Getting Started
 

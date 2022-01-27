@@ -1,5 +1,5 @@
 // @author Kyra Muhl
-// @author Jona König
+// @author Jona König - especially relativeSize() functionality
 // @author Luca Virnich
 
 void setup() {

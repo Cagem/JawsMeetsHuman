@@ -14,5 +14,6 @@ void loadRuleSet() {
     }
   } catch (Exception e) {
     println("There was an error loading ruleset.txt: " + e.getMessage());
+    exit();
   }
 }

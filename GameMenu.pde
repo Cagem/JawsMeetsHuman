@@ -1,14 +1,14 @@
 // @author Jona König
 
 float difficulty = 1.5; 
-int popupTime = 120; // Default option
-int popupTimer = 0; // Counting frames, utilized for timing capability, see setPopup().
+int popupTime = 120; // Default duration (2 seconds)
+int popupTimer = 0; // Counting frames, utilized for timing capability, see timePopup().
 boolean displayMenu = true;
 boolean firstStartup = true; // Only true after initial startup to show rules etc.
-String popupMessage = ""; // globally relevant! Write to this string an a popup will appear.
+String popupMessage = ""; // Globally relevant! Write to this string an a popup will appear.
 
 void displayMenu() {
-  if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once
+  if (firstStartup) drawInitialMenuScreen(); // Startup-specific content that is only displayed once.
   else drawMenuScreen("PAUSE", "Press 'p' to resume");
 }
 
@@ -20,7 +20,7 @@ void setPlayOrPause() {
 
 void setDifficulty(float factor, int chosenDifficulty) {
   difficulty = factor;
-  setPopup("Difficulty level: " + nf(chosenDifficulty), 120);
+  setPopup("Difficulty level: " + nf(chosenDifficulty), 110);
 } 
 
 void setPopup(String content, int time) {
@@ -28,7 +28,7 @@ void setPopup(String content, int time) {
   popupTime = time;
 }
 
-void setPopup(String content) { // function overloading, time is optional
+void setPopup(String content) { // Function-overloading, time is optional
   popupMessage = content;
 }
 
@@ -45,7 +45,7 @@ void timePopup(String content, int time) {
   }
 }
 
-void displayPopup(String content) { // Reusable and content-responsive function to show popups
+void displayPopup(String content) { // Reusable and content-responsive function to show popups.
   textSize(relativeSize("M"));
   float contentLenght = textWidth(content);
   float contentHeight = textWidth('O'); // The letter O in the utilized font-familiy is nearly as wide as high and can therefore be used for the sentence's hight.
@@ -57,8 +57,8 @@ void displayPopup(String content) { // Reusable and content-responsive function 
   rect(xPosition, yPosition, contentLenght + width/55, contentHeight + height/40, 10); // background of the popup
   fill(255);
   textAlign(CENTER);
-  text(content, xPosition, yPosition + height * 0.007); // content of the popup
-  rectMode(CORNER); // back to the program's standard
+  text(content, xPosition, yPosition + height * 0.007); // Content of the popup
+  rectMode(CORNER); // Back to the program's standard.
 }
 
 void drawInitialMenuScreen() {
@@ -76,7 +76,7 @@ void drawInitialMenuScreen() {
   text("Choose your difficulty level between 1 and 3 by pressing the respective keys.", width / 2, height / 1.8);
   textAlign(LEFT);
   text(ruleset, width * 0.25, height / 1.5, width * 0.5, height * 0.4); // This textbox is limited by x2 and y2.
-  drawHighscores(); // draws the highscore board
+  drawHighscores();
 }
 
 void drawMenuScreen(String title, String message) {

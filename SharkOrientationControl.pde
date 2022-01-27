@@ -28,7 +28,7 @@ void initSharkOrientationUI() {
   centerOfControlUI[1] = round(0.1 * height); // Y
 
   diameterBigCircle = 0.1 * width; // CUSTOMIZE HERE: Changing the factor will adapt all dependencies accordingly.
-  diameterSmallCircle = cursorImg.width*0.8; // Width of cursorImg minus 20% so the red dot (cursorImg) can overlay the small (inner) circle of the control UI.
+  diameterSmallCircle = cursorImg.width * 0.8; // Width of cursorImg minus 20% so the red dot (cursorImg) can overlay the small (inner) circle of the control UI.
   cursorRadius = cursorImg.width/2;
 
   splitBigCircle = diameterBigCircle / (0.9 * PI); 
@@ -68,7 +68,7 @@ void manipulateCursor() {
     robot.mouseMove(centerOfControlUI[0], centerOfControlUI[1]); // Does only work in fullScreen(). Artificial manipulation like size() is not supported.
   } 
   catch(Throwable e) {
-    println(e.getMessage());
+    println("There was an error controlling the cursor: " + e.getMessage());
     exit();
   }
 

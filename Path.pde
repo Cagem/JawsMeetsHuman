@@ -4,9 +4,9 @@
 float pathWidth;
 float pathHeight;
 
-ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles
+ArrayList<Path> paths = new ArrayList<Path>(); // Vector positions of the path tiles.
 
-// returns a random path position depending only on the last position and path radius
+// Returns a random path position depending only on the last position and path radius.
 float getRandomPathPosition(float last, float pathRadius) {
   float lowest = last;
   float highest = last + pathRadius;
@@ -14,7 +14,7 @@ float getRandomPathPosition(float last, float pathRadius) {
   return random(lowest, highest);
 }
 
-// overloading prev: returns a random path position depending on the last position, path radius & figure radius
+// Overloading prev: returns a random path position depending on the last position, path radius & figure radius.
 float getRandomPathPosition(float last, float pathRadius, float figureRadius) {
   float lowest = last - pathRadius;
   float highest = last + pathRadius;
@@ -25,7 +25,7 @@ float getRandomPathPosition(float last, float pathRadius, float figureRadius) {
   return random(low, high);
 }
 
-// initialize the paths array
+// Initialize the paths array.
 void initPaths() {
   pathWidth = humanImg.width*0.7; // The path size is cuppled to the relative human figure size.
   pathHeight = humanImg.height*0.7;
@@ -51,7 +51,7 @@ void initPaths() {
   renderPath(); // Rendering all tiles to a complete path and storing this information in a single image to improve performance.
 }
 
-// Function to render all path tiles into one path-image
+// Function to render all path tiles into one path-image.
 void renderPath() {
   PGraphics pathCanvas = createGraphics(width, height); // Draw on a new drawing surface so the user cant see it.
   pathCanvas.beginDraw();
@@ -65,14 +65,14 @@ void renderPath() {
   pathCanvas.endDraw();
 }
 
-// Class for creating Path Objects
+// Class for creating Path Objects.
 class Path {
   float x;
   float y;
   float width;
   float height;
 
-  // Constructor that is being called while creating a new Path Object
+  // Constructor that is being called while creating a new Path Object.
   public Path(float x, float y, float pathWidth, float pathHeight) {
     this.x = x;
     this.y = y;
